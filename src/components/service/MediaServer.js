@@ -19,7 +19,7 @@ class MediaServer{
   getMediaServerList(callback){
     this.$axios({
       method: 'get',
-      url:`/api/server/media_server/list`,
+      url:`/webapi/mediaServer/list`,
     }).then(function (res) {
       if (typeof (callback) == "function") callback(res.data)
     }).catch(function (error) {

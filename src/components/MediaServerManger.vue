@@ -12,7 +12,7 @@
         <el-card shadow="hover" :body-style="{ padding: '0px'}" class="server-card">
           <div class="card-img-zlm"></div>
           <div style="padding: 14px;text-align: left">
-            <span style="font-size: 16px">{{item.id}}</span>
+            <span style="font-size: 16px">{{item.mediaServerId}}</span>
             <el-button v-if="!item.defaultServer" icon="el-icon-edit" style="padding: 0;float: right;" type="text" @click="edit(item)">编辑</el-button>
             <el-button v-if="item.defaultServer" icon="el-icon-edit" style="padding: 0;float: right;" type="text" @click="edit(item)">查看</el-button>
             <el-button v-if="!item.defaultServer" icon="el-icon-delete" style="margin-right: 10px;padding: 0;float: right;" type="text" @click="del(item)">移除</el-button>
