@@ -92,7 +92,7 @@
           type: 'warning'
         }).then(() => {
           this.mediaServerObj.delete(row.id, (data)=>{
-            if (data.code === 0) {
+            if (data.code === 2000000) {
               this.$message({
                 type: 'success',
                 message: '删除成功!'

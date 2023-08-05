@@ -41,7 +41,7 @@ class MediaServer{
   checkServer(param, callback){
     this.$axios({
       method: 'get',
-      url:`/api/server/media_server/check`,
+      url:`/webapi/mediaServer/check`,
       params: {
         ip: param.ip,
         port: param.httpPort,
@@ -72,7 +72,7 @@ class MediaServer{
   addServer(param, callback){
     this.$axios({
       method: 'post',
-      url:`/api/server/media_server/save`,
+      url:`/webapi/mediaServer/edit`,
       data: param
     }).then(function (res) {
       if (typeof (callback) == "function") callback(res.data)
@@ -84,10 +84,7 @@ class MediaServer{
   delete(id, callback) {
     this.$axios({
       method: 'delete',
-      url:`/api/server/media_server/delete`,
-      params: {
-        id: id
-      }
+      url:`/webapi/mediaServer/delete/` + id,
     }).then(function (res) {
       if (typeof (callback) == "function") callback(res.data)
     }).catch(function (error) {
