@@ -1,24 +1,24 @@
 <template>
   <div id="devicePosition" style="width:100vw; height: 91vh">
-    <el-container v-loading="loading" style="height: 91vh;" element-loading-text="拼命加载中">
-      <el-aside width="300px" style="background-color: #ffffff">
+    <el-container v-loading="loading" element-loading-text="拼命加载中" style="height: 91vh;">
+      <el-aside style="background-color: #ffffff" width="300px">
         <DeviceTree :clickEvent="clickEvent" :contextMenuEvent="contextMenuEvent"></DeviceTree>
       </el-aside>
       <el-container>
         <el-header height="5vh" style="text-align: left;font-size: 17px;line-height:5vh">
           分屏:
-          <i class="el-icon-full-screen btn" :class="{active:spilt==1}" @click="spilt=1"/>
-          <i class="el-icon-menu btn" :class="{active:spilt==4}" @click="spilt=4"/>
-          <i class="el-icon-s-grid btn" :class="{active:spilt==9}" @click="spilt=9"/>
+          <i :class="{active:spilt==1}" class="el-icon-full-screen btn" @click="spilt=1"/>
+          <i :class="{active:spilt==4}" class="el-icon-menu btn" @click="spilt=4"/>
+          <i :class="{active:spilt==9}" class="el-icon-s-grid btn" @click="spilt=9"/>
         </el-header>
         <el-main style="padding: 0;">
           <div style="width: 99%;height: 85vh;display: flex;flex-wrap: wrap;background-color: #000;">
-            <div v-for="i in spilt" :key="i" class="play-box"
-                 :style="liveStyle" :class="{redborder:playerIdx == (i-1)}"
+            <div v-for="i in spilt" :key="i" :class="{redborder:playerIdx == (i-1)}"
+                 :style="liveStyle" class="play-box"
                  @click="playerIdx = (i-1)">
               <div v-if="!videoUrl[i-1]" style="color: #ffffff;font-size: 30px;font-weight: bold;">{{ i }}</div>
-              <player ref="player" v-else :videoUrl="videoUrl[i-1]" fluent autoplay @screenshot="shot"
-                      @destroy="destroy"/>
+              <player v-else ref="player" :videoUrl="videoUrl[i-1]" autoplay fluent @destroy="destroy"
+                      @screenshot="shot"/>
             </div>
           </div>
         </el-main>
@@ -111,7 +111,7 @@ export default {
       if (data.channelId && !isCatalog) {
         if (device.online === 0) {
           this.$message.error('设备离线!不允许点播');
-        }else {
+        } else {
           this.sendDevicePush(data)
         }
       }

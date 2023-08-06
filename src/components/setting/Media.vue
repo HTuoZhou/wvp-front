@@ -5,7 +5,7 @@
     </div>
     <div
       style="width: 60%; margin:0 auto; background-color: #FFFFFF; position: relative; padding: 5rem 6.5rem; text-align: left;font-size: 14px; max-width: 400px">
-      <el-form ref="form" :rules="rules" :model="form" label-width="140px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="140px">
         <el-form-item label="IP" prop="IP">
           <el-input v-model="form.IP" clearable></el-input>
         </el-form-item>
@@ -52,7 +52,7 @@
           <el-input v-model.number="form.rtp.portRange" clearable></el-input>
         </el-form-item>
         <el-form-item label="DOCKER智能识别">
-          <el-input type="textarea" v-model="dockerStr"></el-input>
+          <el-input v-model="dockerStr" type="textarea"></el-input>
         </el-form-item>
 
         <el-form-item>

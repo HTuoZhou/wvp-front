@@ -1,7 +1,3 @@
-
-
-
-
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
@@ -75,6 +71,7 @@
   text-align: center;
 
 }
+
 .login100-form-title i {
   font-size: 60px;
 }
@@ -103,10 +100,22 @@
   outline: none;
   border: none;
 }
-.input100::-webkit-input-placeholder { color: #adadad;}
-.input100:-moz-placeholder { color: #adadad;}
-.input100::-moz-placeholder { color: #adadad;}
-.input100:-ms-input-placeholder { color: #adadad;}
+
+.input100::-webkit-input-placeholder {
+  color: #adadad;
+}
+
+.input100:-moz-placeholder {
+  color: #adadad;
+}
+
+.input100::-moz-placeholder {
+  color: #adadad;
+}
+
+.input100:-ms-input-placeholder {
+  color: #adadad;
+}
 
 /*---------------------------------------------*/
 .focus-input100 {
@@ -117,7 +126,7 @@
   top: 0;
   left: 0;
   pointer-events: none;
-  color:transparent;
+  color: transparent;
 }
 
 .focus-input100::before {
@@ -217,7 +226,6 @@
 }
 
 
-
 /*------------------------------------------------------------------
 [ Button ]*/
 .container-login100-form-btn {
@@ -301,7 +309,6 @@
 }
 
 
-
 /*------------------------------------------------------------------
 [ Alert validate ]*/
 
@@ -372,24 +379,38 @@
 }
 
 /** util **/
-.p-b-26 {padding-bottom: 26px;}
-.p-b-48 {padding-bottom: 48px;}
-.p-t-115 {padding-top: 115px;}
-
-@keyframes login {
-  from {width: 100%}
-  to {width: 50px}
+.p-b-26 {
+  padding-bottom: 26px;
 }
 
-.login-loading{
+.p-b-48 {
+  padding-bottom: 48px;
+}
+
+.p-t-115 {
+  padding-top: 115px;
+}
+
+@keyframes login {
+  from {
+    width: 100%
+  }
+  to {
+    width: 50px
+  }
+}
+
+.login-loading {
   width: 50px;
   animation-name: login;
   animation-duration: 0.5s;
 }
+
 .login-loading > .login100-form-btn {
   visibility: hidden !important;
 }
-.login-loading-class{
+
+.login-loading-class {
   stroke: rgb(255, 255, 255) !important;
   background-color: transparent !important;
 }
@@ -397,8 +418,6 @@
 .login-loading-class > .el-loading-spinner .path {
   stroke: rgb(255, 255, 255) !important;
 }
-
-
 
 
 /**font**/

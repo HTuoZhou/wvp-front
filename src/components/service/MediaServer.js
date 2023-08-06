@@ -1,25 +1,26 @@
 import axios from 'axios';
 
-class MediaServer{
+class MediaServer {
 
   constructor() {
     this.$axios = axios;
   }
 
-  getOnlineMediaServerList(callback){
+  getOnlineMediaServerList(callback) {
     this.$axios({
       method: 'get',
-      url:`/api/server/media_server/online/list`,
+      url: `/api/server/media_server/online/list`,
     }).then((res) => {
       if (typeof (callback) == "function") callback(res.data)
     }).catch((error) => {
       console.log(error);
     });
   }
-  getMediaServerList(callback){
+
+  getMediaServerList(callback) {
     this.$axios({
       method: 'get',
-      url:`/webapi/mediaServer/list`,
+      url: `/webapi/mediaServer/list`,
     }).then(function (res) {
       if (typeof (callback) == "function") callback(res.data)
     }).catch(function (error) {
@@ -27,10 +28,10 @@ class MediaServer{
     });
   }
 
-  getMediaServer(id, callback){
+  getMediaServer(id, callback) {
     this.$axios({
       method: 'get',
-      url:`/api/server/media_server/one/` + id,
+      url: `/api/server/media_server/one/` + id,
     }).then(function (res) {
       if (typeof (callback) == "function") callback(res.data)
     }).catch(function (error) {
@@ -38,10 +39,10 @@ class MediaServer{
     });
   }
 
-  checkServer(param, callback){
+  checkServer(param, callback) {
     this.$axios({
       method: 'get',
-      url:`/webapi/mediaServer/check`,
+      url: `/webapi/mediaServer/check`,
       params: {
         ip: param.ip,
         port: param.httpPort,
@@ -54,10 +55,10 @@ class MediaServer{
     });
   }
 
-  checkRecordServer(param, callback){
+  checkRecordServer(param, callback) {
     this.$axios({
       method: 'get',
-      url:`/api/server/media_server/record/check`,
+      url: `/api/server/media_server/record/check`,
       params: {
         ip: param.ip,
         port: param.recordAssistPort
@@ -69,10 +70,10 @@ class MediaServer{
     });
   }
 
-  addServer(param, callback){
+  addServer(param, callback) {
     this.$axios({
       method: 'post',
-      url:`/webapi/mediaServer/edit`,
+      url: `/webapi/mediaServer/edit`,
       data: param
     }).then(function (res) {
       if (typeof (callback) == "function") callback(res.data)
@@ -84,7 +85,7 @@ class MediaServer{
   delete(id, callback) {
     this.$axios({
       method: 'delete',
-      url:`/webapi/mediaServer/delete/` + id,
+      url: `/webapi/mediaServer/delete/` + id,
     }).then(function (res) {
       if (typeof (callback) == "function") callback(res.data)
     }).catch(function (error) {

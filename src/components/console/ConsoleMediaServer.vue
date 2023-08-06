@@ -1,6 +1,7 @@
 <template>
   <div id="ConsoleMediaServer" style="width: 100%; height: 100%; background: #FFFFFF; text-align: center">
-    <ve-histogram ref="ConsoleMEM" :data="chartData" :extend="extend" :settings="chartSettings" width="100%" height="100%" ></ve-histogram>
+    <ve-histogram ref="ConsoleMEM" :data="chartData" :extend="extend" :settings="chartSettings" height="100%"
+                  width="100%"></ve-histogram>
   </div>
 </template>
 
@@ -15,8 +16,7 @@ export default {
     return {
       chartData: {
         columns: ['time', 'in', 'out'],
-        rows: [
-        ]
+        rows: []
       },
       chartSettings: {
         area: true,
@@ -43,7 +43,7 @@ export default {
           max: 'dataMax',
           boundaryGap: ['20%', '20%'],
           axisLabel: {
-            formatter:(v)=>{
+            formatter: (v) => {
               return moment(v).format("HH:mm:ss");
             },
             showMaxLabel: true,
@@ -51,11 +51,11 @@ export default {
         },
         tooltip: {
           trigger: 'axis',
-          formatter: (data)=>{
+          formatter: (data) => {
             console.log(parseFloat(data[0].data[1]).toFixed(2))
             console.log(parseFloat(data[1].data[1]).toFixed(2))
             console.log("############")
-            return "下载：" + parseFloat(data[0].data[1]).toFixed(2) + "Mbps" +  "</br> 上传：" + parseFloat(data[1].data[1]).toFixed(2) + "Mbps";
+            return "下载：" + parseFloat(data[0].data[1]).toFixed(2) + "Mbps" + "</br> 上传：" + parseFloat(data[1].data[1]).toFixed(2) + "Mbps";
           }
         },
         legend: {
@@ -67,7 +67,7 @@ export default {
   },
   mounted() {
     this.$nextTick(_ => {
-      setTimeout(()=>{
+      setTimeout(() => {
         this.$refs.ConsoleMEM.echarts.resize()
       }, 100)
     })
@@ -75,9 +75,9 @@ export default {
   destroyed() {
   },
   methods: {
-    setData: function(data) {
+    setData: function (data) {
       console.log(data)
-      this.chartData .rows = data;
+      this.chartData.rows = data;
     }
 
   }

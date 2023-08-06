@@ -1,30 +1,34 @@
 <template>
   <div id="mediaServerEdit" v-loading="isLoging">
     <el-dialog
-      title="媒体节点"
-      :width="dialogWidth"
-      top="2rem"
       :close-on-click-modal="false"
-      :visible.sync="showDialog"
       :destroy-on-close="true"
+      :visible.sync="showDialog"
+      :width="dialogWidth"
+      title="媒体节点"
+      top="2rem"
       @close="close()"
     >
       <div id="formStep" style="margin-top: 1rem; margin-right: 20px;">
-        <el-form v-if="currentStep == 1" ref="mediaServerForm" :rules="rules" :model="mediaServerForm" label-width="140px" >
+        <el-form v-if="currentStep == 1" ref="mediaServerForm" :model="mediaServerForm" :rules="rules"
+                 label-width="140px">
           <el-form-item label="IP" prop="ip">
-            <el-input v-model="mediaServerForm.ip"  placeholder="流媒体服务IP" clearable  :disabled="mediaServerForm.defaultServer"></el-input>
+            <el-input v-model="mediaServerForm.ip" :disabled="mediaServerForm.defaultServer" clearable
+                      placeholder="流媒体服务IP"></el-input>
           </el-form-item>
           <el-form-item label="HTTP PORT" prop="httpPort">
-            <el-input v-model="mediaServerForm.httpPort" placeholder="流媒体服务HTTP端口"  clearable :disabled="mediaServerForm.defaultServer"></el-input>
+            <el-input v-model="mediaServerForm.httpPort" :disabled="mediaServerForm.defaultServer" clearable
+                      placeholder="流媒体服务HTTP端口"></el-input>
           </el-form-item>
           <el-form-item label="SECRET" prop="secret">
-            <el-input v-model="mediaServerForm.secret" placeholder="流媒体服务SECRET"  clearable :disabled="mediaServerForm.defaultServer"></el-input>
+            <el-input v-model="mediaServerForm.secret" :disabled="mediaServerForm.defaultServer" clearable
+                      placeholder="流媒体服务SECRET"></el-input>
           </el-form-item>
           <el-form-item>
             <div style="float: right;">
-              <el-button type="primary" v-if="currentStep === 1 && serverCheck === 1" @click="next" >下一步</el-button>
+              <el-button v-if="currentStep === 1 && serverCheck === 1" type="primary" @click="next">下一步</el-button>
               <el-button @click="close">取消</el-button>
-              <el-button type="primary" @click="checkServer" >测试</el-button>
+              <el-button type="primary" @click="checkServer">测试</el-button>
               <i v-if="serverCheck === 1" class="el-icon-success" style="color: #3caf36"></i>
               <i v-if="serverCheck === -1" class="el-icon-error" style="color: #c80000"></i>
             </div>
@@ -32,84 +36,111 @@
         </el-form>
         <el-row :gutter="24">
           <el-col :span="12">
-            <el-form v-if="currentStep === 2 || currentStep === 3" ref="mediaServerForm1" :rules="rules" :model="mediaServerForm" label-width="140px" >
+            <el-form v-if="currentStep === 2 || currentStep === 3" ref="mediaServerForm1" :model="mediaServerForm"
+                     :rules="rules" label-width="140px">
               <el-form-item label="IP" prop="ip">
-                <el-input  v-if="currentStep === 2" v-model="mediaServerForm.ip" disabled :disabled="mediaServerForm.defaultServer"></el-input>
-                <el-input  v-if="currentStep === 3"  v-model="mediaServerForm.ip" :disabled="mediaServerForm.defaultServer"></el-input>
+                <el-input v-if="currentStep === 2" v-model="mediaServerForm.ip" :disabled="mediaServerForm.defaultServer"
+                          disabled></el-input>
+                <el-input v-if="currentStep === 3" v-model="mediaServerForm.ip"
+                          :disabled="mediaServerForm.defaultServer"></el-input>
               </el-form-item>
               <el-form-item label="HTTP PORT" prop="httpPort">
-                <el-input  v-if="currentStep === 2"  v-model="mediaServerForm.httpPort" disabled :disabled="mediaServerForm.defaultServer"></el-input>
-                <el-input  v-if="currentStep === 3"  v-model="mediaServerForm.httpPort" :disabled="mediaServerForm.defaultServer"></el-input>
+                <el-input v-if="currentStep === 2" v-model="mediaServerForm.httpPort" :disabled="mediaServerForm.defaultServer"
+                          disabled></el-input>
+                <el-input v-if="currentStep === 3" v-model="mediaServerForm.httpPort"
+                          :disabled="mediaServerForm.defaultServer"></el-input>
               </el-form-item>
               <el-form-item label="HOOK IP" prop="ip">
-                <el-input v-model="mediaServerForm.hookIp" placeholder="流媒体服务HOOK_IP" clearable :disabled="mediaServerForm.defaultServer"></el-input>
+                <el-input v-model="mediaServerForm.hookIp" :disabled="mediaServerForm.defaultServer" clearable
+                          placeholder="流媒体服务HOOK_IP"></el-input>
               </el-form-item>
               <el-form-item label="SDP IP" prop="ip">
-                <el-input v-model="mediaServerForm.sdpIp" placeholder="流媒体服务SDP_IP" clearable :disabled="mediaServerForm.defaultServer"></el-input>
+                <el-input v-model="mediaServerForm.sdpIp" :disabled="mediaServerForm.defaultServer" clearable
+                          placeholder="流媒体服务SDP_IP"></el-input>
               </el-form-item>
               <el-form-item label="STREAM IP" prop="ip">
-                <el-input v-model="mediaServerForm.streamIp" placeholder="流媒体服务流IP" clearable :disabled="mediaServerForm.defaultServer"></el-input>
+                <el-input v-model="mediaServerForm.streamIp" :disabled="mediaServerForm.defaultServer" clearable
+                          placeholder="流媒体服务流IP"></el-input>
               </el-form-item>
               <el-form-item label="HTTPS PORT" prop="httpSslPort">
-                <el-input v-model="mediaServerForm.httpSslPort" placeholder="流媒体服务HTTPS_PORT" clearable :disabled="mediaServerForm.defaultServer"></el-input>
+                <el-input v-model="mediaServerForm.httpSslPort" :disabled="mediaServerForm.defaultServer" clearable
+                          placeholder="流媒体服务HTTPS_PORT"></el-input>
               </el-form-item>
               <el-form-item label="RTSP PORT" prop="rtspPort">
-                <el-input v-model="mediaServerForm.rtspPort" placeholder="流媒体服务RTSP_PORT" clearable :disabled="mediaServerForm.defaultServer"></el-input>
+                <el-input v-model="mediaServerForm.rtspPort" :disabled="mediaServerForm.defaultServer" clearable
+                          placeholder="流媒体服务RTSP_PORT"></el-input>
               </el-form-item>
               <el-form-item label="RTSPS PORT" prop="rtspSslPort">
-                <el-input v-model="mediaServerForm.rtspSslPort" placeholder="流媒体服务RTSPS_PORT" clearable :disabled="mediaServerForm.defaultServer"></el-input>
+                <el-input v-model="mediaServerForm.rtspSslPort" :disabled="mediaServerForm.defaultServer" clearable
+                          placeholder="流媒体服务RTSPS_PORT"></el-input>
               </el-form-item>
 
             </el-form>
           </el-col>
           <el-col :span="12">
-            <el-form v-if="currentStep === 2 || currentStep === 3"  ref="mediaServerForm2" :rules="rules" :model="mediaServerForm" label-width="180px" >
+            <el-form v-if="currentStep === 2 || currentStep === 3" ref="mediaServerForm2" :model="mediaServerForm"
+                     :rules="rules" label-width="180px">
               <el-form-item label="RTMP PORT" prop="rtmpPort">
-                <el-input v-model="mediaServerForm.rtmpPort" placeholder="流媒体服务RTMP_PORT" clearable :disabled="mediaServerForm.defaultServer"></el-input>
+                <el-input v-model="mediaServerForm.rtmpPort" :disabled="mediaServerForm.defaultServer" clearable
+                          placeholder="流媒体服务RTMP_PORT"></el-input>
               </el-form-item>
               <el-form-item label="RTMPS PORT" prop="rtmpSslPort">
-                <el-input v-model="mediaServerForm.rtmpSslPort" placeholder="流媒体服务RTMPS_PORT" clearable :disabled="mediaServerForm.defaultServer"></el-input>
+                <el-input v-model="mediaServerForm.rtmpSslPort" :disabled="mediaServerForm.defaultServer" clearable
+                          placeholder="流媒体服务RTMPS_PORT"></el-input>
               </el-form-item>
               <el-form-item label="SECRET" prop="secret">
-                <el-input v-if="currentStep === 2"  v-model="mediaServerForm.secret" disabled :disabled="mediaServerForm.defaultServer"></el-input>
-                <el-input v-if="currentStep === 3"  v-model="mediaServerForm.secret" :disabled="mediaServerForm.defaultServer"></el-input>
+                <el-input v-if="currentStep === 2" v-model="mediaServerForm.secret" :disabled="mediaServerForm.defaultServer"
+                          disabled></el-input>
+                <el-input v-if="currentStep === 3" v-model="mediaServerForm.secret"
+                          :disabled="mediaServerForm.defaultServer"></el-input>
               </el-form-item>
               <el-form-item label="心跳间隔时间（S）" prop="hookAliveInterval">
-                <el-input v-model="mediaServerForm.hookAliveInterval" placeholder="心跳间隔时间（S）" clearable :disabled="mediaServerForm.defaultServer"></el-input>
+                <el-input v-model="mediaServerForm.hookAliveInterval" :disabled="mediaServerForm.defaultServer" clearable
+                          placeholder="心跳间隔时间（S）"></el-input>
               </el-form-item>
-              <el-form-item label="自动配置媒体服务" >
+              <el-form-item label="自动配置媒体服务">
                 <el-switch v-model="mediaServerForm.autoConfig" :disabled="mediaServerForm.defaultServer"></el-switch>
               </el-form-item>
-              <el-form-item label="收流端口模式" >
-                <el-switch  active-text="多端口" inactive-text="单端口" @change="portRangeChange" v-model="mediaServerForm.rtpEnable" :disabled="mediaServerForm.defaultServer"></el-switch>
+              <el-form-item label="收流端口模式">
+                <el-switch v-model="mediaServerForm.rtpEnable" :disabled="mediaServerForm.defaultServer" active-text="多端口"
+                           inactive-text="单端口" @change="portRangeChange"></el-switch>
               </el-form-item>
 
 
               <el-form-item v-if="!mediaServerForm.rtpEnable" label="收流端口" prop="rtpProxyPort">
-                <el-input v-model.number="mediaServerForm.rtpProxyPort" clearable :disabled="mediaServerForm.defaultServer"></el-input>
+                <el-input v-model.number="mediaServerForm.rtpProxyPort" :disabled="mediaServerForm.defaultServer"
+                          clearable></el-input>
               </el-form-item>
-              <el-form-item v-if="mediaServerForm.rtpEnable" label="收流端口" >
-                <el-input v-model="rtpPortRange1" placeholder="起始" @change="portRangeChange" clearable style="width: 100px" prop="rtpPortRange1" :disabled="mediaServerForm.defaultServer"></el-input>
+              <el-form-item v-if="mediaServerForm.rtpEnable" label="收流端口">
+                <el-input v-model="rtpPortRange1" :disabled="mediaServerForm.defaultServer" clearable placeholder="起始"
+                          prop="rtpPortRange1" style="width: 100px"
+                          @change="portRangeChange"></el-input>
                 -
-                <el-input v-model="rtpPortRange2" placeholder="终止" @change="portRangeChange" clearable style="width: 100px" prop="rtpPortRange2" :disabled="mediaServerForm.defaultServer"></el-input>
+                <el-input v-model="rtpPortRange2" :disabled="mediaServerForm.defaultServer" clearable placeholder="终止"
+                          prop="rtpPortRange2" style="width: 100px"
+                          @change="portRangeChange"></el-input>
               </el-form-item>
-              <el-form-item v-if="mediaServerForm.sendRtpEnable" label="发流端口" >
-                <el-input v-model="sendRtpPortRange1" placeholder="起始" @change="portRangeChange" clearable style="width: 100px" prop="rtpPortRange1" :disabled="mediaServerForm.defaultServer"></el-input>
+              <el-form-item v-if="mediaServerForm.sendRtpEnable" label="发流端口">
+                <el-input v-model="sendRtpPortRange1" :disabled="mediaServerForm.defaultServer" clearable placeholder="起始"
+                          prop="rtpPortRange1" style="width: 100px"
+                          @change="portRangeChange"></el-input>
                 -
-                <el-input v-model="sendRtpPortRange2" placeholder="终止" @change="portRangeChange" clearable style="width: 100px" prop="rtpPortRange2" :disabled="mediaServerForm.defaultServer"></el-input>
+                <el-input v-model="sendRtpPortRange2" :disabled="mediaServerForm.defaultServer" clearable placeholder="终止"
+                          prop="rtpPortRange2" style="width: 100px"
+                          @change="portRangeChange"></el-input>
               </el-form-item>
-<!--              <el-form-item label="录像管理服务端口" prop="recordAssistPort">-->
-<!--                <el-input v-model.number="mediaServerForm.recordAssistPort" :disabled="mediaServerForm.defaultServer">-->
-<!--&lt;!&ndash;                  <el-button v-if="mediaServerForm.recordAssistPort > 0" slot="append" type="primary" @click="checkRecordServer">测试</el-button>&ndash;&gt;-->
-<!--                  <el-button v-if="mediaServerForm.recordAssistPort > 0" class="el-icon-check" slot="append" type="primary" @click="checkRecordServer"></el-button>-->
-<!--                </el-input>-->
-<!--                <i v-if="recordServerCheck == 1" class="el-icon-success" style="color: #3caf36; position: absolute;top: 14px;"></i>-->
-<!--                <i v-if="recordServerCheck == 2" class="el-icon-loading" style="color: #3caf36; position: absolute;top: 14px;"></i>-->
-<!--                <i v-if="recordServerCheck === -1" class="el-icon-error" style="color: #c80000; position: absolute;top: 14px;"></i>-->
-<!--              </el-form-item>-->
+              <!--              <el-form-item label="录像管理服务端口" prop="recordAssistPort">-->
+              <!--                <el-input v-model.number="mediaServerForm.recordAssistPort" :disabled="mediaServerForm.defaultServer">-->
+              <!--&lt;!&ndash;                  <el-button v-if="mediaServerForm.recordAssistPort > 0" slot="append" type="primary" @click="checkRecordServer">测试</el-button>&ndash;&gt;-->
+              <!--                  <el-button v-if="mediaServerForm.recordAssistPort > 0" class="el-icon-check" slot="append" type="primary" @click="checkRecordServer"></el-button>-->
+              <!--                </el-input>-->
+              <!--                <i v-if="recordServerCheck == 1" class="el-icon-success" style="color: #3caf36; position: absolute;top: 14px;"></i>-->
+              <!--                <i v-if="recordServerCheck == 2" class="el-icon-loading" style="color: #3caf36; position: absolute;top: 14px;"></i>-->
+              <!--                <i v-if="recordServerCheck === -1" class="el-icon-error" style="color: #c80000; position: absolute;top: 14px;"></i>-->
+              <!--              </el-form-item>-->
               <el-form-item>
                 <div style="float: right;">
-                  <el-button v-if="!mediaServerForm.defaultServer" type="primary"  @click="onSubmit" >提交</el-button>
+                  <el-button v-if="!mediaServerForm.defaultServer" type="primary" @click="onSubmit">提交</el-button>
                   <el-button v-if="!mediaServerForm.defaultServer" @click="close">取消</el-button>
                   <el-button v-if="mediaServerForm.defaultServer" @click="close">关闭</el-button>
                 </div>
@@ -194,20 +225,20 @@ export default {
       sendRtpPortRange2: "",
 
       rules: {
-        ip:  [{ required: true, validator: isValidIp, message: '请输入有效的IP地址', trigger: 'blur' }],
-        httpPort:  [{ required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur' }],
-        httpSSlPort:  [{ required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur' }],
-        recordAssistPort:  [{ required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur' }],
-        rtmpPort:  [{ required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur' }],
-        rtmpSSlPort:  [{ required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur' }],
-        rtpPortRange1:  [{ required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur' }],
-        rtpPortRange2:  [{ required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur' }],
-        rtpProxyPort:  [{ required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur' }],
-        rtspPort:  [{ required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur' }],
-        rtspSSLPort:  [{ required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur' }],
-        secret: [{ required: true, message: "请输入secret", trigger: "blur" }],
-        timeout_ms: [{ required: true, message: "请输入FFmpeg推流成功超时时间", trigger: "blur" }],
-        ffmpeg_cmd_key: [{ required: false, message: "请输入FFmpeg命令参数模板（可选）", trigger: "blur" }],
+        ip: [{required: true, validator: isValidIp, message: '请输入有效的IP地址', trigger: 'blur'}],
+        httpPort: [{required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur'}],
+        httpSSlPort: [{required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur'}],
+        recordAssistPort: [{required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur'}],
+        rtmpPort: [{required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur'}],
+        rtmpSSlPort: [{required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur'}],
+        rtpPortRange1: [{required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur'}],
+        rtpPortRange2: [{required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur'}],
+        rtpProxyPort: [{required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur'}],
+        rtspPort: [{required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur'}],
+        rtspSSLPort: [{required: true, validator: isValidPort, message: '请输入有效的端口号', trigger: 'blur'}],
+        secret: [{required: true, message: "请输入secret", trigger: "blur"}],
+        timeout_ms: [{required: true, message: "请输入FFmpeg推流成功超时时间", trigger: "blur"}],
+        ffmpeg_cmd_key: [{required: false, message: "请输入FFmpeg命令参数模板（可选）", trigger: "blur"}],
       },
     };
   },
@@ -227,25 +258,25 @@ export default {
         this.mediaServerForm = param;
         this.currentStep = 3;
         if (param.rtpPortRange) {
-          let rtpPortRange = this.mediaServerForm.rtpPortRange.split("-");
+          let rtpPortRange = this.mediaServerForm.rtpPortRange.split("|");
           if (rtpPortRange.length > 0) {
-            this.rtpPortRange1 =  rtpPortRange[0]
-            this.rtpPortRange2 =  rtpPortRange[1]
+            this.rtpPortRange1 = rtpPortRange[0]
+            this.rtpPortRange2 = rtpPortRange[1]
           }
         }
-        if (param.sendRtpPortRange){
-          let sendRtpPortRange = this.mediaServerForm.sendRtpPortRange.split("-");
+        if (param.sendRtpPortRange) {
+          let sendRtpPortRange = this.mediaServerForm.sendRtpPortRange.split("|");
           if (sendRtpPortRange.length > 0) {
-            this.sendRtpPortRange1 =  sendRtpPortRange[0]
-            this.sendRtpPortRange2 =  sendRtpPortRange[1]
+            this.sendRtpPortRange1 = sendRtpPortRange[0]
+            this.sendRtpPortRange2 = sendRtpPortRange[1]
           }
         }
       }
     },
-    checkServer: function() {
+    checkServer: function () {
       let that = this;
       that.serverCheck = 0;
-      that.mediaServer.checkServer(that.mediaServerForm, data =>{
+      that.mediaServer.checkServer(that.mediaServerForm, data => {
         if (data.code === 2000000) {
           // if (parseInt(that.mediaServerForm.httpPort) !== parseInt(data.data.httpPort)) {
           //   that.$message({
@@ -265,20 +296,20 @@ export default {
           // that.sendRtpPortRange2 = 60000
           that.serverCheck = 1;
           if (that.mediaServerForm.rtpPortRange) {
-            let rtpPortRange = this.mediaServerForm.rtpPortRange.split("-");
+            let rtpPortRange = this.mediaServerForm.rtpPortRange.split("|");
             if (rtpPortRange.length > 0) {
-              this.rtpPortRange1 =  rtpPortRange[0]
-              this.rtpPortRange2 =  rtpPortRange[1]
+              this.rtpPortRange1 = rtpPortRange[0]
+              this.rtpPortRange2 = rtpPortRange[1]
             }
           }
           if (that.sendRtpPortRange) {
-            let sendRtpPortRange = this.mediaServerForm.sendRtpPortRange.split("-");
+            let sendRtpPortRange = this.mediaServerForm.sendRtpPortRange.split("|");
             if (sendRtpPortRange.length > 0) {
-              this.sendRtpPortRange1 =  sendRtpPortRange[0]
-              this.sendRtpPortRange2 =  sendRtpPortRange[1]
+              this.sendRtpPortRange1 = sendRtpPortRange[0]
+              this.sendRtpPortRange2 = sendRtpPortRange[1]
             }
           }
-        }else {
+        } else {
           that.serverCheck = -1;
           that.$message({
             showClose: true,
@@ -289,15 +320,15 @@ export default {
 
       })
     },
-    next: function (){
+    next: function () {
       this.currentStep = 2;
       this.defaultWidth = 900;
       this.setDialogWidth();
     },
-    checkRecordServer: function (){
+    checkRecordServer: function () {
       let that = this;
       that.recordServerCheck = 2;
-      if (that.mediaServerForm.recordAssistPort <= 0 || that.mediaServerForm.recordAssistPort > 65535 ) {
+      if (that.mediaServerForm.recordAssistPort <= 0 || that.mediaServerForm.recordAssistPort > 65535) {
         that.recordServerCheck = -1;
         that.$message({
           showClose: true,
@@ -306,10 +337,10 @@ export default {
         });
         return;
       }
-      that.mediaServer.checkRecordServer(that.mediaServerForm, data =>{
+      that.mediaServer.checkRecordServer(that.mediaServerForm, data => {
         if (data.code === 0) {
           that.recordServerCheck = 1;
-        }else {
+        } else {
           that.recordServerCheck = -1;
           that.$message({
             showClose: true,
@@ -331,7 +362,7 @@ export default {
           });
           if (this.listChangeCallback) this.listChangeCallback();
           that.close()
-        }else {
+        } else {
           that.$message({
             showClose: true,
             message: data.msg,
@@ -377,7 +408,7 @@ export default {
       var that = this;
       await that.$axios({
         method: 'get',
-        url:`/api/platform/exit/${deviceGbId}`
+        url: `/api/platform/exit/${deviceGbId}`
       }).then(function (res) {
         result = res.data;
       }).catch(function (error) {
@@ -385,12 +416,12 @@ export default {
       });
       return result;
     },
-    checkExpires: function() {
+    checkExpires: function () {
       if (this.platform.enable && this.platform.expires == "0") {
         this.platform.expires = "300";
       }
     },
-    portRangeChange: function() {
+    portRangeChange: function () {
       if (this.mediaServerForm.rtpEnable) {
         this.mediaServerForm.rtpPortRange = this.rtpPortRange1 + "|" + this.rtpPortRange2
         this.mediaServerForm.sendRtpPortRange = this.sendRtpPortRange1 + "|" + this.sendRtpPortRange2

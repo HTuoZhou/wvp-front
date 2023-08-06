@@ -1,4 +1,3 @@
-
 window.baseUrl = ""
 
 // map组件全局参数, 注释此内容可以关闭地图功能
@@ -12,11 +11,11 @@ window.mapParam = {
   // 瓦片大小
   tileSize: 256,
   // 默认层级
-  zoom:10,
+  zoom: 10,
   // 默认地图中心点
-  center:[116.41020, 39.915119],
+  center: [116.41020, 39.915119],
   // 地图最大层级
-  maxZoom:18,
+  maxZoom: 18,
   // 地图最小层级
   minZoom: 3
 }

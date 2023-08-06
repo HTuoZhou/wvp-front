@@ -1,17 +1,21 @@
 <template>
-  <div id="queryTrace" >
+  <div id="queryTrace">
     <el-dialog
-      title="查询轨迹"
-      width="40%"
-      top="2rem"
       :close-on-click-modal="false"
-      :visible.sync="showDialog"
       :destroy-on-close="true"
+      :visible.sync="showDialog"
+      title="查询轨迹"
+      top="2rem"
+      width="40%"
       @close="close()"
     >
       <div v-loading="isLoging">
-        <el-date-picker v-model="searchFrom" type="datetime" placeholder="选择开始日期时间" default-time="00:00:00" value-format="yyyy-MM-dd HH:mm:ss" size="mini" style="width: 11rem;" align="right" :picker-options="pickerOptions"></el-date-picker>
-        <el-date-picker v-model="searchTo" type="datetime" placeholder="选择结束日期时间" default-time="00:00:00" value-format="yyyy-MM-dd HH:mm:ss" size="mini" style="width: 11rem;" align="right" :picker-options="pickerOptions"></el-date-picker>
+        <el-date-picker v-model="searchFrom" :picker-options="pickerOptions" align="right" default-time="00:00:00"
+                        placeholder="选择开始日期时间" size="mini" style="width: 11rem;" type="datetime"
+                        value-format="yyyy-MM-dd HH:mm:ss"></el-date-picker>
+        <el-date-picker v-model="searchTo" :picker-options="pickerOptions" align="right" default-time="00:00:00"
+                        placeholder="选择结束日期时间" size="mini" style="width: 11rem;" type="datetime"
+                        value-format="yyyy-MM-dd HH:mm:ss"></el-date-picker>
         <el-button icon="el-icon-search" size="mini" type="primary" @click="onSubmit">查询</el-button>
       </div>
 
@@ -26,7 +30,8 @@ export default {
   name: "deviceEdit",
   props: [],
   computed: {},
-  created() {},
+  created() {
+  },
   data() {
     return {
       deviceService: new DeviceService(),
@@ -74,24 +79,23 @@ export default {
       this.isLoging = true;
       let url = `/api/position/history/${this.channel.deviceId}?start=${this.searchFrom}&end=${this.searchTo}`;
       if (this.channel.channelId) {
-        url+="&channelId=${this.channel.channelId}"
+        url += "&channelId=${this.channel.channelId}"
       }
-      this.$axios.get(url, {
-      }).then((res)=> {
+      this.$axios.get(url, {}).then((res) => {
         this.isLoging = false;
         if (typeof this.callback == "function") {
           if (res.data.code == 0) {
             this.callback(res.data.data)
             this.close()
-          }else {
+          } else {
             this.$message.error(res.data.msg);
           }
 
         }
       }).catch(function (error) {
-          this.isLoging = false;
-          console.error(error);
-        })
+        this.isLoging = false;
+        console.error(error);
+      })
     },
     close: function () {
       this.showDialog = false;

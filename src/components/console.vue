@@ -8,51 +8,51 @@
       </div>
     </div>
     <el-row style="width: 100%">
-      <el-col :xl="{ span: 8 }" :lg="{ span: 8 }" :md="{ span: 12 }" :sm="{ span: 12 }" :xs="{ span: 24 }" >
-        <div class="control-cell" id="ThreadsLoad" >
+      <el-col :lg="{ span: 8 }" :md="{ span: 12 }" :sm="{ span: 12 }" :xl="{ span: 8 }" :xs="{ span: 24 }">
+        <div id="ThreadsLoad" class="control-cell">
           <div style="width:100%; height:100%; ">
             <consoleCPU ref="consoleCPU"></consoleCPU>
           </div>
         </div>
       </el-col>
-      <el-col :xl="{ span: 8 }" :lg="{ span: 8 }" :md="{ span: 12 }" :sm="{ span: 12 }" :xs="{ span: 24 }" >
-        <div class="control-cell" id="WorkThreadsLoad" >
+      <el-col :lg="{ span: 8 }" :md="{ span: 12 }" :sm="{ span: 12 }" :xl="{ span: 8 }" :xs="{ span: 24 }">
+        <div id="WorkThreadsLoad" class="control-cell">
           <div style="width:100%; height:100%; ">
             <consoleResource ref="consoleResource"></consoleResource>
           </div>
         </div>
       </el-col>
-      <el-col :xl="{ span: 8 }" :lg="{ span: 8 }" :md="{ span: 12 }" :sm="{ span: 12 }" :xs="{ span: 24 }" >
-        <div class="control-cell" id="WorkThreadsLoad" >
+      <el-col :lg="{ span: 8 }" :md="{ span: 12 }" :sm="{ span: 12 }" :xl="{ span: 8 }" :xs="{ span: 24 }">
+        <div id="WorkThreadsLoad" class="control-cell">
           <div style="width:100%; height:100%; ">
             <consoleNet ref="consoleNet"></consoleNet>
           </div>
         </div>
       </el-col>
-      <el-col :xl="{ span: 8 }" :lg="{ span: 8 }" :md="{ span: 12 }" :sm="{ span: 12 }" :xs="{ span: 24 }" >
-        <div class="control-cell" id="WorkThreadsLoad" >
+      <el-col :lg="{ span: 8 }" :md="{ span: 12 }" :sm="{ span: 12 }" :xl="{ span: 8 }" :xs="{ span: 24 }">
+        <div id="WorkThreadsLoad" class="control-cell">
           <div style="width:100%; height:100%; ">
 
             <consoleMem ref="consoleMem"></consoleMem>
           </div>
         </div>
       </el-col>
-      <el-col :xl="{ span: 8 }" :lg="{ span: 8 }" :md="{ span: 12 }" :sm="{ span: 12 }" :xs="{ span: 24 }" >
-        <div class="control-cell" id="WorkThreadsLoad" >
+      <el-col :lg="{ span: 8 }" :md="{ span: 12 }" :sm="{ span: 12 }" :xl="{ span: 8 }" :xs="{ span: 24 }">
+        <div id="WorkThreadsLoad" class="control-cell">
           <div style="width:100%; height:100%; ">
             <consoleNodeLoad ref="consoleNodeLoad"></consoleNodeLoad>
           </div>
         </div>
       </el-col>
-      <el-col :xl="{ span: 8 }" :lg="{ span: 8 }" :md="{ span: 12 }" :sm="{ span: 12 }" :xs="{ span: 24 }" >
-        <div class="control-cell" id="WorkThreadsLoad" >
+      <el-col :lg="{ span: 8 }" :md="{ span: 12 }" :sm="{ span: 12 }" :xl="{ span: 8 }" :xs="{ span: 24 }">
+        <div id="WorkThreadsLoad" class="control-cell">
           <div style="width:100%; height:100%; ">
             <consoleDisk ref="consoleDisk"></consoleDisk>
           </div>
         </div>
       </el-col>
     </el-row>
-<!--    <configInfo ref="configInfo"></configInfo>-->
+    <!--    <configInfo ref="configInfo"></configInfo>-->
   </div>
 </template>
 
@@ -96,11 +96,11 @@ export default {
   destroyed() {
   },
   methods: {
-    loopForSystemInfo: function (){
+    loopForSystemInfo: function () {
       if (this.timer != null) {
         window.clearTimeout(this.timer);
       }
-      this.timer = setTimeout(()=>{
+      this.timer = setTimeout(() => {
         if (this.$route.path === "/console") {
           this.getSystemInfo();
           this.getLoad();
@@ -111,40 +111,40 @@ export default {
 
       }, 2000)
     },
-    getSystemInfo: function (){
+    getSystemInfo: function () {
       this.$axios({
         method: 'get',
         url: `/webapi/system/getSystemInfo`,
-      }).then( (res)=> {
+      }).then((res) => {
         if (res.data.code === 2000000) {
           this.$refs.consoleCPU.setData(res.data.data.cpu)
           this.$refs.consoleMem.setData(res.data.data.mem)
           this.$refs.consoleNet.setData(res.data.data.net, res.data.data.netTotal)
           this.$refs.consoleDisk.setData(res.data.data.disk)
         }
-      }).catch( (error)=> {
+      }).catch((error) => {
       });
     },
-    getLoad: function (){
+    getLoad: function () {
       this.$axios({
         method: 'get',
         url: `/webapi/system/getMediaServerLoad`,
-      }).then( (res)=> {
+      }).then((res) => {
         if (res.data.code === 2000000) {
           this.$refs.consoleNodeLoad.setData(res.data.data)
         }
-      }).catch( (error)=> {
+      }).catch((error) => {
       });
     },
-    getResourceInfo: function (){
+    getResourceInfo: function () {
       this.$axios({
         method: 'get',
         url: `/webapi/system/getResourceInfo`,
-      }).then( (res)=> {
+      }).then((res) => {
         if (res.data.code === 0) {
           this.$refs.consoleResource.setData(res.data.data)
         }
-      }).catch( (error)=> {
+      }).catch((error) => {
       });
     },
     // showInfo: function (){
@@ -171,6 +171,7 @@ export default {
 #app {
   height: 100%;
 }
+
 .control-cell {
   padding-top: 10px;
   padding-left: 5px;

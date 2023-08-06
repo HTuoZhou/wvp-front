@@ -1,18 +1,18 @@
 <template>
   <div id="addlatform" v-loading="isLoging">
     <el-dialog
-      title="添加平台"
-      width="70%"
-      top="2rem"
       :close-on-click-modal="false"
-      :visible.sync="showDialog"
       :destroy-on-close="true"
+      :visible.sync="showDialog"
+      title="添加平台"
+      top="2rem"
+      width="70%"
       @close="close()"
     >
       <div id="shared" style="text-align: right; margin-top: 1rem">
         <el-row :gutter="24">
           <el-col :span="11">
-            <el-form ref="platform1" :rules="rules" :model="platform" label-width="160px">
+            <el-form ref="platform1" :model="platform" :rules="rules" label-width="160px">
               <el-form-item label="名称" prop="name">
                 <el-input v-model="platform.name"></el-input>
               </el-form-item>
@@ -43,12 +43,12 @@
             </el-form>
           </el-col>
           <el-col :span="12">
-            <el-form ref="platform2" :rules="rules" :model="platform" label-width="160px">
+            <el-form ref="platform2" :model="platform" :rules="rules" label-width="160px">
               <el-form-item label="行政区划" prop="administrativeDivision">
                 <el-input v-model="platform.administrativeDivision" clearable></el-input>
               </el-form-item>
               <el-form-item label="SIP认证密码" prop="password">
-                <el-input v-model="platform.password" ></el-input>
+                <el-input v-model="platform.password"></el-input>
               </el-form-item>
               <el-form-item label="注册周期(秒)" prop="expires">
                 <el-input v-model="platform.expires"></el-input>
@@ -59,8 +59,8 @@
               <el-form-item label="信令传输" prop="transport">
                 <el-select
                   v-model="platform.transport"
-                  style="width: 100%"
                   placeholder="请选择信令传输方式"
+                  style="width: 100%"
                 >
                   <el-option label="UDP" value="UDP"></el-option>
                   <el-option label="TCP" value="TCP"></el-option>
@@ -69,8 +69,8 @@
               <el-form-item label="目录分组" prop="catalogGroup">
                 <el-select
                   v-model="platform.catalogGroup"
-                  style="width: 100%"
                   placeholder="请选择目录分组"
+                  style="width: 100%"
                 >
                   <el-option label="1" value="1"></el-option>
                   <el-option label="2" value="2"></el-option>
@@ -81,24 +81,25 @@
               <el-form-item label="字符集" prop="characterSet">
                 <el-select
                   v-model="platform.characterSet"
-                  style="width: 100%"
                   placeholder="请选择字符集"
+                  style="width: 100%"
                 >
                   <el-option label="GB2312" value="GB2312"></el-option>
                   <el-option label="UTF-8" value="UTF-8"></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item label="其他选项">
-                <el-checkbox label="启用" v-model="platform.enable" @change="checkExpires"></el-checkbox>
-<!--                <el-checkbox label="云台控制" v-model="platform.ptz"></el-checkbox>-->
-                <el-checkbox label="拉起离线推流" v-model="platform.startOfflinePush"></el-checkbox>
-                <el-checkbox label="RTCP保活" v-model="platform.rtcp" @change="rtcpCheckBoxChange"></el-checkbox>
-                <el-checkbox label="作为消息通道" v-model="platform.asMessageChannel" ></el-checkbox>
+                <el-checkbox v-model="platform.enable" label="启用" @change="checkExpires"></el-checkbox>
+                <!--                <el-checkbox label="云台控制" v-model="platform.ptz"></el-checkbox>-->
+                <el-checkbox v-model="platform.startOfflinePush" label="拉起离线推流"></el-checkbox>
+                <el-checkbox v-model="platform.rtcp" label="RTCP保活" @change="rtcpCheckBoxChange"></el-checkbox>
+                <el-checkbox v-model="platform.asMessageChannel" label="作为消息通道"></el-checkbox>
               </el-form-item>
               <el-form-item>
                 <el-button type="primary" @click="onSubmit">{{
-                  onSubmit_text
-                }}</el-button>
+                    onSubmit_text
+                  }}
+                </el-button>
                 <el-button @click="close">取消</el-button>
               </el-form-item>
             </el-form>
@@ -160,22 +161,22 @@ export default {
         administrativeDivision: null,
       },
       rules: {
-        name: [{ required: true, message: "请输入平台名称", trigger: "blur" }],
+        name: [{required: true, message: "请输入平台名称", trigger: "blur"}],
         serverGBId: [
-          { required: true, message: "请输入SIP服务国标编码", trigger: "blur" },
+          {required: true, message: "请输入SIP服务国标编码", trigger: "blur"},
         ],
         serverGBDomain: [
-          { required: true, message: "请输入SIP服务国标域", trigger: "blur" },
+          {required: true, message: "请输入SIP服务国标域", trigger: "blur"},
         ],
-        serverIP: [{ required: true, message: "请输入SIP服务IP", trigger: "blur" }],
-        serverPort: [{ required: true, message: "请输入SIP服务端口", trigger: "blur" }],
-        deviceGBId: [{ validator: deviceGBIdRules, trigger: "blur" }],
-        username: [{ required: false, message: "请输入SIP认证用户名", trigger: "blur" }],
-        password: [{ required: false, message: "请输入SIP认证密码", trigger: "blur" }],
-        expires: [{ required: true, message: "请输入注册周期", trigger: "blur" }],
-        keepTimeout: [{ required: true, message: "请输入心跳周期", trigger: "blur" }],
-        transport: [{ required: true, message: "请选择信令传输", trigger: "blur" }],
-        characterSet: [{ required: true, message: "请选择编码字符集", trigger: "blur" }],
+        serverIP: [{required: true, message: "请输入SIP服务IP", trigger: "blur"}],
+        serverPort: [{required: true, message: "请输入SIP服务端口", trigger: "blur"}],
+        deviceGBId: [{validator: deviceGBIdRules, trigger: "blur"}],
+        username: [{required: false, message: "请输入SIP认证用户名", trigger: "blur"}],
+        password: [{required: false, message: "请输入SIP认证密码", trigger: "blur"}],
+        expires: [{required: true, message: "请输入注册周期", trigger: "blur"}],
+        keepTimeout: [{required: true, message: "请输入心跳周期", trigger: "blur"}],
+        transport: [{required: true, message: "请选择信令传输", trigger: "blur"}],
+        characterSet: [{required: true, message: "请选择编码字符集", trigger: "blur"}],
       },
     };
   },
@@ -187,7 +188,7 @@ export default {
         this.saveUrl = "/api/platform/add";
         this.$axios({
           method: 'get',
-          url:`/api/platform/server_config`
+          url: `/api/platform/server_config`
         }).then(function (res) {
           console.log(res);
           if (res.data.code === 0) {
@@ -202,7 +203,7 @@ export default {
         }).catch(function (error) {
           console.log(error);
         });
-      }else {
+      } else {
         this.platform.id = platform.id;
         this.platform.enable = platform.enable;
         this.platform.ptz = platform.ptz;
@@ -239,7 +240,7 @@ export default {
     },
     deviceGBIdChange: function () {
 
-      this.platform.username = this.platform.deviceGBId ;
+      this.platform.username = this.platform.deviceGBId;
       if (this.platform.administrativeDivision == null) {
         this.platform.administrativeDivision = this.platform.deviceGBId.substr(0, 6);
       }
@@ -247,12 +248,12 @@ export default {
     onSubmit: function () {
       this.saveForm()
     },
-    saveForm: function (){
+    saveForm: function () {
       this.$axios({
         method: 'post',
         url: this.saveUrl,
         data: this.platform
-      }).then((res) =>{
+      }).then((res) => {
         if (res.data.code === 0) {
           this.$message({
             showClose: true,
@@ -263,14 +264,14 @@ export default {
           if (this.listChangeCallback != null) {
             this.listChangeCallback();
           }
-        }else {
+        } else {
           this.$message({
             showClose: true,
             message: res.data.msg,
             type: "error",
           });
         }
-      }).catch((error)=> {
+      }).catch((error) => {
         console.log(error);
       });
     },
@@ -307,24 +308,25 @@ export default {
       var result = false;
       var that = this;
       await that.$axios({
-                method: 'get',
-                url:`/api/platform/exit/${deviceGbId}`})
+        method: 'get',
+        url: `/api/platform/exit/${deviceGbId}`
+      })
         .then(function (res) {
-            if (res.data.code === 0) {
-              result = res.data.data;
-            }
+          if (res.data.code === 0) {
+            result = res.data.data;
+          }
         })
         .catch(function (error) {
           console.log(error);
         });
       return result;
     },
-    checkExpires: function() {
+    checkExpires: function () {
       if (this.platform.enable && this.platform.expires === "0") {
         this.platform.expires = "3600";
       }
     },
-    rtcpCheckBoxChange: function (result){
+    rtcpCheckBoxChange: function (result) {
       if (result) {
         this.$message({
           showClose: true,
@@ -345,10 +347,12 @@ input::-webkit-inner-spin-button {
   appearance: none;
   margin: 0;
 }
+
 /* 火狐 */
-input{
-  -moz-appearance:textfield;
+input {
+  -moz-appearance: textfield;
 }
+
 .control-wrapper-not-used {
   position: relative;
   width: 6.25rem;

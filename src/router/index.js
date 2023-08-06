@@ -32,7 +32,7 @@ Vue.use(VueRouter)
 
 
 export default new VueRouter({
-  mode:'hash',
+  mode: 'hash',
   routes: [
     {
       path: '/',
@@ -115,7 +115,7 @@ export default new VueRouter({
           name: 'userManager',
           component: userManager,
         }
-        ]
+      ]
     },
     {
       path: '/login',

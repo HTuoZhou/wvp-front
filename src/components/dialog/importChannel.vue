@@ -1,32 +1,32 @@
 <template>
   <div id="importChannel" v-loading="isLoging">
     <el-dialog
-      title="导入通道数据"
-      width="30rem"
-      top="2rem"
       :append-to-body="true"
       :close-on-click-modal="false"
-      :visible.sync="showDialog"
       :destroy-on-close="true"
+      :visible.sync="showDialog"
+      title="导入通道数据"
+      top="2rem"
+      width="30rem"
       @close="close()"
     >
       <div>
         <el-upload
+          :action="uploadUrl"
+          :headers="headers"
+          :on-error="errorHook"
+          :on-success="successHook"
           class="upload-box"
           drag
-          :action="uploadUrl"
           name="file"
-          :headers="headers"
-          :on-success="successHook"
-          :on-error="errorHook"
-          >
+        >
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-          <div class="el-upload__tip" slot="tip">只能上传 csv / xls / xlsx 文件</div>
+          <div slot="tip" class="el-upload__tip">只能上传 csv / xls / xlsx 文件</div>
         </el-upload>
       </div>
     </el-dialog>
-    <ShowErrorData ref="showErrorData" :gbIds="errorGBIds" :streams="errorStreams" ></ShowErrorData>
+    <ShowErrorData ref="showErrorData" :gbIds="errorGBIds" :streams="errorStreams"></ShowErrorData>
   </div>
 </template>
 
@@ -41,7 +41,8 @@ export default {
   components: {
     ShowErrorData,
   },
-  created() {},
+  created() {
+  },
   data() {
     return {
       submitCallback: null,
@@ -53,7 +54,7 @@ export default {
       headers: {
         "access-token": userService.getToken()
       },
-      uploadUrl: process.env.NODE_ENV === 'development'? `http://127.0.0.1:8080/debug/api/push/upload`: (window.baseUrl ? window.baseUrl : "") + `/api/push/upload`,
+      uploadUrl: process.env.NODE_ENV === 'development' ? `http://127.0.0.1:8080/debug/api/push/upload` : (window.baseUrl ? window.baseUrl : "") + `/api/push/upload`,
     };
   },
   methods: {
@@ -65,15 +66,15 @@ export default {
       console.log("onSubmit");
       console.log(this.form);
       this.$axios({
-        method:"post",
-        url:`/api/platform/catalog/${!this.isEdit? "add":"edit"}`,
+        method: "post",
+        url: `/api/platform/catalog/${!this.isEdit ? "add" : "edit"}`,
         data: this.form
       })
-        .then((res)=> {
+        .then((res) => {
           if (res.data.code === 0) {
             console.log("添加/修改成功")
-            if (this.submitCallback)this.submitCallback()
-          }else {
+            if (this.submitCallback) this.submitCallback()
+          } else {
             this.$message({
               showClose: true,
               message: res.data.msg,
@@ -82,27 +83,27 @@ export default {
           }
           this.close();
         })
-        .catch((error)=> {
+        .catch((error) => {
           console.log(error);
         });
     },
     close: function () {
       this.showDialog = false;
     },
-    successHook: function(response, file, fileList){
+    successHook: function (response, file, fileList) {
       if (response.code === 0) {
         this.$message({
           showClose: true,
           message: response.msg,
           type: "success",
         });
-      }else if (response.code === 1) {
+      } else if (response.code === 1) {
         this.errorGBIds = response.data.gbId
         this.errorStreams = response.data.stream
         console.log(this.$refs)
         console.log(this.$refs.showErrorData)
         this.$refs.showErrorData.openDialog()
-      }else {
+      } else {
         this.$message({
           showClose: true,
           message: response.msg,
@@ -121,10 +122,11 @@ export default {
 };
 </script>
 <style>
-.upload-box{
+.upload-box {
   text-align: center;
 }
-.errDataBox{
+
+.errDataBox {
   max-height: 15rem;
   overflow: auto;
 }

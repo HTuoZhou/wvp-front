@@ -1,30 +1,34 @@
 <template>
   <div id="importChannelShowErrorData" v-loading="isLoging">
     <el-dialog
-      title="导入通道数据成功，但数据存在重复"
-      width="30rem"
-      top="2rem"
       :append-to-body="true"
       :close-on-click-modal="false"
-      :visible.sync="showDialog"
       :destroy-on-close="true"
+      :visible.sync="showDialog"
+      title="导入通道数据成功，但数据存在重复"
+      top="2rem"
+      width="30rem"
       @close="close()"
     >
-      <div >
+      <div>
         重复国标ID:
-        <el-button style="float: right;" type="primary" size="mini" icon="el-icon-document-copy"  title="点击拷贝" v-clipboard="gbIds.join(',')" @success="$message({type:'success', message:'成功拷贝到粘贴板'})">复制</el-button>
+        <el-button v-clipboard="gbIds.join(',')" icon="el-icon-document-copy" size="mini" style="float: right;" title="点击拷贝"
+                   type="primary" @success="$message({type:'success', message:'成功拷贝到粘贴板'})">复制
+        </el-button>
         <ul class="errDataBox">
-          <li v-for="id in gbIds" >
+          <li v-for="id in gbIds">
             {{ id }}
           </li>
         </ul>
       </div>
 
-      <div >
+      <div>
         重复App/stream:
-        <el-button style="float: right;" type="primary" size="mini" icon="el-icon-document-copy"  title="点击拷贝" v-clipboard="streams.join(',')" @success="$message({type:'success', message:'成功拷贝到粘贴板'})">复制</el-button>
+        <el-button v-clipboard="streams.join(',')" icon="el-icon-document-copy" size="mini" style="float: right;" title="点击拷贝"
+                   type="primary" @success="$message({type:'success', message:'成功拷贝到粘贴板'})">复制
+        </el-button>
         <ul class="errDataBox">
-          <li v-for="id in streams" >
+          <li v-for="id in streams">
             {{ id }}
           </li>
         </ul>
@@ -38,7 +42,8 @@
 export default {
   name: "importChannelShowErrorData",
   computed: {},
-  created() {},
+  created() {
+  },
   props: ['gbIds', 'streams'],
   data() {
     return {
@@ -57,7 +62,7 @@ export default {
 };
 </script>
 <style>
-.errDataBox{
+.errDataBox {
   max-height: 15rem;
   overflow: auto;
 }

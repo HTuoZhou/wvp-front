@@ -24,9 +24,10 @@ export default {
 }
 </script>
 <style>
-body{
+body {
   font-family: sans-serif;
 }
+
 /*定义标题栏*/
 .page-header {
   background-color: #FFFFFF;

@@ -1,21 +1,21 @@
 <template>
   <div id="addUser" v-loading="isLoging">
     <el-dialog
-      title="添加用户"
-      width="40%"
-      top="2rem"
       :close-on-click-modal="false"
-      :visible.sync="showDialog"
       :destroy-on-close="true"
+      :visible.sync="showDialog"
+      title="添加用户"
+      top="2rem"
+      width="40%"
       @close="close()"
     >
       <div id="shared" style="margin-right: 20px;">
-        <el-form ref="passwordForm" :rules="rules" status-icon label-width="80px">
+        <el-form ref="passwordForm" :rules="rules" label-width="80px" status-icon>
           <el-form-item label="用户名" prop="username">
             <el-input v-model="username" autocomplete="off"></el-input>
           </el-form-item>
-          <el-form-item label="用户类型" prop="roleId" >
-            <el-select v-model="roleId"  placeholder="请选择" style="width: 100%">
+          <el-form-item label="用户类型" prop="roleId">
+            <el-select v-model="roleId" placeholder="请选择" style="width: 100%">
               <el-option
                 v-for="item in options"
                 :key="item.id"
@@ -73,7 +73,7 @@ export default {
       }
     };
     return {
-      value:"",
+      value: "",
       options: [],
       loading: false,
       username: null,
@@ -135,7 +135,7 @@ export default {
       this.username = null;
       this.roleId = null;
     },
-    getAllRole:function () {
+    getAllRole: function () {
 
       this.$axios({
         method: 'get',
@@ -143,7 +143,7 @@ export default {
       }).then((res) => {
         this.loading = true;
         if (res.data.code === 0) {
-          this.options=res.data.data
+          this.options = res.data.data
         }
       }).catch((error) => {
         console.error(error)

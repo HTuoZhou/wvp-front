@@ -1,21 +1,19 @@
 import Vue from 'vue';
 import App from './App.vue';
-
-Vue.config.productionTip = false;
-import ElementUI from 'element-ui';
+import ElementUI, {Notification} from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import router from './router/index.js';
 import axios from 'axios';
 import VueCookies from 'vue-cookies';
-import echarts from 'echarts';
 import VCharts from 'v-charts';
 
 import VueClipboard from 'vue-clipboard2';
-import {Notification} from 'element-ui';
 import Fingerprint2 from 'fingerprintjs2';
 import VueClipboards from 'vue-clipboards';
 import Contextmenu from "vue-contextmenujs"
 import userService from "./components/service/UserService"
+
+Vue.config.productionTip = false;
 
 
 // 生成唯一ID
@@ -75,7 +73,7 @@ axios.interceptors.request.use(
 );
 
 Vue.prototype.$axios = axios;
-Vue.prototype.$cookies.config(60*30);
+Vue.prototype.$cookies.config(60 * 30);
 
 new Vue({
   router: router,

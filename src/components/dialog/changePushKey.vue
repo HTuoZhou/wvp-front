@@ -1,26 +1,26 @@
 <template>
   <div id="changepushKey" v-loading="isLoging">
     <el-dialog
-      title="修改pushKey"
-      width="42%"
-      top="2rem"
       :close-on-click-modal="false"
-      :visible.sync="showDialog"
       :destroy-on-close="true"
+      :visible.sync="showDialog"
+      title="修改pushKey"
+      top="2rem"
+      width="42%"
       @close="close()"
     >
       <div id="shared" style="margin-right: 18px;">
-        <el-form ref="pushKeyForm" :rules="rules" status-icon label-width="86px">
-              <el-form-item label="新pushKey" prop="newPushKey" >
-                <el-input v-model="newPushKey" autocomplete="off"></el-input>
-              </el-form-item>
-              <el-form-item>
-                <div style="float: right;">
-                  <el-button type="primary" @click="onSubmit">保存</el-button>
-                  <el-button @click="close">取消</el-button>
-                </div>
-              </el-form-item>
-            </el-form>
+        <el-form ref="pushKeyForm" :rules="rules" label-width="86px" status-icon>
+          <el-form-item label="新pushKey" prop="newPushKey">
+            <el-input v-model="newPushKey" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <div style="float: right;">
+              <el-button type="primary" @click="onSubmit">保存</el-button>
+              <el-button @click="close">取消</el-button>
+            </div>
+          </el-form-item>
+        </el-form>
       </div>
     </el-dialog>
   </div>
@@ -31,7 +31,8 @@ export default {
   name: "changePushKey",
   props: {},
   computed: {},
-  created() {},
+  created() {
+  },
   data() {
     let validatePass1 = (rule, value, callback) => {
       if (value === '') {
@@ -49,7 +50,7 @@ export default {
       listChangeCallback: null,
       form: {},
       rules: {
-        newpushKey: [{ required: true, validator: validatePass1, trigger: "blur" }],
+        newpushKey: [{required: true, validator: validatePass1, trigger: "blur"}],
       },
     };
   },
@@ -65,12 +66,12 @@ export default {
     onSubmit: function () {
       this.$axios({
         method: 'post',
-        url:"/api/user/changePushKey",
+        url: "/api/user/changePushKey",
         params: {
           pushKey: this.newPushKey,
           userId: this.form.id,
         }
-      }).then((res)=> {
+      }).then((res) => {
         if (res.data.code === 0) {
           this.$message({
             showClose: true,
@@ -79,22 +80,22 @@ export default {
           });
           this.showDialog = false;
           this.listChangeCallback();
-        }else {
+        } else {
           this.$message({
             showClose: true,
             message: '修改pushKey失败，是否已登录（接口鉴权关闭无法修改pushKey）',
             type: 'error'
           });
         }
-      }).catch((error)=> {
+      }).catch((error) => {
         console.error(error)
       });
     },
     close: function () {
       this.showDialog = false;
       this.newpushKey = null;
-      this.userId=null;
-      this.adminId=null;
+      this.userId = null;
+      this.adminId = null;
     },
   },
 };

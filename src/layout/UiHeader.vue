@@ -1,8 +1,8 @@
 <template>
   <div id="UiHeader">
 
-    <el-menu router :default-active="activeIndex" menu-trigger="click" background-color="#001529" text-color="#fff"
-             active-text-color="#1890ff" mode="horizontal">
+    <el-menu :default-active="activeIndex" active-text-color="#1890ff" background-color="#001529" menu-trigger="click" mode="horizontal"
+             router text-color="#fff">
 
       <el-menu-item index="/console">控制台</el-menu-item>
       <el-menu-item index="/live">分屏监控</el-menu-item>
@@ -22,15 +22,15 @@
       <!--              <el-menu-item index="/setting/media">媒体服务</el-menu-item>-->
       <!--            </el-submenu>-->
       <!--            <el-menu-item style="float: right;" @click="loginout">退出</el-menu-item>-->
-      <el-submenu index="" style="float: right;">
-        <template slot="title">欢迎，{{ username }}</template>
-        <el-menu-item @click="openDoc">在线文档</el-menu-item>
-        <el-menu-item>
-          <el-switch v-model="alarmNotify" inactive-text="报警信息推送" @change="alarmNotifyChannge"></el-switch>
-        </el-menu-item>
-        <el-menu-item @click="changePassword">修改密码</el-menu-item>
-        <el-menu-item @click="loginout">注销</el-menu-item>
-      </el-submenu>
+<!--      <el-submenu index="" style="float: right;">-->
+<!--        <template slot="title">欢迎，{{ username }}</template>-->
+<!--        <el-menu-item @click="openDoc">在线文档</el-menu-item>-->
+<!--        <el-menu-item>-->
+<!--          <el-switch v-model="alarmNotify" inactive-text="报警信息推送" @change="alarmNotifyChannge"></el-switch>-->
+<!--        </el-menu-item>-->
+<!--        <el-menu-item @click="changePassword">修改密码</el-menu-item>-->
+<!--        <el-menu-item @click="loginout">注销</el-menu-item>-->
+<!--      </el-submenu>-->
     </el-menu>
     <changePasswordDialog ref="changePasswordDialog"></changePasswordDialog>
   </div>

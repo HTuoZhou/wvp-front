@@ -1,20 +1,19 @@
 <template>
   <div id="ConsoleNet" style="width: 100%; height: 100%; background: #FFFFFF; text-align: center">
-    <ve-bar ref="ConsoleNet" :data="chartData" :extend="extend" :settings="chartSettings" width="100%" height="100%" ></ve-bar>
+    <ve-bar ref="ConsoleNet" :data="chartData" :extend="extend" :settings="chartSettings" height="100%"
+            width="100%"></ve-bar>
   </div>
 </template>
 
 <script>
 
 
-import moment from "moment/moment";
-
 export default {
   name: 'ConsoleNet',
   data() {
     return {
       chartData: {
-        columns: ['path','free','use'],
+        columns: ['path', 'free', 'use'],
         rows: []
       },
       chartSettings: {
@@ -47,11 +46,11 @@ export default {
         },
         tooltip: {
           trigger: 'axis',
-          formatter: (data)=>{
+          formatter: (data) => {
             console.log(data)
             let relVal = "";
             for (let i = 0; i < data.length; i++) {
-              relVal +=  data[i].marker + data[i].seriesName + ":" + data[i].value.toFixed(2) + "GB"
+              relVal += data[i].marker + data[i].seriesName + ":" + data[i].value.toFixed(2) + "GB"
               if (i < data.length - 1) {
                 relVal += "</br>";
               }
@@ -65,7 +64,7 @@ export default {
   },
   mounted() {
     this.$nextTick(_ => {
-      setTimeout(()=>{
+      setTimeout(() => {
         this.$refs.ConsoleNet.echarts.resize()
       }, 100)
     })
@@ -73,7 +72,7 @@ export default {
   destroyed() {
   },
   methods: {
-    setData: function(data) {
+    setData: function (data) {
       this.chartData.rows = data;
     }
   }

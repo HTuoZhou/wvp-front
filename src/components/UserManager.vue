@@ -12,19 +12,20 @@
       </div>
     </div>
     <!--用户列表-->
-    <el-table :data="userList" style="width: 100%;font-size: 12px;" :height="winHeight"
-              header-row-class-name="table-header">
-      <el-table-column prop="username" label="用户名" min-width="160"/>
-      <el-table-column prop="pushKey" label="pushkey" min-width="160"/>
-      <el-table-column prop="role.name" label="类型" min-width="160"/>
-      <el-table-column label="操作" min-width="450" fixed="right">
+    <el-table :data="userList" :height="winHeight" header-row-class-name="table-header"
+              style="width: 100%;font-size: 12px;">
+      <el-table-column label="用户名" min-width="160" prop="username"/>
+      <el-table-column label="pushkey" min-width="160" prop="pushKey"/>
+      <el-table-column label="类型" min-width="160" prop="role.name"/>
+      <el-table-column fixed="right" label="操作" min-width="450">
         <template slot-scope="scope">
-          <el-button size="medium" icon="el-icon-edit" type="text" @click="edit(scope.row)">修改密码</el-button>
+          <el-button icon="el-icon-edit" size="medium" type="text" @click="edit(scope.row)">修改密码</el-button>
           <el-divider direction="vertical"></el-divider>
-          <el-button size="medium" icon="el-icon-edit" type="text" @click="changePushKey(scope.row)">修改pushkey</el-button>
+          <el-button icon="el-icon-edit" size="medium" type="text" @click="changePushKey(scope.row)">修改pushkey
+          </el-button>
           <el-divider direction="vertical"></el-divider>
-          <el-button size="medium" icon="el-icon-delete" type="text" @click="deleteUser(scope.row)"
-                     style="color: #f56c6c">删除
+          <el-button icon="el-icon-delete" size="medium" style="color: #f56c6c" type="text"
+                     @click="deleteUser(scope.row)">删除
           </el-button>
         </template>
       </el-table-column>
@@ -33,14 +34,14 @@
     <changePushKey ref="changePushKey"></changePushKey>
     <addUser ref="addUser"></addUser>
     <el-pagination
-      style="float: right"
-      @size-change="handleSizeChange"
-      @current-change="currentChange"
       :current-page="currentPage"
       :page-size="count"
       :page-sizes="[15, 25, 35, 50]"
+      :total="total"
       layout="total, sizes, prev, pager, next"
-      :total="total">
+      style="float: right"
+      @size-change="handleSizeChange"
+      @current-change="currentChange">
     </el-pagination>
   </div>
 </template>
@@ -168,7 +169,7 @@ export default {
     },
     addUser: function () {
       // this.$refs.addUser.openDialog()
-      this.$refs.addUser.openDialog( () => {
+      this.$refs.addUser.openDialog(() => {
         this.$refs.addUser.close();
         this.$message({
           showClose: true,

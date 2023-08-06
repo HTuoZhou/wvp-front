@@ -1,33 +1,33 @@
 <template>
   <div id="changePassword" v-loading="isLoging">
     <el-dialog
-      title="修改密码"
-      width="40%"
-      top="2rem"
       :close-on-click-modal="false"
-      :visible.sync="showDialog"
       :destroy-on-close="true"
+      :visible.sync="showDialog"
+      title="修改密码"
+      top="2rem"
+      width="40%"
       @close="close()"
     >
       <div id="shared" style="margin-right: 20px;">
-        <el-form ref="passwordForm" :rules="rules" status-icon label-width="80px">
-              <el-form-item label="旧密码" prop="oldPassword" >
-                <el-input v-model="oldPassword" autocomplete="off"></el-input>
-              </el-form-item>
-              <el-form-item label="新密码" prop="newPassword" >
-                <el-input v-model="newPassword" autocomplete="off"></el-input>
-              </el-form-item>
-              <el-form-item label="确认密码" prop="confirmPassword">
-                <el-input v-model="confirmPassword" autocomplete="off"></el-input>
-              </el-form-item>
+        <el-form ref="passwordForm" :rules="rules" label-width="80px" status-icon>
+          <el-form-item label="旧密码" prop="oldPassword">
+            <el-input v-model="oldPassword" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="新密码" prop="newPassword">
+            <el-input v-model="newPassword" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="确认密码" prop="confirmPassword">
+            <el-input v-model="confirmPassword" autocomplete="off"></el-input>
+          </el-form-item>
 
-              <el-form-item>
-                <div style="float: right;">
-                  <el-button type="primary" @click="onSubmit">保存</el-button>
-                  <el-button @click="close">取消</el-button>
-                </div>
-              </el-form-item>
-            </el-form>
+          <el-form-item>
+            <div style="float: right;">
+              <el-button type="primary" @click="onSubmit">保存</el-button>
+              <el-button @click="close">取消</el-button>
+            </div>
+          </el-form-item>
+        </el-form>
       </div>
     </el-dialog>
   </div>
@@ -36,11 +36,13 @@
 <script>
 import crypto from 'crypto'
 import userService from "../service/UserService";
+
 export default {
   name: "changePassword",
   props: {},
   computed: {},
-  created() {},
+  created() {
+  },
   data() {
     let validatePass0 = (rule, value, callback) => {
       if (value === '') {
@@ -75,12 +77,12 @@ export default {
       showDialog: false,
       isLoging: false,
       rules: {
-        oldPassword: [{ required: true, validator: validatePass0, trigger: "blur" }],
-        newPassword: [{ required: true, validator: validatePass1, trigger: "blur" }, {
-            pattern: /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+`\-={}:";'<>?,.\/]).{8,20}$/,
-            message: "密码长度在8-20位之间,由字母+数字+特殊字符组成",
-          },],
-        confirmPassword: [{ required: true, validator: validatePass2, trigger: "blur" }],
+        oldPassword: [{required: true, validator: validatePass0, trigger: "blur"}],
+        newPassword: [{required: true, validator: validatePass1, trigger: "blur"}, {
+          pattern: /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+`\-={}:";'<>?,.\/]).{8,20}$/,
+          message: "密码长度在8-20位之间,由字母+数字+特殊字符组成",
+        },],
+        confirmPassword: [{required: true, validator: validatePass2, trigger: "blur"}],
       },
     };
   },
@@ -91,12 +93,12 @@ export default {
     onSubmit: function () {
       this.$axios({
         method: 'post',
-        url:"/api/user/changePassword",
+        url: "/api/user/changePassword",
         params: {
           oldPassword: crypto.createHash('md5').update(this.oldPassword, "utf8").digest('hex'),
           password: this.newPassword
         }
-      }).then((res)=> {
+      }).then((res) => {
         if (res.data.code === 0) {
           this.$message({
             showClose: true,
@@ -104,20 +106,20 @@ export default {
             type: 'success'
           });
           this.showDialog = false;
-          setTimeout(()=>{
+          setTimeout(() => {
             // 删除cookie，回到登录页面
             userService.clearUserInfo();
             this.$router.push('/login');
             this.sseSource.close();
-          },800)
-        }else {
+          }, 800)
+        } else {
           this.$message({
             showClose: true,
             message: '修改密码失败，是否已登录（接口鉴权关闭无法修改密码）',
             type: 'error'
           });
         }
-      }).catch((error)=> {
+      }).catch((error) => {
         console.error(error)
       });
     },

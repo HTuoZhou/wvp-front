@@ -1,17 +1,17 @@
 <template>
   <div id="channelMapInfobox" style="display: none">
-    <div >
-      <el-descriptions class="margin-top" title="channel.name" :column="4" direction="vertical">
-        <el-descriptions-item label="生产厂商">{{channel.manufacture}}</el-descriptions-item>
-        <el-descriptions-item label="型号">{{channel.model}}</el-descriptions-item>
-        <el-descriptions-item label="设备归属" >{{channel.owner}}</el-descriptions-item>
-        <el-descriptions-item label="行政区域" >{{channel.civilCode}}</el-descriptions-item>
-        <el-descriptions-item label="安装地址" >{{channel.address}}</el-descriptions-item>
-        <el-descriptions-item label="云台类型" >{{channel.ptztypeText}}</el-descriptions-item>
-        <el-descriptions-item label="经纬度" >{{channel.longitude}},{{channel.latitude}}</el-descriptions-item>
+    <div>
+      <el-descriptions :column="4" class="margin-top" direction="vertical" title="channel.name">
+        <el-descriptions-item label="生产厂商">{{ channel.manufacture }}</el-descriptions-item>
+        <el-descriptions-item label="型号">{{ channel.model }}</el-descriptions-item>
+        <el-descriptions-item label="设备归属">{{ channel.owner }}</el-descriptions-item>
+        <el-descriptions-item label="行政区域">{{ channel.civilCode }}</el-descriptions-item>
+        <el-descriptions-item label="安装地址">{{ channel.address }}</el-descriptions-item>
+        <el-descriptions-item label="云台类型">{{ channel.ptztypeText }}</el-descriptions-item>
+        <el-descriptions-item label="经纬度">{{ channel.longitude }},{{ channel.latitude }}</el-descriptions-item>
         <el-descriptions-item label="状态">
-          <el-tag size="small" v-if="channel.status === 1">在线</el-tag>
-          <el-tag size="small" v-if="channel.status === 0">离线</el-tag>
+          <el-tag v-if="channel.status === 1" size="small">在线</el-tag>
+          <el-tag v-if="channel.status === 0" size="small">离线</el-tag>
         </el-descriptions-item>
       </el-descriptions>
     </div>
@@ -27,7 +27,8 @@ export default {
   name: "channelMapInfobox",
   props: ['channel'],
   computed: {devicePlayer},
-  created() {},
+  created() {
+  },
   data() {
     return {
       showDialog: false,
@@ -36,7 +37,7 @@ export default {
   },
   methods: {
 
-    play: function (){
+    play: function () {
       let deviceId = this.channel.deviceId;
       this.isLoging = true;
       let channelId = this.channel.channelId;

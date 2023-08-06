@@ -1,13 +1,12 @@
 <template>
   <div id="ConsoleNodeLoad" style="width: 100%; height: 100%; background: #FFFFFF; text-align: center">
-    <ve-histogram ref="consoleNodeLoad" :data="chartData" :extend="extend"  :settings="chartSettings" width="100%" height="100%" :legend-visible="true"></ve-histogram>
+    <ve-histogram ref="consoleNodeLoad" :data="chartData" :extend="extend" :legend-visible="true" :settings="chartSettings"
+                  height="100%" width="100%"></ve-histogram>
   </div>
 </template>
 
 <script>
 
-
-import moment from "moment/moment";
 
 export default {
   name: 'ConsoleNodeLoad',
@@ -46,7 +45,7 @@ export default {
   },
   mounted() {
     this.$nextTick(_ => {
-      setTimeout(()=>{
+      setTimeout(() => {
         this.$refs.consoleNodeLoad.echarts.resize()
       }, 100)
     })
@@ -54,8 +53,8 @@ export default {
   destroyed() {
   },
   methods: {
-    setData: function(data) {
-      this.chartData .rows = data;
+    setData: function (data) {
+      this.chartData.rows = data;
     }
 
   }

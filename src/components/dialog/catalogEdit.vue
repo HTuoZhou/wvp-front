@@ -1,18 +1,18 @@
 <template>
   <div id="catalogEdit" v-loading="isLoging">
     <el-dialog
-      title="节点编辑"
-      width="40%"
-      top="2rem"
       :append-to-body="true"
       :close-on-click-modal="false"
-      :visible.sync="showDialog"
       :destroy-on-close="true"
+      :visible.sync="showDialog"
+      title="节点编辑"
+      top="2rem"
+      width="40%"
       @close="close()"
     >
       <div id="shared" style="margin-top: 1rem;margin-right: 100px;">
-        <el-form ref="form" :rules="rules" :model="form" label-width="140px" >
-          <el-form-item label="节点编号" prop="id" >
+        <el-form ref="form" :model="form" :rules="rules" label-width="140px">
+          <el-form-item label="节点编号" prop="id">
             <el-input v-model="form.id" :disabled="isEdit" clearable></el-input>
           </el-form-item>
           <el-form-item label="节点名称" prop="name">
@@ -21,7 +21,7 @@
 
           <el-form-item>
             <div style="float: right;">
-              <el-button type="primary" @click="onSubmit" >确认</el-button>
+              <el-button type="primary" @click="onSubmit">确认</el-button>
               <el-button @click="close">取消</el-button>
             </div>
 
@@ -38,7 +38,8 @@ export default {
   name: "catalogEdit",
   computed: {},
   props: ['platformId', 'platformDeviceId'],
-  created() {},
+  created() {
+  },
   data() {
     let checkId = (rule, value, callback) => {
       console.log("checkId")
@@ -50,17 +51,17 @@ export default {
         return callback(new Error('编号不能为空'));
       }
       if (value.trim().length <= 8) {
-        if (value.trim().length%2 !== 0) {
+        if (value.trim().length % 2 !== 0) {
           return callback(new Error('行政区划编号必须为2/4/6/8位'));
         }
         if (this.form.parentId !== this.platformDeviceId && this.form.parentId.length >= value.trim().length) {
           if (this.form.parentId.length === 20) {
             return callback(new Error('业务分组/虚拟组织下不可创建行政区划'));
-          }else {
+          } else {
             return callback(new Error('行政区划编号长度应该每次两位递增'));
           }
         }
-      }else {
+      } else {
         if (value.trim().length !== 20) {
           return callback(new Error('编号必须为2/4/6/8位的行政区划或20位的虚拟组织/业务分组'));
         }
@@ -71,7 +72,7 @@ export default {
         }
         if (catalogType === "216") {
 
-          if (this.form.parentId !== this.platformDeviceId){
+          if (this.form.parentId !== this.platformDeviceId) {
             if (this.form.parentId.length <= 8) {
               return callback(new Error('编号错误，建立虚拟组织前必须先建立业务分组（11-13位为215）'));
             }
@@ -98,8 +99,8 @@ export default {
         parentId: null,
       },
       rules: {
-        name: [{ required: true, message: "请输入名称", trigger: "blur" }],
-        id: [{ required: true, trigger: "blur",validator: checkId  }]
+        name: [{required: true, message: "请输入名称", trigger: "blur"}],
+        id: [{required: true, trigger: "blur", validator: checkId}]
       },
     };
   },
@@ -120,13 +121,13 @@ export default {
       this.$refs["form"].validate((valid) => {
         if (valid) {
           this.$axios({
-            method:"post",
-            url:`/api/platform/catalog/${!this.isEdit? "add":"edit"}`,
+            method: "post",
+            url: `/api/platform/catalog/${!this.isEdit ? "add" : "edit"}`,
             data: this.form
-          }).then((res)=> {
+          }).then((res) => {
             if (res.data.code === 0) {
-              if (this.submitCallback)this.submitCallback(this.form)
-            }else {
+              if (this.submitCallback) this.submitCallback(this.form)
+            } else {
               this.$message({
                 showClose: true,
                 message: res.data.msg,
@@ -135,7 +136,7 @@ export default {
             }
             this.close();
           })
-            .catch((error)=> {
+            .catch((error) => {
               console.log(error);
             });
         } else {

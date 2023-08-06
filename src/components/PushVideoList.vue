@@ -4,11 +4,11 @@
       <div class="page-title">推流列表</div>
       <div class="page-header-btn">
         搜索:
-        <el-input @input="getPushList" style="margin-right: 1rem; width: auto;" size="mini" placeholder="关键字"
-                  prefix-icon="el-icon-search" v-model="searchSrt" clearable></el-input>
+        <el-input v-model="searchSrt" clearable placeholder="关键字" prefix-icon="el-icon-search"
+                  size="mini" style="margin-right: 1rem; width: auto;" @input="getPushList"></el-input>
         流媒体:
-        <el-select size="mini" @change="getPushList" style="margin-right: 1rem;" v-model="mediaServerId"
-                   placeholder="请选择" default-first-option>
+        <el-select v-model="mediaServerId" default-first-option placeholder="请选择" size="mini"
+                   style="margin-right: 1rem;" @change="getPushList">
           <el-option label="全部" value=""></el-option>
           <el-option
             v-for="item in mediaServerList"
@@ -18,8 +18,8 @@
           </el-option>
         </el-select>
         推流状态:
-        <el-select size="mini" style="margin-right: 1rem;" @change="getPushList" v-model="pushing" placeholder="请选择"
-                   default-first-option>
+        <el-select v-model="pushing" default-first-option placeholder="请选择" size="mini" style="margin-right: 1rem;"
+                   @change="getPushList">
           <el-option label="全部" value=""></el-option>
           <el-option label="推流进行中" value="true"></el-option>
           <el-option label="推流未进行" value="false"></el-option>
@@ -28,79 +28,81 @@
           通道导入
         </el-button>
         <el-button icon="el-icon-download" size="mini" style="margin-right: 1rem;" type="primary">
-          <a style="color: #FFFFFF; text-align: center; text-decoration: none" href="/static/file/推流通道导入.zip"
-             download='推流通道导入.zip'>下载模板</a>
+          <a download='推流通道导入.zip' href="/static/file/推流通道导入.zip"
+             style="color: #FFFFFF; text-align: center; text-decoration: none">下载模板</a>
         </el-button>
-        <el-button icon="el-icon-delete" size="mini" style="margin-right: 1rem;"
-                   :disabled="multipleSelection.length === 0" type="danger" @click="batchDel">批量移除
+        <el-button :disabled="multipleSelection.length === 0" icon="el-icon-delete" size="mini"
+                   style="margin-right: 1rem;" type="danger" @click="batchDel">批量移除
         </el-button>
         <el-button icon="el-icon-plus" size="mini" style="margin-right: 1rem;" type="primary" @click="addStream">添加通道
         </el-button>
-        <el-button icon="el-icon-refresh-right" circle size="mini" @click="refresh()"></el-button>
+        <el-button circle icon="el-icon-refresh-right" size="mini" @click="refresh()"></el-button>
       </div>
     </div>
     <devicePlayer ref="devicePlayer"></devicePlayer>
     <addStreamTOGB ref="addStreamTOGB"></addStreamTOGB>
-    <el-table ref="pushListTable" :data="pushList" style="width: 100%" :height="winHeight"
-              @selection-change="handleSelectionChange" :row-key="(row)=> row.app + row.stream">
-      <el-table-column  type="selection" :reserve-selection="true" min-width="55">
+    <el-table ref="pushListTable" :data="pushList" :height="winHeight" :row-key="(row)=> row.app + row.stream"
+              style="width: 100%" @selection-change="handleSelectionChange">
+      <el-table-column :reserve-selection="true" min-width="55" type="selection">
       </el-table-column>
-      <el-table-column prop="name" label="名称" min-width="200">
+      <el-table-column label="名称" min-width="200" prop="name">
       </el-table-column>
-      <el-table-column prop="app" label="APP" min-width="200">
+      <el-table-column label="APP" min-width="200" prop="app">
       </el-table-column>
-      <el-table-column prop="stream" label="流ID" min-width="200">
+      <el-table-column label="流ID" min-width="200" prop="stream">
       </el-table-column>
-      <el-table-column prop="gbId" label="国标编码" min-width="200" >
+      <el-table-column label="国标编码" min-width="200" prop="gbId">
       </el-table-column>
-      <el-table-column prop="mediaServerId" label="流媒体" min-width="200" >
+      <el-table-column label="流媒体" min-width="200" prop="mediaServerId">
       </el-table-column>
-      <el-table-column label="开始时间"  min-width="200">
+      <el-table-column label="开始时间" min-width="200">
         <template slot-scope="scope">
           <el-button-group>
-            {{ scope.row.pushTime == null? "-":scope.row.pushTime }}
+            {{ scope.row.pushTime == null ? "-" : scope.row.pushTime }}
           </el-button-group>
         </template>
       </el-table-column>
-      <el-table-column label="正在推流"  min-width="100">
+      <el-table-column label="正在推流" min-width="100">
         <template slot-scope="scope">
-          {{scope.row.pushIng ? '是' : '否' }}
+          {{ scope.row.pushIng ? '是' : '否' }}
         </template>
       </el-table-column>
-      <el-table-column label="本平台推流"  min-width="100">
+      <el-table-column label="本平台推流" min-width="100">
         <template slot-scope="scope">
-          {{scope.row.pushIng && !!scope.row.self ? '是' : '否' }}
+          {{ scope.row.pushIng && !!scope.row.self ? '是' : '否' }}
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" min-width="360"  fixed="right">
+      <el-table-column fixed="right" label="操作" min-width="360">
         <template slot-scope="scope">
-          <el-button size="medium" icon="el-icon-video-play"
-                     v-if="scope.row.pushIng === true"
-                     @click="playPush(scope.row)" type="text">播放
+          <el-button v-if="scope.row.pushIng === true" icon="el-icon-video-play"
+                     size="medium"
+                     type="text" @click="playPush(scope.row)">播放
           </el-button>
           <el-divider direction="vertical"></el-divider>
-          <el-button size="medium" icon="el-icon-delete" type="text" @click="stopPush(scope.row)" style="color: #f56c6c" >移除</el-button>
+          <el-button icon="el-icon-delete" size="medium" style="color: #f56c6c" type="text"
+                     @click="stopPush(scope.row)">移除
+          </el-button>
           <el-divider direction="vertical"></el-divider>
-          <el-button size="medium" icon="el-icon-position" type="text" v-if="!!!scope.row.gbId"
+          <el-button v-if="!!!scope.row.gbId" icon="el-icon-position" size="medium" type="text"
                      @click="addToGB(scope.row)">加入国标
           </el-button>
           <el-divider v-if="!!!scope.row.gbId" direction="vertical"></el-divider>
-          <el-button size="medium" icon="el-icon-position" type="text" v-if="!!scope.row.gbId"
+          <el-button v-if="!!scope.row.gbId" icon="el-icon-position" size="medium" type="text"
                      @click="removeFromGB(scope.row)">移出国标
           </el-button>
         </template>
       </el-table-column>
     </el-table>
     <el-pagination
-      style="float: right"
-      @size-change="handleSizeChange"
-      @current-change="currentChange"
       :current-page="currentPage"
       :page-size="count"
       :page-sizes="[15, 25, 35, 50]"
+      :total="total"
       layout="total, sizes, prev, pager, next"
-      :total="total">
+      style="float: right"
+      @size-change="handleSizeChange"
+      @current-change="currentChange">
     </el-pagination>
     <streamProxyEdit ref="streamProxyEdit"></streamProxyEdit>
     <importChannel ref="importChannel"></importChannel>
@@ -180,10 +182,10 @@ export default {
           mediaServerId: that.mediaServerId,
         }
       }).then(function (res) {
-          if (res.data.code === 0) {
-            that.total = res.data.data.total;
-            that.pushList = res.data.data.list;
-          }
+        if (res.data.code === 0) {
+          that.total = res.data.data.total;
+          that.pushList = res.data.data.list;
+        }
 
         that.getDeviceListLoading = false;
       }).catch(function (error) {
@@ -205,12 +207,12 @@ export default {
         }
       }).then(function (res) {
         that.getListLoading = false;
-        if (res.data.code === 0 ) {
+        if (res.data.code === 0) {
           that.$refs.devicePlayer.openDialog("streamPlay", null, null, {
             streamInfo: res.data.data,
             hasAudio: true
           });
-        }else {
+        } else {
           that.$message.error(res.data.msg);
         }
 
@@ -262,7 +264,7 @@ export default {
 
       })
     },
-    addStream: function (){
+    addStream: function () {
       this.$refs.addStreamTOGB.openDialog(null, this.initData);
     },
     batchDel: function () {

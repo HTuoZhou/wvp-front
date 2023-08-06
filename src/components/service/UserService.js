@@ -1,4 +1,3 @@
-
 export default {
 
   /**
@@ -6,14 +5,14 @@ export default {
    * @param username
    * @param token
    */
-  setUser(user){
+  setUser(user) {
     localStorage.setItem("wvp-user", JSON.stringify(user));
   },
 
   /**
    * 获取用户
    */
-  getUser(){
+  getUser() {
     return JSON.parse(localStorage.getItem("wvp-user"));
   },
 
@@ -21,14 +20,14 @@ export default {
   /**
    * 获取登录token
    */
-  getToken(){
+  getToken() {
     return localStorage.getItem("wvp-token");
   },
 
   /**
    * 清理用户信息
    */
-  clearUserInfo(){
+  clearUserInfo() {
     localStorage.removeItem("wvp-user");
     localStorage.removeItem("wvp-token");
   },

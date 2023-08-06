@@ -1,18 +1,18 @@
 <template>
   <div id="SyncChannelProgress" v-loading="isLoging">
     <el-dialog
-      width="240px"
-      top="13%"
       :append-to-body="true"
       :close-on-click-modal="false"
-      :visible.sync="showDialog"
       :destroy-on-close="true"
       :show-close="true"
-      @close="close()"
-     style="text-align: center">
-      <el-progress type="circle" :percentage="percentage" :status="syncStatus"></el-progress>
+      :visible.sync="showDialog"
+      style="text-align: center"
+      top="13%"
+      width="240px"
+      @close="close()">
+      <el-progress :percentage="percentage" :status="syncStatus" type="circle"></el-progress>
       <div style="text-align: center">
-        {{msg}}
+        {{ msg }}
       </div>
     </el-dialog>
   </div>
@@ -24,7 +24,8 @@ export default {
   name: "SyncChannelProgress",
   computed: {},
   props: ['platformId'],
-  created() {},
+  created() {
+  },
   data() {
     return {
       syncStatus: null,
@@ -45,19 +46,19 @@ export default {
       this.deviceId = deviceId;
       this.showDialog = true;
       this.msg = "";
-      this.percentage= 0;
-      this.total= 0;
-      this.current= 0;
-      this.syncFlag= false;
+      this.percentage = 0;
+      this.total = 0;
+      this.current = 0;
+      this.syncFlag = false;
       this.syncStatus = null;
       this.getProgress()
     },
-    getProgress(){
+    getProgress() {
       this.$axios({
         method: 'get',
-        url:`/api/device/query/${this.deviceId}/sync_status/`,
+        url: `/webapi/gbDevice/syncDeviceChannelStatus/${this.deviceId}/`,
       }).then((res) => {
-        if (res.data.code === 0) {
+        if (res.data.code === 2000000) {
           if (!this.syncFlag) {
             this.syncFlag = true;
           }
@@ -67,44 +68,44 @@ export default {
               if (res.data.data.total == 0) {
                 this.msg = `等待同步中`;
                 this.timmer = setTimeout(this.getProgress, 300)
-              }else {
+              } else {
                 this.total = res.data.data.total;
                 this.current = res.data.data.current;
-                this.percentage = Math.floor(Number(res.data.data.current)/Number(res.data.data.total)* 10000)/100;
+                this.percentage = Math.floor(Number(res.data.data.current) / Number(res.data.data.total) * 10000) / 100;
                 this.msg = `同步中...[${res.data.data.current}/${res.data.data.total}]`;
                 this.timmer = setTimeout(this.getProgress, 300)
               }
-            }else {
-              if (res.data.data.errorMsg){
+            } else {
+              if (res.data.data.errorMsg) {
                 this.msg = res.data.data.errorMsg;
                 this.syncStatus = "exception"
-              }else {
+              } else {
                 this.syncStatus = "success"
                 this.percentage = 100;
                 this.msg = '同步成功';
-                setTimeout(()=>{
+                setTimeout(() => {
                   this.showDialog = false;
                 }, 3000)
               }
             }
           }
-        }else {
+        } else {
           if (this.syncFlag) {
             this.syncStatus = "success"
             this.percentage = 100;
             this.msg = '同步成功';
-          }else {
+          } else {
             this.syncStatus = "error"
             this.msg = res.data.msg;
           }
         }
-      }).catch((error) =>{
+      }).catch((error) => {
         console.log(error);
         this.syncStatus = "error"
         this.msg = error.response.data.msg;
       });
     },
-    close: function (){
+    close: function () {
       window.clearTimeout(this.timmer)
     }
   },

@@ -1,6 +1,7 @@
 <template>
   <div id="ConsoleMEM" style="width: 100%; height: 100%; background: #FFFFFF; text-align: center">
-    <ve-line ref="ConsoleMEM" :data="chartData" :extend="extend"  width="100%" height="100%" :legend-visible="false"></ve-line>
+    <ve-line ref="ConsoleMEM" :data="chartData" :extend="extend" :legend-visible="false" height="100%"
+             width="100%"></ve-line>
   </div>
 </template>
 
@@ -36,7 +37,7 @@ export default {
           max: 'dataMax',
           boundaryGap: ['20%', '20%'],
           axisLabel: {
-            formatter:(v)=>{
+            formatter: (v) => {
               return moment(v).format("HH:mm:ss");
             },
             showMaxLabel: true,
@@ -50,16 +51,16 @@ export default {
           position: "left",
           silent: true,
           axisLabel: {
-            formatter: (v)=>{
-              return v*100 + "%";
+            formatter: (v) => {
+              return v * 100 + "%";
             },
           }
         },
         tooltip: {
           trigger: 'axis',
-          formatter: (data)=>{
+          formatter: (data) => {
             console.log(data)
-            return moment(data[0].data[0]).format("HH:mm:ss") +  "</br>"+ data[0].marker +" 使用：" + (data[0].data[1]*100).toFixed(2) + "%";
+            return moment(data[0].data[0]).format("HH:mm:ss") + "</br>" + data[0].marker + " 使用：" + (data[0].data[1] * 100).toFixed(2) + "%";
           }
         },
         series: {
@@ -87,7 +88,7 @@ export default {
   },
   mounted() {
     this.$nextTick(_ => {
-      setTimeout(()=>{
+      setTimeout(() => {
         this.$refs.ConsoleMEM.echarts.resize()
       }, 100)
     })
@@ -95,8 +96,8 @@ export default {
   destroyed() {
   },
   methods: {
-    setData: function(data) {
-      this.chartData .rows = data;
+    setData: function (data) {
+      this.chartData.rows = data;
     }
   }
 };

@@ -5,10 +5,11 @@
 </template>
 
 <script>
-import  userService from './components/service/UserService'
+import userService from './components/service/UserService'
+
 export default {
   name: 'app',
-  data(){
+  data() {
     return {
       isLogin: false,
       excludeLoginCheck: ["/play/wasm", "/play/rtc"],
@@ -21,18 +22,18 @@ export default {
     }
   },
   created() {
-    if (userService.getToken() == null){
+    if (userService.getToken() == null) {
       console.log(22222)
       console.log(this.$route.path)
       try {
         if (this.excludeLoginCheck && this.excludeLoginCheck.length > 0) {
           for (let i = 0; i < this.excludeLoginCheck.length; i++) {
-            if (this.$route.path.startsWith(this.excludeLoginCheck[i])){
+            if (this.$route.path.startsWith(this.excludeLoginCheck[i])) {
               return;
             }
           }
         }
-      }catch (e) {
+      } catch (e) {
         console.error(e)
       }
       //如果没有登录状态则跳转到登录页
@@ -40,12 +41,11 @@ export default {
     }
   },
 
-  mounted(){
+  mounted() {
     //组件开始挂载时获取用户信息
     // this.getUserInfo();
   },
-  methods: {
-  },
+  methods: {},
   components: {}
 };
 </script>
@@ -58,6 +58,7 @@ body,
   background-color: #e9eef3;
   height: 100%;
 }
+
 .el-header,
 .el-footer {
   /* background-color: #b3c0d1; */
@@ -65,6 +66,7 @@ body,
   text-align: center;
   line-height: 60px;
 }
+
 .el-main {
   background-color: #f0f2f5;
   color: #333;
@@ -91,6 +93,7 @@ body,
   box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
 }
+
 .table-header {
   color: #727272;
   font-weight: 600;
