@@ -97,7 +97,6 @@ class DeviceService {
     }).catch(errorCallback);
   }
 
-
   getAllSubChannel(isCatalog, deviceId, channelId, callback, endCallback, errorCallback) {
     let currentPage = 1;
     let count = 100;
