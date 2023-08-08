@@ -93,7 +93,8 @@
             @change="playTimeChange">
           </el-slider>
           <div class="slider-val-box">
-            <div v-for="item of detailFiles" :style="'width:' + getDataWidth(item) + '%; left:' + getDataLeft(item) + '%'"
+            <div v-for="item of detailFiles"
+                 :style="'width:' + getDataWidth(item) + '%; left:' + getDataLeft(item) + '%'"
                  class="slider-val"></div>
           </div>
         </div>

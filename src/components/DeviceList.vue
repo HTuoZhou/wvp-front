@@ -54,11 +54,11 @@
       </el-table-column>
       <el-table-column fixed="right" label="操作" min-width="350">
         <template slot-scope="scope">
-<!--          <el-button icon="el-icon-refresh" size="medium" type="text" v-bind:disabled="scope.row.online==0"-->
-<!--                     @click="refDevice(scope.row)"-->
-<!--                     @mouseover="getTooltipContent(scope.row.deviceId)">刷新-->
-<!--          </el-button>-->
-<!--          <el-divider direction="vertical"></el-divider>-->
+          <!--          <el-button icon="el-icon-refresh" size="medium" type="text" v-bind:disabled="scope.row.online==0"-->
+          <!--                     @click="refDevice(scope.row)"-->
+          <!--                     @mouseover="getTooltipContent(scope.row.deviceId)">刷新-->
+          <!--          </el-button>-->
+          <!--          <el-divider direction="vertical"></el-divider>-->
           <el-button icon="el-icon-video-camera" size="medium" type="text"
                      @click="showChannelList(scope.row)">通道
           </el-button>

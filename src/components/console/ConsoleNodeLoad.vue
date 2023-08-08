@@ -1,6 +1,7 @@
 <template>
   <div id="ConsoleNodeLoad" style="width: 100%; height: 100%; background: #FFFFFF; text-align: center">
-    <ve-histogram ref="consoleNodeLoad" :data="chartData" :extend="extend" :legend-visible="true" :settings="chartSettings"
+    <ve-histogram ref="consoleNodeLoad" :data="chartData" :extend="extend" :legend-visible="true"
+                  :settings="chartSettings"
                   height="100%" width="100%"></ve-histogram>
   </div>
 </template>

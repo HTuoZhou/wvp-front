@@ -12,7 +12,8 @@
     >
       <div>
         重复国标ID:
-        <el-button v-clipboard="gbIds.join(',')" icon="el-icon-document-copy" size="mini" style="float: right;" title="点击拷贝"
+        <el-button v-clipboard="gbIds.join(',')" icon="el-icon-document-copy" size="mini" style="float: right;"
+                   title="点击拷贝"
                    type="primary" @success="$message({type:'success', message:'成功拷贝到粘贴板'})">复制
         </el-button>
         <ul class="errDataBox">
@@ -24,7 +25,8 @@
 
       <div>
         重复App/stream:
-        <el-button v-clipboard="streams.join(',')" icon="el-icon-document-copy" size="mini" style="float: right;" title="点击拷贝"
+        <el-button v-clipboard="streams.join(',')" icon="el-icon-document-copy" size="mini" style="float: right;"
+                   title="点击拷贝"
                    type="primary" @success="$message({type:'success', message:'成功拷贝到粘贴板'})">复制
         </el-button>
         <ul class="errDataBox">

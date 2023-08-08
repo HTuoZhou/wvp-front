@@ -10,7 +10,8 @@
           <!--          </el-tab-pane>-->
           <el-tab-pane label="Jessibuca" name="jessibuca">
             <jessibucaPlayer v-if="activePlayer === 'jessibuca'" ref="jessibuca" :error="videoError"
-                             :hasAudio="hasAudio" :message="videoError" :videoUrl="videoUrl" :visible.sync="showVideoDialog"
+                             :hasAudio="hasAudio" :message="videoError" :videoUrl="videoUrl"
+                             :visible.sync="showVideoDialog"
                              autoplay fluent height="100px" live></jessibucaPlayer>
           </el-tab-pane>
           <el-tab-pane label="WebRTC" name="webRTC">
@@ -198,13 +199,16 @@
                                    :min="1" :precision="0" :step="1" controls-position="right" size="mini"
                                    style="position: absolute; left: 5rem; top: 0rem; width: 6rem"></el-input-number>
                   <el-button icon="el-icon-add-location" size="mini"
-                             style="position: absolute; left: 11rem; top: 0rem; width: 5rem" @click="presetPosition(129, presetPos)">设置
+                             style="position: absolute; left: 11rem; top: 0rem; width: 5rem"
+                             @click="presetPosition(129, presetPos)">设置
                   </el-button>
-                  <el-button icon="el-icon-place" size="mini" style="position: absolute; left: 27rem; top: 0rem; width: 5rem"
+                  <el-button icon="el-icon-place" size="mini"
+                             style="position: absolute; left: 27rem; top: 0rem; width: 5rem"
                              type="primary" @click="presetPosition(130, presetPos)">调用
                   </el-button>
                   <el-button icon="el-icon-delete-location" size="mini"
-                             style="position: absolute; left: 16rem; top: 0rem; width: 5rem" @click="presetPosition(131, presetPos)">删除
+                             style="position: absolute; left: 16rem; top: 0rem; width: 5rem"
+                             @click="presetPosition(131, presetPos)">删除
                   </el-button>
                   <el-tag size="medium"
                           style="position :absolute; left: 0rem; top: 2.5rem; width: 5rem; text-align: center">巡航速度
@@ -213,7 +217,8 @@
                                    :min="1" :precision="0" controls-position="right" size="mini"
                                    style="position: absolute; left: 5rem; top: 2.5rem; width: 6rem"></el-input-number>
                   <el-button icon="el-icon-loading" size="mini"
-                             style="position: absolute; left: 11rem; top: 2.5rem; width: 5rem" @click="setSpeedOrTime(134, cruisingGroup, cruisingSpeed)">设置
+                             style="position: absolute; left: 11rem; top: 2.5rem; width: 5rem"
+                             @click="setSpeedOrTime(134, cruisingGroup, cruisingSpeed)">设置
                   </el-button>
                   <el-tag size="medium"
                           style="position :absolute; left: 16rem; top: 2.5rem; width: 5rem; text-align: center">停留时间
@@ -222,7 +227,8 @@
                                    :min="1" :precision="0" controls-position="right" size="mini"
                                    style="position: absolute; left: 21rem; top: 2.5rem; width: 6rem"></el-input-number>
                   <el-button icon="el-icon-timer" size="mini"
-                             style="position: absolute; left: 27rem; top: 2.5rem; width: 5rem" @click="setSpeedOrTime(135, cruisingGroup, cruisingTime)">设置
+                             style="position: absolute; left: 27rem; top: 2.5rem; width: 5rem"
+                             @click="setSpeedOrTime(135, cruisingGroup, cruisingTime)">设置
                   </el-button>
                   <el-tag size="medium"
                           style="position :absolute; left: 0rem; top: 4.5rem; width: 5rem; text-align: center">巡航组编号
@@ -231,15 +237,19 @@
                                    :min="0" :precision="0" controls-position="right" size="mini"
                                    style="position: absolute; left: 5rem; top: 4.5rem; width: 6rem"></el-input-number>
                   <el-button icon="el-icon-add-location" size="mini"
-                             style="position: absolute; left: 11rem; top: 4.5rem; width: 5rem" @click="setCommand(132, cruisingGroup, presetPos)">添加点
+                             style="position: absolute; left: 11rem; top: 4.5rem; width: 5rem"
+                             @click="setCommand(132, cruisingGroup, presetPos)">添加点
                   </el-button>
                   <el-button icon="el-icon-delete-location" size="mini"
-                             style="position: absolute; left: 16rem; top: 4.5rem; width: 5rem" @click="setCommand(133, cruisingGroup, presetPos)">删除点
+                             style="position: absolute; left: 16rem; top: 4.5rem; width: 5rem"
+                             @click="setCommand(133, cruisingGroup, presetPos)">删除点
                   </el-button>
                   <el-button icon="el-icon-delete" size="mini"
-                             style="position: absolute; left: 21rem; top: 4.5rem; width: 5rem" @click="setCommand(133, cruisingGroup, 0)">删除组
+                             style="position: absolute; left: 21rem; top: 4.5rem; width: 5rem"
+                             @click="setCommand(133, cruisingGroup, 0)">删除组
                   </el-button>
-                  <el-button icon="el-icon-video-camera-solid" size="mini" style="position: absolute; left: 27rem; top: 5rem; width: 5rem"
+                  <el-button icon="el-icon-video-camera-solid" size="mini"
+                             style="position: absolute; left: 27rem; top: 5rem; width: 5rem"
                              type="primary" @click="setCommand(136, cruisingGroup, 0)">巡航
                   </el-button>
                   <el-tag size="medium"
@@ -249,7 +259,8 @@
                                    :min="1" :precision="0" controls-position="right" size="mini"
                                    style="position: absolute; left: 5rem; top: 7rem; width: 6rem"></el-input-number>
                   <el-button icon="el-icon-loading" size="mini"
-                             style="position: absolute; left: 11rem; top: 7rem; width: 5rem" @click="setSpeedOrTime(138, scanGroup, scanSpeed)">设置
+                             style="position: absolute; left: 11rem; top: 7rem; width: 5rem"
+                             @click="setSpeedOrTime(138, scanGroup, scanSpeed)">设置
                   </el-button>
                   <el-tag size="medium"
                           style="position :absolute; left: 0rem; top: 9rem; width: 5rem; text-align: center">扫描组编号
@@ -258,15 +269,19 @@
                                    :min="0" :precision="0" :step="1" controls-position="right" size="mini"
                                    style="position: absolute; left: 5rem; top: 9rem; width: 6rem"></el-input-number>
                   <el-button icon="el-icon-d-arrow-left" size="mini"
-                             style="position: absolute; left: 11rem; top: 9rem; width: 5rem" @click="setCommand(137, scanGroup, 1)">左边界
+                             style="position: absolute; left: 11rem; top: 9rem; width: 5rem"
+                             @click="setCommand(137, scanGroup, 1)">左边界
                   </el-button>
                   <el-button icon="el-icon-d-arrow-right" size="mini"
-                             style="position: absolute; left: 16rem; top: 9rem; width: 5rem" @click="setCommand(137, scanGroup, 2)">右边界
+                             style="position: absolute; left: 16rem; top: 9rem; width: 5rem"
+                             @click="setCommand(137, scanGroup, 2)">右边界
                   </el-button>
-                  <el-button icon="el-icon-video-camera-solid" size="mini" style="position: absolute; left: 27rem; top: 7rem; width: 5rem"
+                  <el-button icon="el-icon-video-camera-solid" size="mini"
+                             style="position: absolute; left: 27rem; top: 7rem; width: 5rem"
                              type="primary" @click="setCommand(137, scanGroup, 0)">扫描
                   </el-button>
-                  <el-button icon="el-icon-switch-button" size="mini" style="position: absolute; left: 27rem; top: 9rem; width: 5rem"
+                  <el-button icon="el-icon-switch-button" size="mini"
+                             style="position: absolute; left: 27rem; top: 9rem; width: 5rem"
                              type="danger" @click="ptzCamera('stop')">停止
                   </el-button>
                 </el-button-group>

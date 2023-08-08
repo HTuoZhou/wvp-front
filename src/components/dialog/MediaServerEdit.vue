@@ -39,13 +39,15 @@
             <el-form v-if="currentStep === 2 || currentStep === 3" ref="mediaServerForm1" :model="mediaServerForm"
                      :rules="rules" label-width="140px">
               <el-form-item label="IP" prop="ip">
-                <el-input v-if="currentStep === 2" v-model="mediaServerForm.ip" :disabled="mediaServerForm.defaultServer"
+                <el-input v-if="currentStep === 2" v-model="mediaServerForm.ip"
+                          :disabled="mediaServerForm.defaultServer"
                           disabled></el-input>
                 <el-input v-if="currentStep === 3" v-model="mediaServerForm.ip"
                           :disabled="mediaServerForm.defaultServer"></el-input>
               </el-form-item>
               <el-form-item label="HTTP PORT" prop="httpPort">
-                <el-input v-if="currentStep === 2" v-model="mediaServerForm.httpPort" :disabled="mediaServerForm.defaultServer"
+                <el-input v-if="currentStep === 2" v-model="mediaServerForm.httpPort"
+                          :disabled="mediaServerForm.defaultServer"
                           disabled></el-input>
                 <el-input v-if="currentStep === 3" v-model="mediaServerForm.httpPort"
                           :disabled="mediaServerForm.defaultServer"></el-input>
@@ -89,20 +91,23 @@
                           placeholder="流媒体服务RTMPS_PORT"></el-input>
               </el-form-item>
               <el-form-item label="SECRET" prop="secret">
-                <el-input v-if="currentStep === 2" v-model="mediaServerForm.secret" :disabled="mediaServerForm.defaultServer"
+                <el-input v-if="currentStep === 2" v-model="mediaServerForm.secret"
+                          :disabled="mediaServerForm.defaultServer"
                           disabled></el-input>
                 <el-input v-if="currentStep === 3" v-model="mediaServerForm.secret"
                           :disabled="mediaServerForm.defaultServer"></el-input>
               </el-form-item>
               <el-form-item label="心跳间隔时间（S）" prop="hookAliveInterval">
-                <el-input v-model="mediaServerForm.hookAliveInterval" :disabled="mediaServerForm.defaultServer" clearable
+                <el-input v-model="mediaServerForm.hookAliveInterval" :disabled="mediaServerForm.defaultServer"
+                          clearable
                           placeholder="心跳间隔时间（S）"></el-input>
               </el-form-item>
               <el-form-item label="自动配置媒体服务">
                 <el-switch v-model="mediaServerForm.autoConfig" :disabled="mediaServerForm.defaultServer"></el-switch>
               </el-form-item>
               <el-form-item label="收流端口模式">
-                <el-switch v-model="mediaServerForm.rtpEnable" :disabled="mediaServerForm.defaultServer" active-text="多端口"
+                <el-switch v-model="mediaServerForm.rtpEnable" :disabled="mediaServerForm.defaultServer"
+                           active-text="多端口"
                            inactive-text="单端口" @change="portRangeChange"></el-switch>
               </el-form-item>
 
@@ -121,11 +126,13 @@
                           @change="portRangeChange"></el-input>
               </el-form-item>
               <el-form-item v-if="mediaServerForm.sendRtpEnable" label="发流端口">
-                <el-input v-model="sendRtpPortRange1" :disabled="mediaServerForm.defaultServer" clearable placeholder="起始"
+                <el-input v-model="sendRtpPortRange1" :disabled="mediaServerForm.defaultServer" clearable
+                          placeholder="起始"
                           prop="rtpPortRange1" style="width: 100px"
                           @change="portRangeChange"></el-input>
                 -
-                <el-input v-model="sendRtpPortRange2" :disabled="mediaServerForm.defaultServer" clearable placeholder="终止"
+                <el-input v-model="sendRtpPortRange2" :disabled="mediaServerForm.defaultServer" clearable
+                          placeholder="终止"
                           prop="rtpPortRange2" style="width: 100px"
                           @change="portRangeChange"></el-input>
               </el-form-item>

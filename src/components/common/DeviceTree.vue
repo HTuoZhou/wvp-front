@@ -8,17 +8,23 @@
                    style="min-width: 100%; display:inline-block !important;" @node-click="handleNodeClick"
                    @node-contextmenu="handleContextMenu">
             <span slot-scope="{ node, data }" class="custom-tree-node" style="width: 100%">
-              <span v-if="node.data.type === 0 && node.data.online" class="device-online iconfont icon-jiedianleizhukongzhongxin2"
+              <span v-if="node.data.type === 0 && node.data.online"
+                    class="device-online iconfont icon-jiedianleizhukongzhongxin2"
                     title="在线设备"></span>
-              <span v-if="node.data.type === 0 && !node.data.online " class="device-offline iconfont icon-jiedianleizhukongzhongxin2"
+              <span v-if="node.data.type === 0 && !node.data.online "
+                    class="device-offline iconfont icon-jiedianleizhukongzhongxin2"
                     title="离线设备"></span>
-              <span v-if="node.data.type === 2 && node.data.online" class="device-online iconfont icon-jiedianleilianjipingtai"
+              <span v-if="node.data.type === 2 && node.data.online"
+                    class="device-online iconfont icon-jiedianleilianjipingtai"
                     title="目录"></span>
-              <span v-if="node.data.type === 2 && !node.data.online" class="device-offline iconfont icon-jiedianleilianjipingtai"
+              <span v-if="node.data.type === 2 && !node.data.online"
+                    class="device-offline iconfont icon-jiedianleilianjipingtai"
                     title="目录"></span>
-              <span v-if="node.data.type === 3 && node.data.online " class="device-online iconfont icon-shebeileijiankongdian"
+              <span v-if="node.data.type === 3 && node.data.online "
+                    class="device-online iconfont icon-shebeileijiankongdian"
                     title="在线通道"></span>
-              <span v-if="node.data.type === 3 && !node.data.online" class="device-offline iconfont icon-shebeileijiankongdian"
+              <span v-if="node.data.type === 3 && !node.data.online"
+                    class="device-offline iconfont icon-shebeileijiankongdian"
                     title="在线通道"></span>
               <span v-if="node.data.type === 4 && node.data.online " class="device-online iconfont icon-shebeileiqiuji"
                     title="在线通道-球机"></span>
@@ -26,11 +32,14 @@
                     title="在线通道-球机"></span>
               <span v-if="node.data.type === 5 && node.data.online " class="device-online iconfont icon-shebeileibanqiu"
                     title="在线通道-半球"></span>
-              <span v-if="node.data.type === 5 && !node.data.online" class="device-offline iconfont icon-shebeileibanqiu"
+              <span v-if="node.data.type === 5 && !node.data.online"
+                    class="device-offline iconfont icon-shebeileibanqiu"
                     title="在线通道-半球"></span>
-              <span v-if="node.data.type === 6 && node.data.online " class="device-online iconfont icon-shebeileiqiangjitongdao"
+              <span v-if="node.data.type === 6 && node.data.online "
+                    class="device-online iconfont icon-shebeileiqiangjitongdao"
                     title="在线通道-枪机"></span>
-              <span v-if="node.data.type === 6 && !node.data.online" class="device-offline iconfont icon-shebeileiqiangjitongdao"
+              <span v-if="node.data.type === 6 && !node.data.online"
+                    class="device-offline iconfont icon-shebeileiqiangjitongdao"
                     title="在线通道-枪机"></span>
               <span v-if="node.data.online" class="device-online" style="padding-left: 1px">{{ node.label }}</span>
               <span v-if="!node.data.online" class="device-offline" style="padding-left: 1px">{{ node.label }}</span>

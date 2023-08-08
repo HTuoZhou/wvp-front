@@ -1,10 +1,12 @@
 <template>
   <div id="consoleResource" style="width: 100%; height: 100%; background: #FFFFFF; text-align: center">
     <div style="width: 50%;height: 50%; float:left; ">
-      <el-progress v-if="deviceInfo.total > 0" :percentage="Math.floor(deviceInfo.online/deviceInfo.total*100)" :stroke-width="8" :width="100"
+      <el-progress v-if="deviceInfo.total > 0" :percentage="Math.floor(deviceInfo.online/deviceInfo.total*100)"
+                   :stroke-width="8" :width="100"
                    style="margin-top: 20px; font-size: 18px"
                    type="circle"></el-progress>
-      <el-progress v-if="deviceInfo.total === 0" :percentage="0" :stroke-width="8" :width="100" style="margin-top: 20px; font-size: 18px"
+      <el-progress v-if="deviceInfo.total === 0" :percentage="0" :stroke-width="8" :width="100"
+                   style="margin-top: 20px; font-size: 18px"
                    type="circle"></el-progress>
       <div class="resourceInfo">
         设备总数:{{ deviceInfo.total }}<br/>
@@ -12,10 +14,12 @@
       </div>
     </div>
     <div style="width: 50%;height: 50%; float:left; ">
-      <el-progress v-if="channelInfo.total > 0" :percentage="Math.floor(channelInfo.online/channelInfo.total*100)" :stroke-width="10" :width="100"
+      <el-progress v-if="channelInfo.total > 0" :percentage="Math.floor(channelInfo.online/channelInfo.total*100)"
+                   :stroke-width="10" :width="100"
                    style="margin-top: 20px"
                    type="circle"></el-progress>
-      <el-progress v-if="channelInfo.total === 0" :percentage="0" :stroke-width="10" :width="100" style="margin-top: 20px"
+      <el-progress v-if="channelInfo.total === 0" :percentage="0" :stroke-width="10" :width="100"
+                   style="margin-top: 20px"
                    type="circle"></el-progress>
       <div class="resourceInfo">
         通道总数:{{ channelInfo.total }}<br/>
@@ -23,7 +27,8 @@
       </div>
     </div>
     <div style="width: 50%;height: 50%; float:left; ">
-      <el-progress v-if="pushInfo.total > 0" :percentage="Math.floor(pushInfo.online/pushInfo.total*100)" :stroke-width="10" :width="100"
+      <el-progress v-if="pushInfo.total > 0" :percentage="Math.floor(pushInfo.online/pushInfo.total*100)"
+                   :stroke-width="10" :width="100"
                    style="margin-top: 20px" type="circle"></el-progress>
       <el-progress v-if="pushInfo.total === 0" :percentage="0" :stroke-width="10" :width="100" style="margin-top: 20px"
                    type="circle"></el-progress>
@@ -33,7 +38,8 @@
       </div>
     </div>
     <div style="width: 50%;height: 50%; float:left; ">
-      <el-progress v-if="proxyInfo.total > 0" :percentage="Math.floor(proxyInfo.online/proxyInfo.total*100)" :stroke-width="10" :width="100"
+      <el-progress v-if="proxyInfo.total > 0" :percentage="Math.floor(proxyInfo.online/proxyInfo.total*100)"
+                   :stroke-width="10" :width="100"
                    style="margin-top: 20px"
                    type="circle"></el-progress>
       <el-progress v-if="proxyInfo.total === 0" :percentage="0" :stroke-width="10" :width="100" style="margin-top: 20px"

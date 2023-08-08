@@ -1,7 +1,8 @@
 <template>
   <div id="chooseChannel">
 
-    <el-dialog v-if="showDialog" v-loading="loading" :close-on-click-modal="false" :destroy-on-close="true" :visible.sync="showDialog"
+    <el-dialog v-if="showDialog" v-loading="loading" :close-on-click-modal="false" :destroy-on-close="true"
+               :visible.sync="showDialog"
                title="选择通道" top="2rem" width="90%" @close="close()">
       <el-row>
         <el-col :span="10">

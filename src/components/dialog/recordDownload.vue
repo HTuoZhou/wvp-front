@@ -1,6 +1,7 @@
 <template>
   <div id="recordDownload">
-    <el-dialog v-if="showDialog" :append-to-body="true" :close-on-click-modal="false" :destroy-on-close="true" :title="title"
+    <el-dialog v-if="showDialog" :append-to-body="true" :close-on-click-modal="false" :destroy-on-close="true"
+               :title="title"
                :visible.sync="showDialog" center width="45rem" @close="close()">
       <el-row>
         <el-col :span="18" style="padding-top: 7px;">

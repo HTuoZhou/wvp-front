@@ -27,11 +27,13 @@
         <el-option label="推流进行中" value="true"></el-option>
         <el-option label="推流未进行" value="false"></el-option>
       </el-select>
-      <el-button v-if="catalogId !== null" :disabled="gbStreams.length === 0 || multipleSelection.length === 0" icon="el-icon-delete" size="mini"
+      <el-button v-if="catalogId !== null" :disabled="gbStreams.length === 0 || multipleSelection.length === 0"
+                 icon="el-icon-delete" size="mini"
                  style="margin-right: 1rem;" type="danger" @click="batchDel">
         批量移除
       </el-button>
-      <el-button v-if="catalogId === null" :disabled="gbStreams.length === 0 || multipleSelection.length === 0" icon="el-icon-plus" size="mini"
+      <el-button v-if="catalogId === null" :disabled="gbStreams.length === 0 || multipleSelection.length === 0"
+                 icon="el-icon-plus" size="mini"
                  style="margin-right: 1rem;" @click="batchAdd">批量添加
       </el-button>
       <el-button v-if="catalogId === null" icon="el-icon-plus" size="mini" style="margin-right: 1rem;" @click="add()">
@@ -75,7 +77,8 @@
     </el-table>
     <el-pagination :current-page="currentPage" :page-size="count"
                    :page-sizes="[10, 20, 30, 50]" :total="total" layout="total, sizes, prev, pager, next"
-                   style="float: right;margin-top: 1rem;" @size-change="handleSizeChange" @current-change="currentChange">
+                   style="float: right;margin-top: 1rem;" @size-change="handleSizeChange"
+                   @current-change="currentChange">
     </el-pagination>
     <getCatalog ref="getCatalog" :platformId="platformId"></getCatalog>
   </div>

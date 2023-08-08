@@ -9,26 +9,28 @@
       </div>
       <div class="page-header-btn">
         <div v-if="!showTree" style="display: inline;">
-          搜索:
-          <el-input v-model="searchSrt" clearable placeholder="关键字" prefix-icon="el-icon-search"
+          通道编号:
+          <el-input v-model="channelId" clearable placeholder="通道编号" prefix-icon="el-icon-search"
                     size="mini" style="margin-right: 1rem; width: auto;" @input="search"></el-input>
 
           通道类型:
-          <el-select v-model="channelType" default-first-option placeholder="请选择" size="mini" style="margin-right: 1rem;"
+          <el-select v-model="channelType" default-first-option placeholder="请选择" size="mini"
+                     style="margin-right: 1rem;"
                      @change="search">
             <el-option label="全部" value=""></el-option>
-            <el-option label="设备" value="false"></el-option>
-            <el-option label="子目录" value="true"></el-option>
+            <el-option label="设备" value=false></el-option>
+            <el-option label="子目录" value=true></el-option>
           </el-select>
           在线状态:
           <el-select v-model="online" default-first-option placeholder="请选择" size="mini" style="margin-right: 1rem;"
                      @change="search">
             <el-option label="全部" value=""></el-option>
-            <el-option label="在线" value="true"></el-option>
-            <el-option label="离线" value="false"></el-option>
+            <el-option label="在线" value=true></el-option>
+            <el-option label="离线" value=false></el-option>
           </el-select>
           清晰度:
-          <el-select v-model="isSubStream" default-first-option placeholder="请选择" size="mini" style="margin-right: 1rem;"
+          <el-select v-model="isSubStream" default-first-option placeholder="请选择" size="mini"
+                     style="margin-right: 1rem;"
                      @change="search">
             <el-option :value="false" label="原画"></el-option>
             <el-option :value="true" label="流畅"></el-option>
@@ -45,7 +47,8 @@
         <DeviceTree ref="deviceTree" :clickEvent="treeNodeClickEvent" :device="device" :onlyCatalog="true"></DeviceTree>
       </el-aside>
       <el-main style="padding: 5px;">
-        <el-table ref="channelListTable" :data="deviceChannelList" :height="winHeight" header-row-class-name="table-header"
+        <el-table ref="channelListTable" :data="deviceChannelList" :height="winHeight"
+                  header-row-class-name="table-header"
                   style="width: 100%">
           <el-table-column label="通道编号" min-width="200" prop="channelId">
           </el-table-column>
@@ -69,7 +72,7 @@
           </el-table-column>
           <el-table-column label="子节点数" min-width="120" prop="subCount">
           </el-table-column>
-          <el-table-column label="厂家" min-width="120" prop="manufacture">
+          <el-table-column label="厂家" min-width="120" prop="manufacturer">
           </el-table-column>
           <el-table-column label="位置信息" min-width="200">
             <template slot-scope="scope">
@@ -79,7 +82,7 @@
               <span v-if="scope.row.longitude*scope.row.latitude === 0">无</span>
             </template>
           </el-table-column>
-          <el-table-column label="云台类型" min-width="120" prop="PTZTypeText"/>
+          <el-table-column label="云台类型" min-width="120" prop="ptzTypeValue"/>
           <el-table-column label="开启音频" min-width="120">
             <template slot-scope="scope">
               <el-switch v-model="scope.row.hasAudio" active-color="#409EFF" @change="updateChannel(scope.row)">
@@ -102,7 +105,8 @@
                          v-bind:disabled="device == null || device.online === 0" @click="sendDevicePush(scope.row)">播放
               </el-button>
               <el-button v-if="!!scope.row.streamId" icon="el-icon-switch-button"
-                         size="medium" style="color: #f56c6c" type="text" v-bind:disabled="device == null || device.online === 0"
+                         size="medium" style="color: #f56c6c" type="text"
+                         v-bind:disabled="device == null || device.online === 0"
                          @click="stopDevicePush(scope.row)">停止
               </el-button>
               <el-divider direction="vertical"></el-divider>
@@ -112,7 +116,8 @@
               </el-button>
               <el-divider v-if="scope.row.subCount > 0 || scope.row.parental === 1" direction="vertical"></el-divider>
               <el-button icon="el-icon-video-camera" size="medium"
-                         type="text" v-bind:disabled="device == null || device.online === 0" @click="queryRecords(scope.row)">设备录像
+                         type="text" v-bind:disabled="device == null || device.online === 0"
+                         @click="queryRecords(scope.row)">设备录像
               </el-button>
             </template>
           </el-table-column>
@@ -158,7 +163,7 @@ export default {
       videoComponentList: [],
       currentPlayerInfo: {}, //当前播放对象
       updateLooper: 0, //数据刷新轮训标志
-      searchSrt: "",
+      channelId: "",
       channelType: "",
       online: "",
       isSubStream: false,
@@ -190,11 +195,7 @@ export default {
   },
   methods: {
     initData: function () {
-      if (typeof (this.parentChannelId) == "undefined" || this.parentChannelId == 0) {
-        this.getDeviceChannelList();
-      } else {
-        this.showSubchannels();
-      }
+      this.getDeviceChannelList();
     },
     initParam: function () {
       this.deviceId = this.$route.params.deviceId;
@@ -224,11 +225,12 @@ export default {
           pageNum: that.currentPage,
           pageSize: that.count,
           queryParam: {
-            deviceId: this.deviceId
+            deviceId: that.deviceId,
+            channelId: that.channelId,
+            parentChannelId: that.parentChannelId === "0" ? "" : that.parentChannelId,
+            channelType: that.channelType === "" ? null : that.channelType === 'true',
+            status: that.online === "" ? null : that.online === 'true'
           }
-          // query: that.searchSrt,
-          // online: that.online,
-          // channelType: that.channelType
         }
       }).then(function (res) {
         if (res.data.code === 2000000) {
@@ -352,11 +354,11 @@ export default {
         this.initData();
       })
     },
-    showSubchannels: function (channelId) {
+    showSubchannels: function () {
       if (!this.showTree) {
         this.$axios({
           method: 'get',
-          url: `/api/device/query/sub_channels/${this.deviceId}/${this.parentChannelId}/channels`,
+          url: `/webapi/gbDevice/query/sub_channels/${this.deviceId}/${this.parentChannelId}/channels`,
           params: {
             page: this.currentPage,
             count: this.count,
@@ -421,9 +423,9 @@ export default {
     switchTree: function () {
       this.showTree = true;
       this.deviceChannelList = [];
-      this.parentChannelId = 0;
+      this.parentChannelId = "0";
       this.currentPage = 1;
-
+      this.initData();
     },
     switchList: function () {
       this.showTree = false;
@@ -432,13 +434,8 @@ export default {
       this.currentPage = 1;
       this.initData();
     },
-    treeNodeClickEvent: function (device, data, isCatalog) {
-      console.log(device)
-      if (!!!data.channelId) {
-        this.parentChannelId = device.deviceId;
-      } else {
-        this.parentChannelId = data.channelId;
-      }
+    treeNodeClickEvent: function (data) {
+      this.parentChannelId = data.deviceId;
       this.initData();
     }
 

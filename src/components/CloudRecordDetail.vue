@@ -21,9 +21,11 @@
                   <i class="el-icon-video-camera"></i>
                   {{ item.substring(0, 17) }}
                 </el-tag>
-                <a :href="`${getFileBasePath()}/download.html?url=download/${recordFile.app}/${recordFile.stream}/${chooseDate}/${item}`" class="el-icon-download"
-                   style="color: #409EFF;font-weight: 600;margin-left: 10px;"
-                   target="_blank"/>
+                <a
+                  :href="`${getFileBasePath()}/download.html?url=download/${recordFile.app}/${recordFile.stream}/${chooseDate}/${item}`"
+                  class="el-icon-download"
+                  style="color: #409EFF;font-weight: 600;margin-left: 10px;"
+                  target="_blank"/>
               </li>
             </ul>
           </div>
@@ -49,7 +51,8 @@
             @change="playTimeChange">
           </el-slider>
           <div class="slider-val-box">
-            <div v-for="(item,index) of detailFiles" :key="index" :style="'width:'  +  getDataWidth(item) + '%; left:' + getDataLeft(item) + '%'"
+            <div v-for="(item,index) of detailFiles" :key="index"
+                 :style="'width:'  +  getDataWidth(item) + '%; left:' + getDataLeft(item) + '%'"
                  class="slider-val"></div>
           </div>
         </div>
