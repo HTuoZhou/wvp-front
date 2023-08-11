@@ -52,7 +52,7 @@
       </el-table-column>
       <el-table-column label="最近注册" min-width="160" prop="registerTime">
       </el-table-column>
-      <el-table-column fixed="right" label="操作" min-width="350">
+      <el-table-column fixed="right" label="操作" min-width="240">
         <template slot-scope="scope">
           <!--          <el-button icon="el-icon-refresh" size="medium" type="text" v-bind:disabled="scope.row.online==0"-->
           <!--                     @click="refDevice(scope.row)"-->
@@ -62,10 +62,10 @@
           <el-button icon="el-icon-video-camera" size="medium" type="text"
                      @click="showChannelList(scope.row)">通道
           </el-button>
-          <el-divider direction="vertical"></el-divider>
-          <el-button icon="el-icon-location" size="medium" type="text"
-                     @click="showDevicePosition(scope.row)">定位
-          </el-button>
+<!--          <el-divider direction="vertical"></el-divider>-->
+<!--          <el-button icon="el-icon-location" size="medium" type="text"-->
+<!--                     @click="showDevicePosition(scope.row)">定位-->
+<!--          </el-button>-->
           <el-divider direction="vertical"></el-divider>
           <el-button icon="el-icon-edit" size="medium" type="text" @click="edit(scope.row)">编辑</el-button>
           <el-divider direction="vertical"></el-divider>
@@ -172,8 +172,8 @@ export default {
     },
     deleteDevice: function (row) {
       let msg = "确定删除此设备？"
-      if (row.online !== 0) {
-        msg = "在线设备删除后仍可通过注册再次上线。<br/>如需彻底删除请先将设备离线。<br/><strong>确定删除此设备？</strong>"
+      if (row.status) {
+        msg = "在线设备删除后仍可通过注册再次上线。<br/>如需彻底删除请先将设备离线。<br/><strong>删除此设备将会连设备通道信息一起删除！</strong>"
       }
       this.$confirm(msg, '提示', {
         dangerouslyUseHTMLString: true,
@@ -184,7 +184,7 @@ export default {
       }).then(() => {
         this.$axios({
           method: 'delete',
-          url: `/api/device/query/devices/${row.deviceId}/delete`
+          url: `/webapi/gbDevice/delete/${row.deviceId}`
         }).then((res) => {
           this.getDeviceList();
         }).catch((error) => {

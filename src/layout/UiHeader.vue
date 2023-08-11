@@ -8,13 +8,13 @@
       <el-menu-item index="/console">控制台</el-menu-item>
       <el-menu-item index="/live">分屏监控</el-menu-item>
       <el-menu-item index="/deviceList">国标设备</el-menu-item>
-      <el-menu-item index="/map">电子地图</el-menu-item>
+<!--      <el-menu-item index="/map">电子地图</el-menu-item>-->
       <el-menu-item index="/pushVideoList">推流列表</el-menu-item>
       <el-menu-item index="/streamProxyList">拉流代理</el-menu-item>
       <el-menu-item index="/cloudRecord">云端录像</el-menu-item>
       <el-menu-item index="/mediaServerManger">节点管理</el-menu-item>
       <el-menu-item index="/parentPlatformList/15/1">国标级联</el-menu-item>
-      <el-menu-item v-if="editUser" index="/userManager">用户管理</el-menu-item>
+<!--      <el-menu-item v-if="editUser" index="/userManager">用户管理</el-menu-item>-->
 
       <!--            <el-submenu index="/setting">-->
       <!--              <template slot="title">系统设置</template>-->

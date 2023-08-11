@@ -36,9 +36,9 @@
             <el-option :value="true" label="流畅"></el-option>
           </el-select>
         </div>
-        <el-button circle icon="el-icon-refresh-right" size="mini" @click="refresh()"></el-button>
-        <el-button v-if="showTree" circle icon="iconfont icon-list" size="mini" @click="switchList()"></el-button>
-        <el-button v-if="!showTree" circle icon="iconfont icon-tree" size="mini" @click="switchTree()"></el-button>
+<!--        <el-button circle icon="el-icon-refresh-right" size="mini" @click="refresh()"></el-button>-->
+<!--        <el-button v-if="showTree" circle icon="iconfont icon-list" size="mini" @click="switchList()"></el-button>-->
+<!--        <el-button v-if="!showTree" circle icon="iconfont icon-tree" size="mini" @click="switchTree()"></el-button>-->
       </div>
     </div>
     <devicePlayer ref="devicePlayer"></devicePlayer>
@@ -434,8 +434,13 @@ export default {
       this.currentPage = 1;
       this.initData();
     },
-    treeNodeClickEvent: function (data) {
-      this.parentChannelId = data.deviceId;
+    treeNodeClickEvent: function (device, data, isCatalog) {
+      console.log(device)
+      if (!!!data.channelId) {
+        this.parentChannelId = device.deviceId;
+      }else {
+        this.parentChannelId = data.channelId;
+      }
       this.initData();
     }
 
