@@ -75,9 +75,8 @@ export default {
   props: ['device', 'onlyCatalog', 'clickEvent', 'contextMenuEvent'],
   methods: {
     handleNodeClick(data, node, element) {
-      let deviceNode = this.$refs.gdTree.getNode(data.userData.deviceId)
       if (typeof (this.clickEvent) == "function") {
-        this.clickEvent(deviceNode.data.userData, data.userData, data.type === 2)
+        this.clickEvent(data.userData, data.type === 2)
       }
     },
     handleContextMenu(event, data, node, element) {
@@ -88,10 +87,9 @@ export default {
       }
     },
     loadNode: function (node, resolve) {
-      console.log(node);
-      console.log(this.device);
+      console.log("loadNode......",node)
       if (node.level === 0) {
-        if (this.device !== null) {
+        if (this.device) {
           let node = {
             name: this.device.name || this.device.deviceId,
             isLeaf: false,
@@ -112,8 +110,8 @@ export default {
                   name: data[i].name || data[i].deviceId,
                   isLeaf: false,
                   id: data[i].deviceId,
-                  type: data[i].online,
-                  online: data[i].online === 1,
+                  type: 0,
+                  online: data[i].status,
                   userData: data[i]
                 }
                 nodeList.push(node);

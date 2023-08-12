@@ -201,8 +201,8 @@ export default {
       this.deviceId = this.$route.params.deviceId;
       this.parentChannelId = this.$route.params.parentChannelId;
       this.currentPage = 1;
-      this.count = 15;
-      if (this.parentChannelId == "" || this.parentChannelId == 0) {
+      this.count = 10;
+      if (this.parentChannelId === "" || this.parentChannelId === "0") {
         this.beforeUrl = "/deviceList"
       }
 
@@ -347,7 +347,7 @@ export default {
 
       var url = `/${this.$router.currentRoute.name}/${this.$router.currentRoute.params.deviceId}/${itemData.channelId}`
       this.$router.push(url).then(() => {
-        this.searchSrt = "";
+        this.channelId = "";
         this.channelType = "";
         this.online = "";
         this.initParam();
@@ -425,7 +425,6 @@ export default {
       this.deviceChannelList = [];
       this.parentChannelId = "0";
       this.currentPage = 1;
-      this.initData();
     },
     switchList: function () {
       this.showTree = false;
@@ -434,13 +433,8 @@ export default {
       this.currentPage = 1;
       this.initData();
     },
-    treeNodeClickEvent: function (device, data, isCatalog) {
-      console.log(device)
-      if (data.channelId === undefined) {
-        this.parentChannelId = device.deviceId;
-      }else {
-        this.parentChannelId = data.channelId;
-      }
+    treeNodeClickEvent: function (data, isCatalog) {
+      this.parentChannelId = data.channelId;
       this.initData();
     }
 

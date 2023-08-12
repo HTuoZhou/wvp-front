@@ -107,12 +107,12 @@ export default {
       console.log(idx);
       this.clear(idx.substring(idx.length - 1))
     },
-    clickEvent: function (device, data, isCatalog) {
-      if (data.channelId && !isCatalog) {
-        if (device.online === 0) {
-          this.$message.error('设备离线!不允许点播');
-        } else {
+    clickEvent: function (data, isCatalog) {
+      if (data.deviceId && !isCatalog) {
+        if (data.status) {
           this.sendDevicePush(data)
+        } else {
+          this.$message.error('设备离线!不允许点播');
         }
       }
     },
