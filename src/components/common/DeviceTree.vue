@@ -43,12 +43,12 @@
                     title="在线通道-枪机"></span>
               <span v-if="node.data.online" class="device-online" style="padding-left: 1px">{{ node.label }}</span>
               <span v-if="!node.data.online" class="device-offline" style="padding-left: 1px">{{ node.label }}</span>
-              <span>
-                <i v-if="node.data.hasGPS && node.data.online" class="device-online iconfont icon-dizhi"
-                   style="color: #9d9d9d"></i>
-                <i v-if="node.data.hasGPS && !node.data.online" class="device-offline iconfont icon-dizhi"
-                   style="color: #9d9d9d"></i>
-              </span>
+<!--              <span>-->
+<!--                <i v-if="node.data.hasGPS && node.data.online" class="device-online iconfont icon-dizhi"-->
+<!--                   style="color: #9d9d9d"></i>-->
+<!--                <i v-if="node.data.hasGPS && !node.data.online" class="device-offline iconfont icon-dizhi"-->
+<!--                   style="color: #9d9d9d"></i>-->
+<!--              </span>-->
             </span>
           </el-tree>
         </div>
@@ -88,15 +88,16 @@ export default {
       }
     },
     loadNode: function (node, resolve) {
-      console.log(this.device)
+      console.log(node);
+      console.log(this.device);
       if (node.level === 0) {
-        if (this.device) {
+        if (this.device !== null) {
           let node = {
             name: this.device.name || this.device.deviceId,
             isLeaf: false,
             id: this.device.deviceId,
-            type: this.device.online,
-            online: this.device.online === 1,
+            type: 0,
+            online: this.device.status,
             userData: this.device
           }
           resolve([node])
@@ -131,11 +132,9 @@ export default {
         let channelArray = []
 
         this.deviceService.getTree(node.data.userData.deviceId, node.data.id, this.onlyCatalog, catalogData => {
-          console.log(catalogData)
           channelArray = channelArray.concat(catalogData)
           this.channelDataHandler(channelArray, resolve)
         }, (endCatalogData) => {
-
         })
       }
 
@@ -156,28 +155,28 @@ export default {
                 type = 2;
               }
               console.log(type)
-              if (item.basicData.ptztype === 1) { // 1-球机;2-半球;3-固定枪机;4-遥控枪机
+              if (item.child.ptzType === 1) { // 1-球机;2-半球;3-固定枪机;4-遥控枪机
                 type = 4;
-              } else if (item.basicData.ptztype === 2) {
+              } else if (item.child.ptzType === 2) {
                 type = 5;
-              } else if (item.basicData.ptztype === 3 || item.basicData.ptztype === 4) {
+              } else if (item.child.ptzType === 3 || item.child.ptzType === 4) {
                 type = 6;
               }
             } else {
-              if (item.basicData.subCount > 0 || item.basicData.parental === 1) {
+              if (item.child.subCount > 0 || item.child.parental === 1) {
                 type = 2;
               }
             }
           }
           let node = {
-            name: item.name || item.basicData.channelId,
+            name: item.name || item.child.channelId,
             isLeaf: type !== 2,
             id: item.id,
             deviceId: item.deviceId,
             type: type,
-            online: item.basicData.status === 1,
-            hasGPS: item.basicData.longitude * item.basicData.latitude !== 0,
-            userData: item.basicData
+            online: item.child.status,
+            // hasGPS: item.basicData.longitude * item.basicData.latitude !== 0,
+            userData: item.child
           }
           nodeList.push(node);
         }

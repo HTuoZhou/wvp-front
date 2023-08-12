@@ -86,6 +86,7 @@ export default {
   },
   methods: {
     setData: function (data) {
+      console.log(data);
       this.deviceInfo = data.device;
       this.channelInfo = data.channel;
       this.pushInfo = data.push;

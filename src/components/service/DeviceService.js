@@ -8,11 +8,11 @@ class DeviceService {
 
   getDeviceList(currentPage, count, callback, errorCallback) {
     this.$axios({
-      method: 'get',
-      url: `/api/device/query/devices`,
-      params: {
-        page: currentPage,
-        count: count
+      method: 'post',
+      url: `/webapi/gbDevice/page`,
+      data: {
+        pageNum: currentPage,
+        pageSize: count
       }
     }).then((res) => {
       if (typeof (callback) == "function") callback(res.data)
@@ -43,8 +43,8 @@ class DeviceService {
 
   getAllDeviceListIteration(deviceList, currentPage, count, callback, endCallback, errorCallback) {
     this.getDeviceList(currentPage, count, (data) => {
-      if (data.code === 0 && data.data.list) {
-        if (typeof (callback) == "function") callback(data.data.list)
+      if (data.code === 2000000 && data.data.records) {
+        if (typeof (callback) == "function") callback(data.data.records)
         deviceList = deviceList.concat(data.data.list);
         if (deviceList.length < data.data.total) {
           currentPage++
@@ -135,41 +135,27 @@ class DeviceService {
     }).catch(errorCallback);
   }
 
-  getTree(deviceId, parentId, onlyCatalog, callback, endCallback, errorCallback) {
-    let currentPage = 1;
-    let count = 100;
+  getTree(deviceId, parentId, onlyCatalog, callback, errorCallback) {
     let catalogList = []
-    this.getTreeIteration(deviceId, parentId, onlyCatalog, catalogList, currentPage, count, callback, endCallback, errorCallback)
+    this.getTreeIteration(deviceId, parentId, onlyCatalog, catalogList, callback, errorCallback)
   }
 
-  getTreeIteration(deviceId, parentId, onlyCatalog, catalogList, currentPage, count, callback, endCallback, errorCallback) {
-    this.getTreeInfo(deviceId, parentId, onlyCatalog, currentPage, count, (data) => {
-      if (data.code === 0 && data.data.list) {
-        if (typeof (callback) == "function") callback(data.data.list)
-        catalogList = catalogList.concat(data.data.list);
-        if (catalogList.length < data.data.total) {
-          currentPage++
-          this.getTreeIteration(deviceId, parentId, onlyCatalog, catalogList, currentPage, count, callback, endCallback, errorCallback)
-        } else {
-          if (typeof (endCallback) == "function") endCallback(catalogList)
-        }
+  getTreeIteration(deviceId, parentId, onlyCatalog, catalogList, callback, errorCallback) {
+    this.getTreeInfo(deviceId, parentId, onlyCatalog, (data) => {
+      if (data.code === 2000000 && data.data) {
+        if (typeof (callback) == "function") callback(data.data)
+        catalogList = catalogList.concat(data.data);
       }
     }, errorCallback)
   }
 
-  getTreeInfo(deviceId, parentId, onlyCatalog, currentPage, count, callback, errorCallback) {
+  getTreeInfo(deviceId, parentId, onlyCatalog, callback, errorCallback) {
     if (onlyCatalog == null || typeof onlyCatalog === "undefined") {
       onlyCatalog = false;
     }
     this.$axios({
       method: 'get',
-      url: `/api/device/query/tree/${deviceId}`,
-      params: {
-        page: currentPage,
-        count: count,
-        parentId: parentId,
-        onlyCatalog: onlyCatalog
-      }
+      url: `/webapi/gbDevice/channel/tree/${deviceId}/${parentId}`,
     }).then((res) => {
       if (typeof (callback) == "function") callback(res.data)
     }).catch(errorCallback);
