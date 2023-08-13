@@ -108,7 +108,7 @@ export default {
       this.clear(idx.substring(idx.length - 1))
     },
     clickEvent: function (data, isCatalog) {
-      if (data.deviceId && !isCatalog) {
+      if (data.channelId && !isCatalog) {
         if (data.status) {
           this.sendDevicePush(data)
         } else {

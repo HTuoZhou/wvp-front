@@ -102,7 +102,7 @@
           <el-table-column fixed="right" label="操作" min-width="280">
             <template slot-scope="scope">
               <el-button icon="el-icon-video-play" size="medium" type="text"
-                         v-bind:disabled="device == null || device.online === 0" @click="sendDevicePush(scope.row)">播放
+                         v-bind:disabled="device === null || !device.status" @click="sendDevicePush(scope.row)">播放
               </el-button>
               <el-button v-if="!!scope.row.streamId" icon="el-icon-switch-button"
                          size="medium" style="color: #f56c6c" type="text"
@@ -116,7 +116,7 @@
               </el-button>
               <el-divider v-if="scope.row.subCount > 0 || scope.row.parental === 1" direction="vertical"></el-divider>
               <el-button icon="el-icon-video-camera" size="medium"
-                         type="text" v-bind:disabled="device == null || device.online === 0"
+                         type="text" v-bind:disabled="device === null || !device.status"
                          @click="queryRecords(scope.row)">设备录像
               </el-button>
             </template>
