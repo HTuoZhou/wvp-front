@@ -43,12 +43,12 @@
                     title="在线通道-枪机"></span>
               <span v-if="node.data.online" class="device-online" style="padding-left: 1px">{{ node.label }}</span>
               <span v-if="!node.data.online" class="device-offline" style="padding-left: 1px">{{ node.label }}</span>
-<!--              <span>-->
-<!--                <i v-if="node.data.hasGPS && node.data.online" class="device-online iconfont icon-dizhi"-->
-<!--                   style="color: #9d9d9d"></i>-->
-<!--                <i v-if="node.data.hasGPS && !node.data.online" class="device-offline iconfont icon-dizhi"-->
-<!--                   style="color: #9d9d9d"></i>-->
-<!--              </span>-->
+              <!--              <span>-->
+              <!--                <i v-if="node.data.hasGPS && node.data.online" class="device-online iconfont icon-dizhi"-->
+              <!--                   style="color: #9d9d9d"></i>-->
+              <!--                <i v-if="node.data.hasGPS && !node.data.online" class="device-offline iconfont icon-dizhi"-->
+              <!--                   style="color: #9d9d9d"></i>-->
+              <!--              </span>-->
             </span>
           </el-tree>
         </div>
@@ -87,7 +87,7 @@ export default {
       }
     },
     loadNode: function (node, resolve) {
-      console.log("loadNode......",node)
+      console.log("loadNode......", node)
       if (node.level === 0) {
         if (this.device) {
           let node = {

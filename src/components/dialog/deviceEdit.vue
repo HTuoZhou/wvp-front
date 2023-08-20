@@ -22,12 +22,12 @@
           <el-form-item label="密码" prop="password">
             <el-input v-model="form.password" clearable type="password"></el-input>
           </el-form-item>
-<!--          <el-form-item label="收流IP" prop="sdpIp">-->
-<!--            <el-input v-model="form.sdpIp" clearable type="sdpIp"></el-input>-->
-<!--          </el-form-item>-->
+          <!--          <el-form-item label="收流IP" prop="sdpIp">-->
+          <!--            <el-input v-model="form.sdpIp" clearable type="sdpIp"></el-input>-->
+          <!--          </el-form-item>-->
           <el-form-item label="流媒体ID" prop="mediaServerId">
             <el-select v-model="form.mediaServerId" style="float: left; width: 100%">
-<!--              <el-option key="auto" label="自动负载最小" value="auto"></el-option>-->
+              <!--              <el-option key="auto" label="自动负载最小" value="auto"></el-option>-->
               <el-option
                 v-for="item in mediaServerList"
                 :key="item.mediaServerId"
@@ -43,22 +43,22 @@
               <el-option key="UTF-8" label="UTF-8" value="utf-8"></el-option>
             </el-select>
           </el-form-item>
-<!--          <el-form-item label="地理坐标系" prop="geoCoordSys">-->
-<!--            <el-select v-model="form.geoCoordSys" style="float: left; width: 100%">-->
-<!--              <el-option key="WGS84" label="WGS84" value="WGS84"></el-option>-->
-<!--              <el-option key="GCJ02" label="GCJ02" value="GCJ02"></el-option>-->
-<!--            </el-select>-->
-<!--          </el-form-item>-->
-<!--          <el-form-item v-if="this.isEdit" label="目录订阅" prop="subscribeCycleForCatalog" title="0为取消订阅">-->
-<!--            <el-input v-model="form.subscribeCycleForCatalog" clearable></el-input>-->
-<!--          </el-form-item>-->
-<!--          <el-form-item v-if="this.isEdit" label="移动位置订阅" prop="subscribeCycleForCatalog" title="0为取消订阅">-->
-<!--            <el-input v-model="form.subscribeCycleForMobilePosition" clearable></el-input>-->
-<!--          </el-form-item>-->
-<!--          <el-form-item v-if="form.subscribeCycleForMobilePosition > 0" label="移动位置报送间隔"-->
-<!--                        prop="subscribeCycleForCatalog">-->
-<!--            <el-input v-model="form.mobilePositionSubmissionInterval" clearable></el-input>-->
-<!--          </el-form-item>-->
+          <!--          <el-form-item label="地理坐标系" prop="geoCoordSys">-->
+          <!--            <el-select v-model="form.geoCoordSys" style="float: left; width: 100%">-->
+          <!--              <el-option key="WGS84" label="WGS84" value="WGS84"></el-option>-->
+          <!--              <el-option key="GCJ02" label="GCJ02" value="GCJ02"></el-option>-->
+          <!--            </el-select>-->
+          <!--          </el-form-item>-->
+          <!--          <el-form-item v-if="this.isEdit" label="目录订阅" prop="subscribeCycleForCatalog" title="0为取消订阅">-->
+          <!--            <el-input v-model="form.subscribeCycleForCatalog" clearable></el-input>-->
+          <!--          </el-form-item>-->
+          <!--          <el-form-item v-if="this.isEdit" label="移动位置订阅" prop="subscribeCycleForCatalog" title="0为取消订阅">-->
+          <!--            <el-input v-model="form.subscribeCycleForMobilePosition" clearable></el-input>-->
+          <!--          </el-form-item>-->
+          <!--          <el-form-item v-if="form.subscribeCycleForMobilePosition > 0" label="移动位置报送间隔"-->
+          <!--                        prop="subscribeCycleForCatalog">-->
+          <!--            <el-input v-model="form.mobilePositionSubmissionInterval" clearable></el-input>-->
+          <!--          </el-form-item>-->
           <el-form-item label="其他选项">
             <el-checkbox v-model="form.primaryStream" label="主码流" style="float: left"></el-checkbox>
             <el-checkbox v-model="form.ssrcCheck" label="SSRC校验" style="float: left"></el-checkbox>

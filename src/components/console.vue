@@ -2,10 +2,10 @@
   <div id="app" style="width: 100%">
     <div class="page-header">
       <div class="page-title">控制台</div>
-<!--      <div class="page-header-btn">-->
-<!--        <el-button icon="el-icon-info" size="mini" style="margin-right: 1rem;" type="primary" @click="showInfo">平台信息-->
-<!--        </el-button>-->
-<!--      </div>-->
+      <!--      <div class="page-header-btn">-->
+      <!--        <el-button icon="el-icon-info" size="mini" style="margin-right: 1rem;" type="primary" @click="showInfo">平台信息-->
+      <!--        </el-button>-->
+      <!--      </div>-->
     </div>
     <el-row style="width: 100%">
       <el-col :lg="{ span: 8 }" :md="{ span: 12 }" :sm="{ span: 12 }" :xl="{ span: 8 }" :xs="{ span: 24 }">

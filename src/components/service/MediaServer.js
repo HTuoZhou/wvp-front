@@ -10,7 +10,7 @@ class MediaServer {
     this.$axios({
       method: 'get',
       url: `/webapi/mediaServer/list`,
-      params:{
+      params: {
         status: true,
       }
     }).then((res) => {

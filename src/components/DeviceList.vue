@@ -62,10 +62,10 @@
           <el-button icon="el-icon-video-camera" size="medium" type="text"
                      @click="showChannelList(scope.row)">通道
           </el-button>
-<!--          <el-divider direction="vertical"></el-divider>-->
-<!--          <el-button icon="el-icon-location" size="medium" type="text"-->
-<!--                     @click="showDevicePosition(scope.row)">定位-->
-<!--          </el-button>-->
+          <!--          <el-divider direction="vertical"></el-divider>-->
+          <!--          <el-button icon="el-icon-location" size="medium" type="text"-->
+          <!--                     @click="showDevicePosition(scope.row)">定位-->
+          <!--          </el-button>-->
           <el-divider direction="vertical"></el-divider>
           <el-button icon="el-icon-edit" size="medium" type="text" @click="edit(scope.row)">编辑</el-button>
           <el-divider direction="vertical"></el-divider>

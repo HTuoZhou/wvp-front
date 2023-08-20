@@ -252,14 +252,14 @@ export default {
       let deviceId = this.deviceId;
       this.isLoging = true;
       let channelId = itemData.channelId;
-      console.log("通知设备推流1：" + deviceId + " : " + channelId);
+      console.log("通知设备推流：" + deviceId + " : " + channelId);
       let that = this;
       this.$axios({
         method: 'get',
-        url: '/api/play/start/' + deviceId + '/' + channelId,
-        params: {
-          isSubStream: this.isSubStream
-        }
+        url: '/webapi/gbDevice/channel/play/start/' + deviceId + '/' + channelId,
+        // params: {
+        //   isSubStream: this.isSubStream
+        // }
       }).then(function (res) {
         console.log(res)
         that.isLoging = false;
