@@ -256,17 +256,15 @@ export default {
       let that = this;
       this.$axios({
         method: 'get',
-        url: '/webapi/gbDevice/channel/play/start/' + deviceId + '/' + channelId,
+        url: '/webapi/gbDevice/channel/play/' + deviceId + '/' + channelId,
         // params: {
         //   isSubStream: this.isSubStream
         // }
       }).then(function (res) {
         console.log(res)
         that.isLoging = false;
-        if (res.data.code === 0) {
-
+        if (res.data.code === 2000000) {
           setTimeout(() => {
-
             let snapId = deviceId + "_" + channelId;
             that.loadSnap[deviceId + channelId] = 0;
             that.getSnapErrorEvent(snapId)

@@ -222,8 +222,8 @@ declare class Jessibuca {
    jessibuca.setTimeout(10)
 
    jessibuca.on('timeout',function(){
-        //
-    });
+   //
+   });
    */
   setTimeout(): void;
 
@@ -249,17 +249,17 @@ declare class Jessibuca {
    * 可以在pause 之后，再调用 `play()`方法就继续播放之前的流。
    @example
    jessibuca.pause().then(()=>{
-        console.log('pause success')
+   console.log('pause success')
 
-        jessibuca.play().then(()=>{
+   jessibuca.play().then(()=>{
 
-        }).catch((e)=>{
+   }).catch((e)=>{
 
-        })
+   })
 
-    }).catch((e)=>{
-        console.log('pause error',e);
-    })
+   }).catch((e)=>{
+   console.log('pause error',e);
+   })
    */
   pause(): Promise<void>;
 
@@ -289,10 +289,10 @@ declare class Jessibuca {
    @example
 
    jessibuca.play('url').then(()=>{
-        console.log('play success')
-    }).catch((e)=>{
-        console.log('play error',e)
-    })
+   console.log('play success')
+   }).catch((e)=>{
+   console.log('play error',e)
+   })
    //
    jessibuca.play()
    */
@@ -477,14 +477,14 @@ declare class Jessibuca {
    * 错误信息
    * @example
    * jessibuca.on("error",function(error){
-        if(error === Jessibuca.ERROR.fetchError){
-            //
-        }
-        else if(error === Jessibuca.ERROR.webcodecsH265NotSupport){
-            //
-        }
-        console.log('error:',error)
-    })
+   if(error === Jessibuca.ERROR.fetchError){
+   //
+   }
+   else if(error === Jessibuca.ERROR.webcodecsH265NotSupport){
+   //
+   }
+   console.log('error:',error)
+   })
    */
   on(event: 'error', callback: (err: Jessibuca.ERROR) => void): void;
 

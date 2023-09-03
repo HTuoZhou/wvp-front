@@ -2510,7 +2510,7 @@ var ZLMRTCClient = (function (exports) {
 
       this.usingBundle = config.bundlePolicy === 'max-bundle';
       if (config.rtcpMuxPolicy === 'negotiate') {
-        throw(makeError('NotSupportedError',
+        throw (makeError('NotSupportedError',
           'rtcpMuxPolicy \'negotiate\' is not supported'));
       } else if (!config.rtcpMuxPolicy) {
         config.rtcpMuxPolicy = 'require';

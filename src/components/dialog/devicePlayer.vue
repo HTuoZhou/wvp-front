@@ -21,12 +21,12 @@
           </el-tab-pane>
           <el-tab-pane label="h265web">h265web敬请期待</el-tab-pane>
         </el-tabs>
-        <jessibucaPlayer v-if="Object.keys(this.player).length == 1 && this.player.jessibuca" ref="jessibuca"
-                         :error="videoError" :hasAudio="hasAudio" :message="videoError" :videoUrl="videoUrl"
-                         :visible.sync="showVideoDialog" autoplay fluent height="100px" live></jessibucaPlayer>
-        <rtc-player v-if="Object.keys(this.player).length == 1 && this.player.webRTC" ref="jessibuca"
-                    :error="videoError" :hasAudio="hasAudio" :message="videoError" :videoUrl="videoUrl"
-                    :visible.sync="showVideoDialog" autoplay fluent height="100px" live></rtc-player>
+        <!--        <jessibucaPlayer v-if="Object.keys(this.player).length == 1 && this.player.jessibuca" ref="jessibuca"-->
+        <!--                         :error="videoError" :hasAudio="hasAudio" :message="videoError" :videoUrl="videoUrl"-->
+        <!--                         :visible.sync="showVideoDialog" autoplay fluent height="100px" live></jessibucaPlayer>-->
+        <!--        <rtc-player v-if="Object.keys(this.player).length == 1 && this.player.webRTC" ref="jessibuca"-->
+        <!--                    :error="videoError" :hasAudio="hasAudio" :message="videoError" :videoUrl="videoUrl"-->
+        <!--                    :visible.sync="showVideoDialog" autoplay fluent height="100px" live></rtc-player>-->
 
       </div>
       <div id="shared" style="text-align: right; margin-top: 1rem;">
@@ -355,8 +355,8 @@ export default {
       activePlayer: "jessibuca",
       // 如何你只是用一种播放器，直接注释掉不用的部分即可
       player: {
-        jessibuca: ["ws_flv", "wss_flv"],
-        livePlayer: ["ws_flv", "wss_flv"],
+        jessibuca: ["wsFlv", "wssFlv"],
+        livePlayer: ["wsFlv", "wssFlv"],
         webRTC: ["rtc", "rtcs"],
       },
       showVideoDialog: false,
@@ -461,7 +461,7 @@ export default {
       this.isLoging = false;
       // this.videoUrl = streamInfo.rtc;
       this.videoUrl = this.getUrlByStreamInfo();
-      this.streamId = streamInfo.stream;
+      this.streamId = streamInfo.streamId;
       this.app = streamInfo.app;
       this.mediaServerId = streamInfo.mediaServerId;
       this.playFromStreamInfo(false, streamInfo)
