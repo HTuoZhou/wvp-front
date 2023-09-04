@@ -184,7 +184,7 @@
                                                      style="font-size: 1.875rem;"></i></div>
                 <div style="position: absolute; left: 7.25rem; top: 3.25rem; font-size: 1.875rem;"
                      @mousedown="ptzCamera('zoomout')" @mouseup="ptzCamera('stop')"><i
-                  class="el-icon-zoom-out control-zoom-btn"></i></div>
+                    class="el-icon-zoom-out control-zoom-btn"></i></div>
                 <div class="contro-speed" style="position: absolute; left: 4px; top: 7rem; width: 9rem;">
                   <el-slider v-model="controSpeed" :max="255"></el-slider>
                 </div>
@@ -567,20 +567,20 @@ export default {
       this.tracks = []
       let _this = this;
       this.$copyText(data).then(
-        function (e) {
-          _this.$message({
-            showClose: true,
-            message: '复制成功',
-            type: 'success'
-          });
-        },
-        function (e) {
-          _this.$message({
-            showClose: true,
-            message: '复制失败，请手动复制',
-            type: 'error'
-          });
-        }
+          function (e) {
+            _this.$message({
+              showClose: true,
+              message: '复制成功',
+              type: 'success'
+            });
+          },
+          function (e) {
+            _this.$message({
+              showClose: true,
+              message: '复制失败，请手动复制',
+              type: 'error'
+            });
+          }
       );
     },
     ptzCamera: function (command) {

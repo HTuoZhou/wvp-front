@@ -1,13 +1,13 @@
 <template>
   <div id="mediaServerEdit" v-loading="isLoging">
     <el-dialog
-      :close-on-click-modal="false"
-      :destroy-on-close="true"
-      :visible.sync="showDialog"
-      :width="dialogWidth"
-      title="媒体节点"
-      top="2rem"
-      @close="close()"
+        :close-on-click-modal="false"
+        :destroy-on-close="true"
+        :visible.sync="showDialog"
+        :width="dialogWidth"
+        title="媒体节点"
+        top="2rem"
+        @close="close()"
     >
       <div id="formStep" style="margin-top: 1rem; margin-right: 20px;">
         <el-form v-if="currentStep == 1" ref="mediaServerForm" :model="mediaServerForm" :rules="rules"

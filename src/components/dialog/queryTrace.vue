@@ -1,13 +1,13 @@
 <template>
   <div id="queryTrace">
     <el-dialog
-      :close-on-click-modal="false"
-      :destroy-on-close="true"
-      :visible.sync="showDialog"
-      title="查询轨迹"
-      top="2rem"
-      width="40%"
-      @close="close()"
+        :close-on-click-modal="false"
+        :destroy-on-close="true"
+        :visible.sync="showDialog"
+        title="查询轨迹"
+        top="2rem"
+        width="40%"
+        @close="close()"
     >
       <div v-loading="isLoging">
         <el-date-picker v-model="searchFrom" :picker-options="pickerOptions" align="right" default-time="00:00:00"

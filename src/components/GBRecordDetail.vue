@@ -44,16 +44,16 @@
           <div>
             <el-button-group>
               <el-time-picker
-                v-model="timeRange"
-                align="left"
-                end-placeholder="结束时间"
-                is-range
-                placeholder="选择时间范围"
-                range-separator="至"
-                size="mini"
-                start-placeholder="开始时间"
-                value-format="yyyy-MM-dd HH:mm:ss"
-                @change="timePickerChange">
+                  v-model="timeRange"
+                  align="left"
+                  end-placeholder="结束时间"
+                  is-range
+                  placeholder="选择时间范围"
+                  range-separator="至"
+                  size="mini"
+                  start-placeholder="开始时间"
+                  value-format="yyyy-MM-dd HH:mm:ss"
+                  @change="timePickerChange">
               </el-time-picker>
             </el-button-group>
 
@@ -81,16 +81,16 @@
             </el-button-group>
           </div>
           <el-slider
-            id="playtimeSlider"
-            v-model="playTime"
-            :disabled="detailFiles.length === 0"
-            :format-tooltip="playTimeFormat"
-            :marks="playTimeSliderMarks"
-            :max="sliderMax"
-            :min="sliderMIn"
-            :range="true"
-            class="playtime-slider"
-            @change="playTimeChange">
+              id="playtimeSlider"
+              v-model="playTime"
+              :disabled="detailFiles.length === 0"
+              :format-tooltip="playTimeFormat"
+              :marks="playTimeSliderMarks"
+              :max="sliderMax"
+              :min="sliderMIn"
+              :range="true"
+              class="playtime-slider"
+              @change="playTimeChange">
           </el-slider>
           <div class="slider-val-box">
             <div v-for="item of detailFiles"
@@ -257,7 +257,7 @@ export default {
         this.$axios({
           method: 'get',
           url: '/api/playback/start/' + this.deviceId + '/' + this.channelId + '?startTime=' + this.startTime + '&endTime=' +
-            this.endTime
+              this.endTime
         }).then((res) => {
           if (res.data.code === 0) {
             this.streamInfo = res.data.data;
@@ -321,7 +321,7 @@ export default {
         this.$axios({
           method: 'get',
           url: '/api/gb_record/download/start/' + this.deviceId + '/' + this.channelId + '?startTime=' + row.startTime + '&endTime=' +
-            row.endTime + '&downloadSpeed=4'
+              row.endTime + '&downloadSpeed=4'
         }).then((res) => {
           if (res.data.code === 0) {
             let streamInfo = res.data.data;

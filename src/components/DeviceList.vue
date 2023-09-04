@@ -76,14 +76,14 @@
       </el-table-column>
     </el-table>
     <el-pagination
-      :current-page="pageNum"
-      :page-size="pageSize"
-      :page-sizes="[10, 20, 40, 80]"
-      :total="total"
-      layout="total, sizes, prev, pager, next"
-      style="float: right"
-      @size-change="handleSizeChange"
-      @current-change="currentChange">
+        :current-page="pageNum"
+        :page-size="pageSize"
+        :page-sizes="[10, 20, 40, 80]"
+        :total="total"
+        layout="total, sizes, prev, pager, next"
+        style="float: right"
+        @size-change="handleSizeChange"
+        @current-change="currentChange">
     </el-pagination>
     <deviceEdit ref="deviceEdit"></deviceEdit>
     <syncChannelProgress ref="syncChannelProgress"></syncChannelProgress>

@@ -5,11 +5,11 @@
       <el-main style="background-color: #ffffff;">
         <div class="device-tree-main-box">
           <tree
-            :nodes="nodes"
-            @onCheck="onCheck"
-            @onClick="onClick"
-            @onCreated="handleCreated"
-            @onExpand="onExpand"
+              :nodes="nodes"
+              @onCheck="onCheck"
+              @onClick="onClick"
+              @onCreated="handleCreated"
+              @onExpand="onExpand"
           />
         </div>
       </el-main>

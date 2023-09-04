@@ -100,16 +100,16 @@ export default {
           parentId: parentId
         }
       })
-        .then((res) => {
-          if (res.data.code === 0) {
-            if (typeof (callback) === 'function') {
-              callback(res.data.data)
+          .then((res) => {
+            if (res.data.code === 0) {
+              if (typeof (callback) === 'function') {
+                callback(res.data.data)
+              }
             }
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
 
     },
     loadNode: function (node, resolve) {
@@ -118,24 +118,24 @@ export default {
           method: "get",
           url: `/api/platform/info/` + this.platformId,
         })
-          .then((res) => {
-            if (res.data.code === 0) {
-              this.platformName = res.data.data.name;
-              this.defaultCatalogId = res.data.data.catalogId;
-              this.defaultCatalogIdSign = res.data.data.catalogId;
-              this.chooseId = res.data.data.catalogId;
-              resolve([
-                {
-                  name: this.platformName,
-                  id: res.data.data.deviceGBId,
-                  type: 0
-                }
-              ]);
-            }
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+            .then((res) => {
+              if (res.data.code === 0) {
+                this.platformName = res.data.data.name;
+                this.defaultCatalogId = res.data.data.catalogId;
+                this.defaultCatalogIdSign = res.data.data.catalogId;
+                this.chooseId = res.data.data.catalogId;
+                resolve([
+                  {
+                    name: this.platformName,
+                    id: res.data.data.deviceGBId,
+                    type: 0
+                  }
+                ]);
+              }
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
       }
       if (node.level >= 1) {
         this.getCatalog(node.data.id, resolve)

@@ -1,23 +1,23 @@
 <template>
   <div id="onvif搜索" v-loading="isLoging">
     <el-dialog
-      :close-on-click-modal="false"
-      :destroy-on-close="true"
-      :visible.sync="showDialog"
-      title="onvif搜索"
-      top="2rem"
-      width="40%"
-      @close="close()"
+        :close-on-click-modal="false"
+        :destroy-on-close="true"
+        :visible.sync="showDialog"
+        title="onvif搜索"
+        top="2rem"
+        width="40%"
+        @close="close()"
     >
       <div id="shared" style="margin-top: 1rem;margin-right: 100px;">
         <el-form ref="form" :model="form" :rules="rules" label-width="140px">
           <el-form-item label="地址" prop="hostName">
             <el-select v-model="form.hostName" style="float: left; width: 100%">
               <el-option
-                v-for="item in hostNames"
-                :key="item"
-                :label="item.replace('http://', '')"
-                :value="item">
+                  v-for="item in hostNames"
+                  :key="item"
+                  :label="item.replace('http://', '')"
+                  :value="item">
               </el-option>
             </el-select>
 

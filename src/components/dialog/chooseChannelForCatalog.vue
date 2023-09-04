@@ -1,7 +1,7 @@
 <template>
   <div id="chooseChannelForCatalog">
     <div
-      style="background-color: #FFFFFF; margin-bottom: 1rem; position: relative; padding: 0.5rem; text-align: left;font-size: 14px;">
+        style="background-color: #FFFFFF; margin-bottom: 1rem; position: relative; padding: 0.5rem; text-align: left;font-size: 14px;">
       <el-tree id="catalogTree"
                ref="tree"
                :expand-on-click-node="false"
@@ -99,9 +99,9 @@ export default {
           }
         }
       })
-        .catch(function (error) {
-          console.log(error);
-        });
+          .catch(function (error) {
+            console.log(error);
+          });
 
     },
     addCatalog: function (parentId, node) {
@@ -155,9 +155,9 @@ export default {
           }
         }
       })
-        .catch(function (error) {
-          console.log(error);
-        });
+          .catch(function (error) {
+            console.log(error);
+          });
     },
     setDefaultCatalog: function (id) {
       this.$axios({
@@ -172,9 +172,9 @@ export default {
           this.defaultCatalogIdSign = id;
         }
       })
-        .catch(function (error) {
-          console.log(error);
-        });
+          .catch(function (error) {
+            console.log(error);
+          });
     },
     loadNode: function (node, resolve) {
       console.log("this.platformDeviceId： " + this.platformDeviceId)

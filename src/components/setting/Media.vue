@@ -4,7 +4,7 @@
       <div class="page-title">媒体服务</div>
     </div>
     <div
-      style="width: 60%; margin:0 auto; background-color: #FFFFFF; position: relative; padding: 5rem 6.5rem; text-align: left;font-size: 14px; max-width: 400px">
+        style="width: 60%; margin:0 auto; background-color: #FFFFFF; position: relative; padding: 5rem 6.5rem; text-align: left;font-size: 14px; max-width: 400px">
       <el-form ref="form" :model="form" :rules="rules" label-width="140px">
         <el-form-item label="IP" prop="IP">
           <el-input v-model="form.IP" clearable></el-input>

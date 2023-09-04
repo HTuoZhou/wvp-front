@@ -1,14 +1,14 @@
 <template>
   <div id="importChannelShowErrorData" v-loading="isLoging">
     <el-dialog
-      :append-to-body="true"
-      :close-on-click-modal="false"
-      :destroy-on-close="true"
-      :visible.sync="showDialog"
-      title="导入通道数据成功，但数据存在重复"
-      top="2rem"
-      width="30rem"
-      @close="close()"
+        :append-to-body="true"
+        :close-on-click-modal="false"
+        :destroy-on-close="true"
+        :visible.sync="showDialog"
+        title="导入通道数据成功，但数据存在重复"
+        top="2rem"
+        width="30rem"
+        @close="close()"
     >
       <div>
         重复国标ID:

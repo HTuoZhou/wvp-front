@@ -22,10 +22,10 @@
                   {{ item.substring(0, 17) }}
                 </el-tag>
                 <a
-                  :href="`${getFileBasePath()}/download.html?url=download/${recordFile.app}/${recordFile.stream}/${chooseDate}/${item}`"
-                  class="el-icon-download"
-                  style="color: #409EFF;font-weight: 600;margin-left: 10px;"
-                  target="_blank"/>
+                    :href="`${getFileBasePath()}/download.html?url=download/${recordFile.app}/${recordFile.stream}/${chooseDate}/${item}`"
+                    class="el-icon-download"
+                    style="color: #409EFF;font-weight: 600;margin-left: 10px;"
+                    target="_blank"/>
               </li>
             </ul>
           </div>
@@ -40,15 +40,15 @@
         </div>
         <div class="player-option-box">
           <el-slider
-            id="playtimeSlider"
-            v-model="playTime"
-            :disabled="detailFiles.length === 0"
-            :format-tooltip="playTimeFormat"
-            :marks="playTimeSliderMarks"
-            :max="sliderMax"
-            :min="sliderMIn"
-            class="playtime-slider"
-            @change="playTimeChange">
+              id="playtimeSlider"
+              v-model="playTime"
+              :disabled="detailFiles.length === 0"
+              :format-tooltip="playTimeFormat"
+              :marks="playTimeSliderMarks"
+              :max="sliderMax"
+              :min="sliderMIn"
+              class="playtime-slider"
+              @change="playTimeChange">
           </el-slider>
           <div class="slider-val-box">
             <div v-for="(item,index) of detailFiles" :key="index"
@@ -60,10 +60,10 @@
       </el-main>
     </el-container>
     <el-drawer
-      :before-close="drawerClose"
-      :direction="direction"
-      :visible.sync="drawer"
-      title="录像下载">
+        :before-close="drawerClose"
+        :direction="direction"
+        :visible.sync="drawer"
+        title="录像下载">
       <div class="drawer-box">
         <el-button icon="el-icon-plus" size="mini" type="primary" @click="addTask"></el-button>
         <el-tabs v-model="tabVal" style="height: 100%" type="border-card" @tab-click="tabClick">
@@ -98,13 +98,13 @@
     </el-drawer>
     <el-dialog :visible.sync="showTaskBox" title="选择时间段">
       <el-date-picker
-        v-model="taskTimeRange"
-        end-placeholder="结束时间"
-        format="HH:mm:ss"
-        placeholder="选择时间范围"
-        range-separator="至"
-        start-placeholder="开始时间"
-        type="datetimerange">
+          v-model="taskTimeRange"
+          end-placeholder="结束时间"
+          format="HH:mm:ss"
+          placeholder="选择时间范围"
+          range-separator="至"
+          start-placeholder="开始时间"
+          type="datetimerange">
       </el-date-picker>
       <el-button size="mini" type="primary" @click="addTaskToServer">确认</el-button>
     </el-dialog>
@@ -224,7 +224,7 @@ export default {
       this.sliderMax = 86400;
       let chooseFullDate = new Date(this.chooseDate + " " + this.timeFormat);
       if (chooseFullDate.getFullYear() !== this.queryDate.getFullYear()
-        || chooseFullDate.getMonth() !== this.queryDate.getMonth()) {
+          || chooseFullDate.getMonth() !== this.queryDate.getMonth()) {
         // this.getDateInYear()
       }
       this.queryRecordDetails(() => {

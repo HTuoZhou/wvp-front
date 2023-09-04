@@ -91,53 +91,53 @@ export default {
       console.log("hasAudio  " + this.hasAudio)
 
       jessibucaPlayer[this._uid] = new window.Jessibuca(Object.assign(
-        {
-          container: this.$refs.container,
-          autoWasm: true,
-          background: "",
-          controlAutoHide: false,
-          debug: false,
-          decoder: "static/js/jessibuca/decoder.js",
-          forceNoOffscreen: true,
-          hasAudio: typeof (this.hasAudio) == "undefined" ? true : this.hasAudio,
-          hasVideo: true,
-          heartTimeout: 5,
-          heartTimeoutReplay: true,
-          heartTimeoutReplayTimes: 3,
-          hiddenAutoPause: false,
-          hotKey: false,
-          isFlv: false,
-          isFullResize: false,
-          isNotMute: this.isNotMute,
-          isResize: false,
-          keepScreenOn: false,
-          loadingText: "请稍等, 视频加载中......",
-          loadingTimeout: 10,
-          loadingTimeoutReplay: true,
-          loadingTimeoutReplayTimes: 3,
-          openWebglAlignment: false,
-          operateBtns: {
-            fullscreen: false,
-            screenshot: false,
-            play: false,
-            audio: false,
-            record: false
+          {
+            container: this.$refs.container,
+            autoWasm: true,
+            background: "",
+            controlAutoHide: false,
+            debug: false,
+            decoder: "static/js/jessibuca/decoder.js",
+            forceNoOffscreen: true,
+            hasAudio: typeof (this.hasAudio) == "undefined" ? true : this.hasAudio,
+            hasVideo: true,
+            heartTimeout: 5,
+            heartTimeoutReplay: true,
+            heartTimeoutReplayTimes: 3,
+            hiddenAutoPause: false,
+            hotKey: false,
+            isFlv: false,
+            isFullResize: false,
+            isNotMute: this.isNotMute,
+            isResize: false,
+            keepScreenOn: false,
+            loadingText: "请稍等, 视频加载中......",
+            loadingTimeout: 10,
+            loadingTimeoutReplay: true,
+            loadingTimeoutReplayTimes: 3,
+            openWebglAlignment: false,
+            operateBtns: {
+              fullscreen: false,
+              screenshot: false,
+              play: false,
+              audio: false,
+              record: false
+            },
+            recordType: "webm",
+            rotate: 0,
+            showBandwidth: false,
+            supportDblclickFullscreen: false,
+            timeout: 10,
+            useMSE: location.hostname !== "localhost" && location.protocol !== "https:",
+            useOffscreen: false,
+            useWCS: location.hostname === "localhost" || location.protocol === "https",
+            useWebFullScreen: false,
+            videoBuffer: 0,
+            wasmDecodeAudioSyncVideo: true,
+            wasmDecodeErrorReplay: true,
+            wcsUseVideoRender: true
           },
-          recordType: "webm",
-          rotate: 0,
-          showBandwidth: false,
-          supportDblclickFullscreen: false,
-          timeout: 10,
-          useMSE: location.hostname !== "localhost" && location.protocol !== "https:",
-          useOffscreen: false,
-          useWCS: location.hostname === "localhost" || location.protocol === "https",
-          useWebFullScreen: false,
-          videoBuffer: 0,
-          wasmDecodeAudioSyncVideo: true,
-          wasmDecodeErrorReplay: true,
-          wcsUseVideoRender: true
-        },
-        options
+          options
       ));
       let jessibuca = jessibucaPlayer[this._uid];
       let _this = this;
@@ -298,9 +298,9 @@ export default {
     },
     isFullscreen: function () {
       return document.fullscreenElement ||
-        document.msFullscreenElement ||
-        document.mozFullScreenElement ||
-        document.webkitFullscreenElement || false;
+          document.msFullscreenElement ||
+          document.mozFullScreenElement ||
+          document.webkitFullscreenElement || false;
     }
   },
   destroyed() {

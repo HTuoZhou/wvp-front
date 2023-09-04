@@ -1,13 +1,13 @@
 <template>
   <div id="addlatform" v-loading="isLoging">
     <el-dialog
-      :close-on-click-modal="false"
-      :destroy-on-close="true"
-      :visible.sync="showDialog"
-      title="添加平台"
-      top="2rem"
-      width="70%"
-      @close="close()"
+        :close-on-click-modal="false"
+        :destroy-on-close="true"
+        :visible.sync="showDialog"
+        title="添加平台"
+        top="2rem"
+        width="70%"
+        @close="close()"
     >
       <div id="shared" style="text-align: right; margin-top: 1rem">
         <el-row :gutter="24">
@@ -58,9 +58,9 @@
               </el-form-item>
               <el-form-item label="信令传输" prop="transport">
                 <el-select
-                  v-model="platform.transport"
-                  placeholder="请选择信令传输方式"
-                  style="width: 100%"
+                    v-model="platform.transport"
+                    placeholder="请选择信令传输方式"
+                    style="width: 100%"
                 >
                   <el-option label="UDP" value="UDP"></el-option>
                   <el-option label="TCP" value="TCP"></el-option>
@@ -68,9 +68,9 @@
               </el-form-item>
               <el-form-item label="目录分组" prop="catalogGroup">
                 <el-select
-                  v-model="platform.catalogGroup"
-                  placeholder="请选择目录分组"
-                  style="width: 100%"
+                    v-model="platform.catalogGroup"
+                    placeholder="请选择目录分组"
+                    style="width: 100%"
                 >
                   <el-option label="1" value="1"></el-option>
                   <el-option label="2" value="2"></el-option>
@@ -80,9 +80,9 @@
               </el-form-item>
               <el-form-item label="字符集" prop="characterSet">
                 <el-select
-                  v-model="platform.characterSet"
-                  placeholder="请选择字符集"
-                  style="width: 100%"
+                    v-model="platform.characterSet"
+                    placeholder="请选择字符集"
+                    style="width: 100%"
                 >
                   <el-option label="GB2312" value="GB2312"></el-option>
                   <el-option label="UTF-8" value="UTF-8"></el-option>
@@ -311,14 +311,14 @@ export default {
         method: 'get',
         url: `/api/platform/exit/${deviceGbId}`
       })
-        .then(function (res) {
-          if (res.data.code === 0) {
-            result = res.data.data;
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+          .then(function (res) {
+            if (res.data.code === 0) {
+              result = res.data.data;
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       return result;
     },
     checkExpires: function () {

@@ -5,7 +5,7 @@
       <span v-if="catalogId != null">{{ catalogName }}({{ catalogId }})的直播通道</span>
     </div>
     <div
-      style="background-color: #FFFFFF; margin-bottom: 1rem; position: relative; padding: 0.5rem; text-align: left;font-size: 14px;">
+        style="background-color: #FFFFFF; margin-bottom: 1rem; position: relative; padding: 0.5rem; text-align: left;font-size: 14px;">
 
       搜索:
       <el-input v-model="searchSrt" clearable placeholder="关键字" prefix-icon="el-icon-search"
@@ -229,22 +229,22 @@ export default {
           mediaServerId: that.mediaServerId
         }
       })
-        .then(function (res) {
-          if (res.data.code === 0) {
-            that.total = res.data.data.total;
-            that.gbStreams = res.data.data.list;
-            that.gbChoosechannel = {};
-            // 防止出现表格错位
-            that.$nextTick(() => {
-              that.$refs.gbStreamsTable.doLayout();
-              // 默认选中
-              that.eventEnable = true;
-            })
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+          .then(function (res) {
+            if (res.data.code === 0) {
+              that.total = res.data.data.total;
+              that.gbStreams = res.data.data.list;
+              that.gbChoosechannel = {};
+              // 防止出现表格错位
+              that.$nextTick(() => {
+                that.$refs.gbStreamsTable.doLayout();
+                // 默认选中
+                that.eventEnable = true;
+              })
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
 
     },
     batchDel: function () {

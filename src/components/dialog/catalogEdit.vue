@@ -1,14 +1,14 @@
 <template>
   <div id="catalogEdit" v-loading="isLoging">
     <el-dialog
-      :append-to-body="true"
-      :close-on-click-modal="false"
-      :destroy-on-close="true"
-      :visible.sync="showDialog"
-      title="节点编辑"
-      top="2rem"
-      width="40%"
-      @close="close()"
+        :append-to-body="true"
+        :close-on-click-modal="false"
+        :destroy-on-close="true"
+        :visible.sync="showDialog"
+        title="节点编辑"
+        top="2rem"
+        width="40%"
+        @close="close()"
     >
       <div id="shared" style="margin-top: 1rem;margin-right: 100px;">
         <el-form ref="form" :model="form" :rules="rules" label-width="140px">
@@ -136,9 +136,9 @@ export default {
             }
             this.close();
           })
-            .catch((error) => {
-              console.log(error);
-            });
+              .catch((error) => {
+                console.log(error);
+              });
         } else {
           return false;
         }

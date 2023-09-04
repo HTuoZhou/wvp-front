@@ -91,33 +91,33 @@ export default {
       console.log("hasAudio  " + this.hasAudio)
 
       jessibucaPlayer[this._uid] = new window.Jessibuca(Object.assign(
-        {
-          container: this.$refs.container,
-          videoBuffer: 0.2, // 最大缓冲时长，单位秒
-          isResize: true,
-          decoder: "static/js/jessibuca/decoder.js",
-          useMSE: false,
-          showBandwidth: false,
-          isFlv: true,
-          // text: "WVP-PRO",
-          // background: "static/images/zlm-logo.png",
-          loadingText: "加载中",
-          hasAudio: typeof (this.hasAudio) == "undefined" ? true : this.hasAudio,
-          debug: false,
-          supportDblclickFullscreen: false, // 是否支持屏幕的双击事件，触发全屏，取消全屏事件。
-          operateBtns: {
-            fullscreen: false,
-            screenshot: false,
-            play: false,
-            audio: false,
-            recorder: false,
+          {
+            container: this.$refs.container,
+            videoBuffer: 0.2, // 最大缓冲时长，单位秒
+            isResize: true,
+            decoder: "static/js/jessibuca/decoder.js",
+            useMSE: false,
+            showBandwidth: false,
+            isFlv: true,
+            // text: "WVP-PRO",
+            // background: "static/images/zlm-logo.png",
+            loadingText: "加载中",
+            hasAudio: typeof (this.hasAudio) == "undefined" ? true : this.hasAudio,
+            debug: false,
+            supportDblclickFullscreen: false, // 是否支持屏幕的双击事件，触发全屏，取消全屏事件。
+            operateBtns: {
+              fullscreen: false,
+              screenshot: false,
+              play: false,
+              audio: false,
+              recorder: false,
+            },
+            record: "record",
+            vod: this.vod,
+            forceNoOffscreen: this.forceNoOffscreen,
+            isNotMute: this.isNotMute,
           },
-          record: "record",
-          vod: this.vod,
-          forceNoOffscreen: this.forceNoOffscreen,
-          isNotMute: this.isNotMute,
-        },
-        options
+          options
       ));
       let jessibuca = jessibucaPlayer[this._uid];
       let _this = this;
@@ -279,9 +279,9 @@ export default {
     },
     isFullscreen: function () {
       return document.fullscreenElement ||
-        document.msFullscreenElement ||
-        document.mozFullScreenElement ||
-        document.webkitFullscreenElement || false;
+          document.msFullscreenElement ||
+          document.mozFullScreenElement ||
+          document.webkitFullscreenElement || false;
     }
   },
   destroyed() {

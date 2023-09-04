@@ -25,117 +25,117 @@ import rtcPlayer from '../components/dialog/rtcPlayer.vue'
 
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push(location) {
-  return originalPush.call(this, location).catch(err => err)
+    return originalPush.call(this, location).catch(err => err)
 }
 
 Vue.use(VueRouter)
 
 
 export default new VueRouter({
-  mode: 'hash',
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Layout,
-      redirect: '/console',
-      children: [
+    mode: 'hash',
+    routes: [
         {
-          path: '/console',
-          component: console,
+            path: '/',
+            name: 'home',
+            component: Layout,
+            redirect: '/console',
+            children: [
+                {
+                    path: '/console',
+                    component: console,
+                },
+                {
+                    path: '/live',
+                    component: live,
+                },
+                {
+                    path: '/deviceList',
+                    component: deviceList,
+                },
+                {
+                    path: '/pushVideoList',
+                    component: pushVideoList,
+                },
+                {
+                    path: '/streamProxyList',
+                    component: streamProxyList,
+                },
+                {
+                    path: '/channelList/:deviceId/:parentChannelId/',
+                    name: 'channelList',
+                    component: channelList,
+                },
+                {
+                    path: '/gbRecordDetail/:deviceId/:channelId/',
+                    name: 'gbRecordDetail',
+                    component: gbRecordDetail,
+                },
+                {
+                    path: '/parentPlatformList/:count/:page',
+                    name: 'parentPlatformList',
+                    component: parentPlatformList,
+                },
+                {
+                    path: '/map/:deviceId/:parentChannelId/:count/:page',
+                    name: 'map',
+                    component: map,
+                },
+                {
+                    path: '/cloudRecord',
+                    name: 'cloudRecord',
+                    component: cloudRecord,
+                },
+                {
+                    path: '/mediaServerManger',
+                    name: 'mediaServerManger',
+                    component: mediaServerManger,
+                },
+                {
+                    path: '/setting/web',
+                    name: 'web',
+                    component: web,
+                },
+                {
+                    path: '/setting/sip',
+                    name: 'sip',
+                    component: sip,
+                },
+                {
+                    path: '/setting/media',
+                    name: 'media',
+                    component: media,
+                },
+                {
+                    path: '/map',
+                    name: 'map',
+                    component: map,
+                },
+                {
+                    path: '/userManager',
+                    name: 'userManager',
+                    component: userManager,
+                }
+            ]
         },
         {
-          path: '/live',
-          component: live,
+            path: '/login',
+            name: '登录',
+            component: login,
         },
         {
-          path: '/deviceList',
-          component: deviceList,
+            path: '/test',
+            name: 'deviceTree',
+            component: deviceTree,
         },
         {
-          path: '/pushVideoList',
-          component: pushVideoList,
+            path: '/play/wasm/:url',
+            name: 'wasmPlayer',
+            component: wasmPlayer,
         },
         {
-          path: '/streamProxyList',
-          component: streamProxyList,
+            path: '/play/rtc/:url',
+            name: 'rtcPlayer',
+            component: rtcPlayer,
         },
-        {
-          path: '/channelList/:deviceId/:parentChannelId/',
-          name: 'channelList',
-          component: channelList,
-        },
-        {
-          path: '/gbRecordDetail/:deviceId/:channelId/',
-          name: 'gbRecordDetail',
-          component: gbRecordDetail,
-        },
-        {
-          path: '/parentPlatformList/:count/:page',
-          name: 'parentPlatformList',
-          component: parentPlatformList,
-        },
-        {
-          path: '/map/:deviceId/:parentChannelId/:count/:page',
-          name: 'map',
-          component: map,
-        },
-        {
-          path: '/cloudRecord',
-          name: 'cloudRecord',
-          component: cloudRecord,
-        },
-        {
-          path: '/mediaServerManger',
-          name: 'mediaServerManger',
-          component: mediaServerManger,
-        },
-        {
-          path: '/setting/web',
-          name: 'web',
-          component: web,
-        },
-        {
-          path: '/setting/sip',
-          name: 'sip',
-          component: sip,
-        },
-        {
-          path: '/setting/media',
-          name: 'media',
-          component: media,
-        },
-        {
-          path: '/map',
-          name: 'map',
-          component: map,
-        },
-        {
-          path: '/userManager',
-          name: 'userManager',
-          component: userManager,
-        }
-      ]
-    },
-    {
-      path: '/login',
-      name: '登录',
-      component: login,
-    },
-    {
-      path: '/test',
-      name: 'deviceTree',
-      component: deviceTree,
-    },
-    {
-      path: '/play/wasm/:url',
-      name: 'wasmPlayer',
-      component: wasmPlayer,
-    },
-    {
-      path: '/play/rtc/:url',
-      name: 'rtcPlayer',
-      component: rtcPlayer,
-    },
-  ]
+    ]
 })

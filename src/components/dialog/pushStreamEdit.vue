@@ -1,13 +1,13 @@
 <template>
   <div id="addStreamProxy" v-loading="isLoging">
     <el-dialog
-      :close-on-click-modal="false"
-      :destroy-on-close="true"
-      :visible.sync="showDialog"
-      title=" 加入"
-      top="2rem"
-      width="40%"
-      @close="close()"
+        :close-on-click-modal="false"
+        :destroy-on-close="true"
+        :visible.sync="showDialog"
+        title=" 加入"
+        top="2rem"
+        width="40%"
+        @close="close()"
     >
       <div id="shared" style="margin-top: 1rem;margin-right: 100px;">
         <el-form ref="streamProxy" :model="proxyParam" :rules="rules" label-width="140px">

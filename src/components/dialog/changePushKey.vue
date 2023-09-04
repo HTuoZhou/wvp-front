@@ -1,13 +1,13 @@
 <template>
   <div id="changepushKey" v-loading="isLoging">
     <el-dialog
-      :close-on-click-modal="false"
-      :destroy-on-close="true"
-      :visible.sync="showDialog"
-      title="修改pushKey"
-      top="2rem"
-      width="42%"
-      @close="close()"
+        :close-on-click-modal="false"
+        :destroy-on-close="true"
+        :visible.sync="showDialog"
+        title="修改pushKey"
+        top="2rem"
+        width="42%"
+        @close="close()"
     >
       <div id="shared" style="margin-right: 18px;">
         <el-form ref="pushKeyForm" :rules="rules" label-width="86px" status-icon>

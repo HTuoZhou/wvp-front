@@ -1,13 +1,13 @@
 <template>
   <div id="addUser" v-loading="isLoging">
     <el-dialog
-      :close-on-click-modal="false"
-      :destroy-on-close="true"
-      :visible.sync="showDialog"
-      title="添加用户"
-      top="2rem"
-      width="40%"
-      @close="close()"
+        :close-on-click-modal="false"
+        :destroy-on-close="true"
+        :visible.sync="showDialog"
+        title="添加用户"
+        top="2rem"
+        width="40%"
+        @close="close()"
     >
       <div id="shared" style="margin-right: 20px;">
         <el-form ref="passwordForm" :rules="rules" label-width="80px" status-icon>
@@ -17,10 +17,10 @@
           <el-form-item label="用户类型" prop="roleId">
             <el-select v-model="roleId" placeholder="请选择" style="width: 100%">
               <el-option
-                v-for="item in options"
-                :key="item.id"
-                :label="item.name"
-                :value="item.id">
+                  v-for="item in options"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id">
               </el-option>
             </el-select>
           </el-form-item>

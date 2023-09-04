@@ -1,15 +1,15 @@
 <template>
   <div id="SyncChannelProgress" v-loading="isLoging">
     <el-dialog
-      :append-to-body="true"
-      :close-on-click-modal="false"
-      :destroy-on-close="true"
-      :show-close="true"
-      :visible.sync="showDialog"
-      style="text-align: center"
-      top="13%"
-      width="240px"
-      @close="close()">
+        :append-to-body="true"
+        :close-on-click-modal="false"
+        :destroy-on-close="true"
+        :show-close="true"
+        :visible.sync="showDialog"
+        style="text-align: center"
+        top="13%"
+        width="240px"
+        @close="close()">
       <el-progress :percentage="percentage" :status="syncStatus" type="circle"></el-progress>
       <div style="text-align: center">
         {{ msg }}

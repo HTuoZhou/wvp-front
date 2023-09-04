@@ -4,7 +4,7 @@
       <div class="page-title">国标服务</div>
     </div>
     <div
-      style="width: 60%; margin:0 auto; background-color: #FFFFFF; position: relative; padding: 5rem 6.5rem; text-align: left;font-size: 14px; max-width: 400px">
+        style="width: 60%; margin:0 auto; background-color: #FFFFFF; position: relative; padding: 5rem 6.5rem; text-align: left;font-size: 14px; max-width: 400px">
       <el-form ref="form" :model="form" :rules="rules" label-width="140px">
         <el-form-item label="ip" prop="ip">
           <el-input v-model="form.ip" clearable></el-input>

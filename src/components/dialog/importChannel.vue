@@ -1,24 +1,24 @@
 <template>
   <div id="importChannel" v-loading="isLoging">
     <el-dialog
-      :append-to-body="true"
-      :close-on-click-modal="false"
-      :destroy-on-close="true"
-      :visible.sync="showDialog"
-      title="导入通道数据"
-      top="2rem"
-      width="30rem"
-      @close="close()"
+        :append-to-body="true"
+        :close-on-click-modal="false"
+        :destroy-on-close="true"
+        :visible.sync="showDialog"
+        title="导入通道数据"
+        top="2rem"
+        width="30rem"
+        @close="close()"
     >
       <div>
         <el-upload
-          :action="uploadUrl"
-          :headers="headers"
-          :on-error="errorHook"
-          :on-success="successHook"
-          class="upload-box"
-          drag
-          name="file"
+            :action="uploadUrl"
+            :headers="headers"
+            :on-error="errorHook"
+            :on-success="successHook"
+            class="upload-box"
+            drag
+            name="file"
         >
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
@@ -70,22 +70,22 @@ export default {
         url: `/api/platform/catalog/${!this.isEdit ? "add" : "edit"}`,
         data: this.form
       })
-        .then((res) => {
-          if (res.data.code === 0) {
-            console.log("添加/修改成功")
-            if (this.submitCallback) this.submitCallback()
-          } else {
-            this.$message({
-              showClose: true,
-              message: res.data.msg,
-              type: "error",
-            });
-          }
-          this.close();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+          .then((res) => {
+            if (res.data.code === 0) {
+              console.log("添加/修改成功")
+              if (this.submitCallback) this.submitCallback()
+            } else {
+              this.$message({
+                showClose: true,
+                message: res.data.msg,
+                type: "error",
+              });
+            }
+            this.close();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
     },
     close: function () {
       this.showDialog = false;

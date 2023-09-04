@@ -1,13 +1,13 @@
 <template>
   <div id="configInfo">
     <el-dialog
-      :close-on-click-modal="false"
-      :destroy-on-close="true"
-      :visible.sync="showDialog"
-      title="系统信息"
-      top="2rem"
-      width="=80%"
-      @close="close()"
+        :close-on-click-modal="false"
+        :destroy-on-close="true"
+        :visible.sync="showDialog"
+        title="系统信息"
+        top="2rem"
+        width="=80%"
+        @close="close()"
     >
       <div id="shared" style="margin-top: 10px;margin-right: 100px;">
         <el-descriptions :span="2" title="SIP服务器信息">

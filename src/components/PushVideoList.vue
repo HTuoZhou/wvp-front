@@ -11,10 +11,10 @@
                    style="margin-right: 1rem;" @change="getPushList">
           <el-option label="全部" value=""></el-option>
           <el-option
-            v-for="item in mediaServerList"
-            :key="item.id"
-            :label="item.id"
-            :value="item.id">
+              v-for="item in mediaServerList"
+              :key="item.id"
+              :label="item.id"
+              :value="item.id">
           </el-option>
         </el-select>
         推流状态:
@@ -95,14 +95,14 @@
       </el-table-column>
     </el-table>
     <el-pagination
-      :current-page="currentPage"
-      :page-size="count"
-      :page-sizes="[15, 25, 35, 50]"
-      :total="total"
-      layout="total, sizes, prev, pager, next"
-      style="float: right"
-      @size-change="handleSizeChange"
-      @current-change="currentChange">
+        :current-page="currentPage"
+        :page-size="count"
+        :page-sizes="[15, 25, 35, 50]"
+        :total="total"
+        layout="total, sizes, prev, pager, next"
+        style="float: right"
+        @size-change="handleSizeChange"
+        @current-change="currentChange">
     </el-pagination>
     <streamProxyEdit ref="streamProxyEdit"></streamProxyEdit>
     <importChannel ref="importChannel"></importChannel>

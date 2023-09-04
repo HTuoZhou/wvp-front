@@ -1,13 +1,13 @@
 <template>
   <div id="deviceEdit" v-loading="isLoging">
     <el-dialog
-      :close-on-click-modal="false"
-      :destroy-on-close="true"
-      :visible.sync="showDialog"
-      title="设备编辑"
-      top="2rem"
-      width="40%"
-      @close="close()"
+        :close-on-click-modal="false"
+        :destroy-on-close="true"
+        :visible.sync="showDialog"
+        title="设备编辑"
+        top="2rem"
+        width="40%"
+        @close="close()"
     >
       <div id="shared" style="margin-top: 1rem;margin-right: 100px;">
         <el-form ref="form" :model="form" :rules="rules" label-width="200px">
@@ -29,10 +29,10 @@
             <el-select v-model="form.mediaServerId" style="float: left; width: 100%">
               <!--              <el-option key="auto" label="自动负载最小" value="auto"></el-option>-->
               <el-option
-                v-for="item in mediaServerList"
-                :key="item.mediaServerId"
-                :label="item.mediaServerId"
-                :value="item.mediaServerId">
+                  v-for="item in mediaServerList"
+                  :key="item.mediaServerId"
+                  :label="item.mediaServerId"
+                  :value="item.mediaServerId">
               </el-option>
             </el-select>
           </el-form-item>

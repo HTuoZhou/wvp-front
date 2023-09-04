@@ -11,10 +11,10 @@
         <el-select v-model="mediaServerId" :disabled="recordDetail" placeholder="请选择"
                    size="mini" style="width: 16rem; margin-right: 1rem;" @change="chooseMediaChange">
           <el-option
-            v-for="item in mediaServerList"
-            :key="item.id"
-            :label="item.id"
-            :value="item.id">
+              v-for="item in mediaServerList"
+              :key="item.id"
+              :label="item.id"
+              :value="item.id">
           </el-option>
         </el-select>
         <el-button v-if="!recordDetail" :loading="loading" circle icon="el-icon-refresh-right" size="mini"
@@ -41,14 +41,14 @@
         </el-table-column>
       </el-table>
       <el-pagination
-        :current-page="currentPage"
-        :page-size="count"
-        :page-sizes="[15, 25, 35, 50]"
-        :total="total"
-        layout="total, sizes, prev, pager, next"
-        style="float: right"
-        @size-change="handleSizeChange"
-        @current-change="currentChange">
+          :current-page="currentPage"
+          :page-size="count"
+          :page-sizes="[15, 25, 35, 50]"
+          :total="total"
+          layout="total, sizes, prev, pager, next"
+          style="float: right"
+          @size-change="handleSizeChange"
+          @current-change="currentChange">
       </el-pagination>
     </div>
     <cloud-record-detail v-if="recordDetail" ref="cloudRecordDetail" :mediaServerId="mediaServerId"

@@ -293,21 +293,21 @@ export default {
           channelType: that.channelType
         }
       })
-        .then(function (res) {
-          if (res.data.code === 0) {
-            that.total = res.data.data.total;
-            that.gbChannels = res.data.data.list;
-            that.gbChoosechannel = {};
-          }
-          // 防止出现表格错位
-          that.$nextTick(() => {
-            that.$refs.gbChannelsTable.doLayout();
-            that.eventEnable = true;
+          .then(function (res) {
+            if (res.data.code === 0) {
+              that.total = res.data.data.total;
+              that.gbChannels = res.data.data.list;
+              that.gbChoosechannel = {};
+            }
+            // 防止出现表格错位
+            that.$nextTick(() => {
+              that.$refs.gbChannelsTable.doLayout();
+              that.eventEnable = true;
+            })
           })
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+          .catch(function (error) {
+            console.log(error);
+          });
 
     },
     search: function () {

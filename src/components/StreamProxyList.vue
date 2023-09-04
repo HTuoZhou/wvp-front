@@ -111,14 +111,14 @@
       </el-table-column>
     </el-table>
     <el-pagination
-      :current-page="currentPage"
-      :page-size="count"
-      :page-sizes="[15, 25, 35, 50]"
-      :total="total"
-      layout="total, sizes, prev, pager, next"
-      style="float: right"
-      @size-change="handleSizeChange"
-      @current-change="currentChange">
+        :current-page="currentPage"
+        :page-size="count"
+        :page-sizes="[15, 25, 35, 50]"
+        :total="total"
+        layout="total, sizes, prev, pager, next"
+        style="float: right"
+        @size-change="handleSizeChange"
+        @current-change="currentChange">
     </el-pagination>
     <streamProxyEdit ref="streamProxyEdit"></streamProxyEdit>
     <onvifEdit ref="onvifEdit"></onvifEdit>

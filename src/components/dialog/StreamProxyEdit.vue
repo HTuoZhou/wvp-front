@@ -1,21 +1,21 @@
 <template>
   <div id="addStreamProxy" v-loading="isLoging">
     <el-dialog
-      :close-on-click-modal="false"
-      :destroy-on-close="true"
-      :visible.sync="showDialog"
-      title="添加代理"
-      top="2rem"
-      width="40%"
-      @close="close()"
+        :close-on-click-modal="false"
+        :destroy-on-close="true"
+        :visible.sync="showDialog"
+        title="添加代理"
+        top="2rem"
+        width="40%"
+        @close="close()"
     >
       <div id="shared" style="margin-top: 1rem;margin-right: 100px;">
         <el-form ref="streamProxy" :model="proxyParam" :rules="rules" label-width="140px">
           <el-form-item label="类型" prop="type">
             <el-select
-              v-model="proxyParam.type"
-              placeholder="请选择代理类型"
-              style="width: 100%"
+                v-model="proxyParam.type"
+                placeholder="请选择代理类型"
+                style="width: 100%"
             >
               <el-option label="默认" value="default"></el-option>
               <el-option label="FFmpeg" value="ffmpeg"></el-option>
@@ -41,30 +41,30 @@
           </el-form-item>
           <el-form-item label="节点选择" prop="rtpType">
             <el-select
-              v-model="proxyParam.mediaServerId"
-              placeholder="请选择拉流节点"
-              style="width: 100%"
-              @change="mediaServerIdChange"
+                v-model="proxyParam.mediaServerId"
+                placeholder="请选择拉流节点"
+                style="width: 100%"
+                @change="mediaServerIdChange"
             >
               <el-option
-                v-for="item in mediaServerList"
-                :key="item.id"
-                :label="item.id"
-                :value="item.id">
+                  v-for="item in mediaServerList"
+                  :key="item.id"
+                  :label="item.id"
+                  :value="item.id">
               </el-option>
             </el-select>
           </el-form-item>
           <el-form-item v-if="proxyParam.type=='ffmpeg'" label="FFmpeg命令模板" prop="ffmpegCmdKey">
             <el-select
-              v-model="proxyParam.ffmpegCmdKey"
-              placeholder="请选择FFmpeg命令模板"
-              style="width: 100%"
+                v-model="proxyParam.ffmpegCmdKey"
+                placeholder="请选择FFmpeg命令模板"
+                style="width: 100%"
             >
               <el-option
-                v-for="item in Object.keys(ffmpegCmdList)"
-                :key="item"
-                :label="ffmpegCmdList[item]"
-                :value="item">
+                  v-for="item in Object.keys(ffmpegCmdList)"
+                  :key="item"
+                  :label="ffmpegCmdList[item]"
+                  :value="item">
               </el-option>
             </el-select>
           </el-form-item>
@@ -73,9 +73,9 @@
           </el-form-item>
           <el-form-item v-if="proxyParam.type=='default'" label="拉流方式" prop="rtpType">
             <el-select
-              v-model="proxyParam.rtpType"
-              placeholder="请选择拉流方式"
-              style="width: 100%"
+                v-model="proxyParam.rtpType"
+                placeholder="请选择拉流方式"
+                style="width: 100%"
             >
               <el-option label="TCP" value="0"></el-option>
               <el-option label="UDP" value="1"></el-option>

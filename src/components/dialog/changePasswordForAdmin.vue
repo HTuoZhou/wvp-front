@@ -1,13 +1,13 @@
 <template>
   <div id="changePassword" v-loading="isLoging">
     <el-dialog
-      :close-on-click-modal="false"
-      :destroy-on-close="true"
-      :visible.sync="showDialog"
-      title="修改密码"
-      top="2rem"
-      width="40%"
-      @close="close()"
+        :close-on-click-modal="false"
+        :destroy-on-close="true"
+        :visible.sync="showDialog"
+        title="修改密码"
+        top="2rem"
+        width="40%"
+        @close="close()"
     >
       <div id="shared" style="margin-right: 20px;">
         <el-form ref="passwordForm" :rules="rules" label-width="80px" status-icon>

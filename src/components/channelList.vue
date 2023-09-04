@@ -59,11 +59,11 @@
           <el-table-column label="快照" min-width="120">
             <template v-slot:default="scope">
               <el-image
-                :fit="'contain'"
-                :preview-src-list="getBigSnap(scope.row)"
-                :src="getSnap(scope.row)"
-                style="width: 60px"
-                @error="getSnapErrorEvent(scope.row.deviceId, scope.row.channelId)">
+                  :fit="'contain'"
+                  :preview-src-list="getBigSnap(scope.row)"
+                  :src="getSnap(scope.row)"
+                  style="width: 60px"
+                  @error="getSnapErrorEvent(scope.row.deviceId, scope.row.channelId)">
                 <div slot="error" class="image-slot">
                   <i class="el-icon-picture-outline"></i>
                 </div>
@@ -123,14 +123,14 @@
           </el-table-column>
         </el-table>
         <el-pagination
-          :current-page="currentPage"
-          :page-size="count"
-          :page-sizes="[10, 20, 40, 80]"
-          :total="total"
-          layout="total, sizes, prev, pager, next"
-          style="float: right"
-          @size-change="handleSizeChange"
-          @current-change="currentChange">
+            :current-page="currentPage"
+            :page-size="count"
+            :page-sizes="[10, 20, 40, 80]"
+            :total="total"
+            layout="total, sizes, prev, pager, next"
+            style="float: right"
+            @size-change="handleSizeChange"
+            @current-change="currentChange">
         </el-pagination>
       </el-main>
     </el-container>
@@ -408,9 +408,8 @@ export default {
     },
     updateChannel: function (row) {
       this.$axios({
-        method: 'post',
-        url: `/api/device/query/channel/update/${this.deviceId}`,
-        params: row
+        method: 'put',
+        url: `/webapi/gbDevice/channel/switchAudio/${row.id}`,
       }).then(function (res) {
         console.log(JSON.stringify(res));
       });
