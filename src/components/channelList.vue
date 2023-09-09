@@ -62,8 +62,8 @@
                   :fit="'contain'"
                   :preview-src-list="getBigSnap(scope.row)"
                   :src="getSnap(scope.row)"
-                  style="width: 60px"
-                  @error="getSnapErrorEvent(scope.row.deviceId, scope.row.channelId)">
+                  style="width: 60px">
+<!--                  @error="getSnapErrorEvent(scope.row.deviceId, scope.row.channelId)">-->
                 <div slot="error" class="image-slot">
                   <i class="el-icon-picture-outline"></i>
                 </div>
@@ -313,27 +313,27 @@ export default {
     },
     getSnap: function (row) {
       let baseUrl = window.baseUrl ? window.baseUrl : "";
-      return ((process.env.NODE_ENV === 'development') ? process.env.BASE_API : baseUrl) + '/api/device/query/snap/' + row.deviceId + '/' + row.channelId;
+      return ((process.env.NODE_ENV === 'development') ? process.env.BASE_API : baseUrl) + '/snap/' + row.deviceId + '_' + row.channelId + "_snap.jpg";
     },
     getBigSnap: function (row) {
       return [this.getSnap(row)]
     },
-    getSnapErrorEvent: function (deviceId, channelId) {
-
-      if (typeof (this.loadSnap[deviceId + channelId]) != "undefined") {
-        console.log("下载截图" + this.loadSnap[deviceId + channelId])
-        if (this.loadSnap[deviceId + channelId] > 5) {
-          delete this.loadSnap[deviceId + channelId];
-          return;
-        }
-        setTimeout(() => {
-          let url = (process.env.NODE_ENV === 'development' ? "debug" : "") + '/api/device/query/snap/' + deviceId + '/' + channelId
-          this.loadSnap[deviceId + channelId]++
-          document.getElementById(deviceId + channelId).setAttribute("src", url + '?' + new Date().getTime())
-        }, 1000)
-
-      }
-    },
+    // getSnapErrorEvent: function (deviceId, channelId) {
+    //
+    //   if (typeof (this.loadSnap[deviceId + channelId]) != "undefined") {
+    //     console.log("下载截图" + this.loadSnap[deviceId + channelId])
+    //     if (this.loadSnap[deviceId + channelId] > 5) {
+    //       delete this.loadSnap[deviceId + channelId];
+    //       return;
+    //     }
+    //     setTimeout(() => {
+    //       let url = (process.env.NODE_ENV === 'development' ? "debug" : "") + '/api/device/query/snap/' + deviceId + '/' + channelId
+    //       this.loadSnap[deviceId + channelId]++
+    //       document.getElementById(deviceId + channelId).setAttribute("src", url + '?' + new Date().getTime())
+    //     }, 1000)
+    //
+    //   }
+    // },
     showDevice: function () {
       this.$router.push(this.beforeUrl).then(() => {
         this.initParam();
