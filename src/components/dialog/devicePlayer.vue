@@ -65,65 +65,65 @@
                       <el-tag>FLV:</el-tag>
                       <span>{{ streamInfo.flv }}</span>
                     </el-dropdown-item>
-                    <el-dropdown-item v-if="streamInfo.https_flv" :command="streamInfo.https_flv">
+                    <el-dropdown-item v-if="streamInfo.httpsFlv" :command="streamInfo.httpsFlv">
                       <el-tag>FLV(https):</el-tag>
-                      <span>{{ streamInfo.https_flv }}</span>
+                      <span>{{ streamInfo.httpsFlv }}</span>
                     </el-dropdown-item>
-                    <el-dropdown-item v-if="streamInfo.ws_flv" :command="streamInfo.ws_flv">
+                    <el-dropdown-item v-if="streamInfo.wsFlv" :command="streamInfo.wsFlv">
                       <el-tag>FLV(ws):</el-tag>
-                      <span>{{ streamInfo.ws_flv }}</span>
+                      <span>{{ streamInfo.wsFlv }}</span>
                     </el-dropdown-item>
-                    <el-dropdown-item v-if="streamInfo.wss_flv" :command="streamInfo.wss_flv">
+                    <el-dropdown-item v-if="streamInfo.wssFlv" :command="streamInfo.wssFlv">
                       <el-tag>FLV(wss):</el-tag>
-                      <span>{{ streamInfo.wss_flv }}</span>
+                      <span>{{ streamInfo.wssFlv }}</span>
                     </el-dropdown-item>
                     <el-dropdown-item v-if="streamInfo.fmp4" :command="streamInfo.fmp4">
                       <el-tag>FMP4:</el-tag>
                       <span>{{ streamInfo.fmp4 }}</span>
                     </el-dropdown-item>
-                    <el-dropdown-item v-if="streamInfo.https_fmp4" :command="streamInfo.https_fmp4">
+                    <el-dropdown-item v-if="streamInfo.httpsFmp4" :command="streamInfo.httpsFmp4">
                       <el-tag>FMP4(https):</el-tag>
-                      <span>{{ streamInfo.https_fmp4 }}</span>
+                      <span>{{ streamInfo.httpsFmp4 }}</span>
                     </el-dropdown-item>
-                    <el-dropdown-item v-if="streamInfo.ws_fmp4" :command="streamInfo.ws_fmp4">
+                    <el-dropdown-item v-if="streamInfo.wsFmp4" :command="streamInfo.wsFmp4">
                       <el-tag>FMP4(ws):</el-tag>
-                      <span>{{ streamInfo.ws_fmp4 }}</span>
+                      <span>{{ streamInfo.wsFmp4 }}</span>
                     </el-dropdown-item>
-                    <el-dropdown-item v-if="streamInfo.wss_fmp4" :command="streamInfo.wss_fmp4">
+                    <el-dropdown-item v-if="streamInfo.wssFmp4" :command="streamInfo.wssFmp4">
                       <el-tag>FMP4(wss):</el-tag>
-                      <span>{{ streamInfo.wss_fmp4 }}</span>
+                      <span>{{ streamInfo.wssFmp4 }}</span>
                     </el-dropdown-item>
                     <el-dropdown-item v-if="streamInfo.hls" :command="streamInfo.hls">
                       <el-tag>HLS:</el-tag>
                       <span>{{ streamInfo.hls }}</span>
                     </el-dropdown-item>
-                    <el-dropdown-item v-if="streamInfo.https_hls" :command="streamInfo.https_hls">
+                    <el-dropdown-item v-if="streamInfo.httpsHls" :command="streamInfo.httpsHls">
                       <el-tag>HLS(https):</el-tag>
-                      <span>{{ streamInfo.https_hls }}</span>
+                      <span>{{ streamInfo.httpsHls }}</span>
                     </el-dropdown-item>
-                    <el-dropdown-item v-if="streamInfo.ws_hls" :command="streamInfo.ws_hls">
+                    <el-dropdown-item v-if="streamInfo.wsHls" :command="streamInfo.wsHls">
                       <el-tag>HLS(ws):</el-tag>
-                      <span>{{ streamInfo.ws_hls }}</span>
+                      <span>{{ streamInfo.wsHls }}</span>
                     </el-dropdown-item>
-                    <el-dropdown-item v-if="streamInfo.wss_hls" :command="streamInfo.wss_hls">
+                    <el-dropdown-item v-if="streamInfo.wssHls" :command="streamInfo.wssHls">
                       <el-tag>HLS(wss):</el-tag>
-                      <span>{{ streamInfo.wss_hls }}</span>
+                      <span>{{ streamInfo.wssHls }}</span>
                     </el-dropdown-item>
                     <el-dropdown-item v-if="streamInfo.ts" :command="streamInfo.ts">
                       <el-tag>TS:</el-tag>
                       <span>{{ streamInfo.ts }}</span>
                     </el-dropdown-item>
-                    <el-dropdown-item v-if="streamInfo.https_ts" :command="streamInfo.https_ts">
+                    <el-dropdown-item v-if="streamInfo.httpsTs" :command="streamInfo.httpsTs">
                       <el-tag>TS(https):</el-tag>
-                      <span>{{ streamInfo.https_ts }}</span>
+                      <span>{{ streamInfo.httpsTs }}</span>
                     </el-dropdown-item>
-                    <el-dropdown-item v-if="streamInfo.ws_ts" :command="streamInfo.ws_ts">
+                    <el-dropdown-item v-if="streamInfo.wsTs" :command="streamInfo.wsTs">
                       <el-tag>TS(ws):</el-tag>
-                      <span>{{ streamInfo.ws_ts }}</span>
+                      <span>{{ streamInfo.wsTs }}</span>
                     </el-dropdown-item>
-                    <el-dropdown-item v-if="streamInfo.wss_ts" :command="streamInfo.wss_ts">
+                    <el-dropdown-item v-if="streamInfo.wssTs" :command="streamInfo.wssTs">
                       <el-tag>TS(wss):</el-tag>
-                      <span>{{ streamInfo.wss_ts }}</span>
+                      <span>{{ streamInfo.wssTs }}</span>
                     </el-dropdown-item>
                     <el-dropdown-item v-if="streamInfo.rtc" :command="streamInfo.rtc">
                       <el-tag>RTC:</el-tag>
@@ -152,7 +152,6 @@
                   </el-dropdown-menu>
                 </el-dropdown>
               </el-input>
-
             </div>
           </el-tab-pane>
           <!--{"code":0,"data":{"paths":["22-29-30.mp4"],"rootPath":"/home/kkkkk/Documents/ZLMediaKit/release/linux/Debug/www/record/hls/kkkkk/2020-05-11/"}}-->

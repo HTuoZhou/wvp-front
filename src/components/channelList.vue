@@ -57,16 +57,12 @@
           <el-table-column label="通道名称" min-width="200" prop="name">
           </el-table-column>
           <el-table-column label="快照" min-width="120">
-            <template v-slot:default="scope">
+            <template slot-scope="scope">
               <el-image
                   :fit="'contain'"
-                  :preview-src-list="getBigSnap(scope.row)"
-                  :src="getSnap(scope.row)"
+                  :preview-src-list="['/debug/' + scope.row.snap]"
+                  :src="'/debug/' + scope.row.snap"
                   style="width: 60px">
-<!--                  @error="getSnapErrorEvent(scope.row.deviceId, scope.row.channelId)">-->
-                <div slot="error" class="image-slot">
-                  <i class="el-icon-picture-outline"></i>
-                </div>
               </el-image>
             </template>
           </el-table-column>
@@ -104,11 +100,11 @@
               <el-button icon="el-icon-video-play" size="medium" type="text"
                          v-bind:disabled="device === null || !device.status" @click="sendDevicePush(scope.row)">播放
               </el-button>
-              <el-button v-if="!!scope.row.streamId" icon="el-icon-switch-button"
-                         size="medium" style="color: #f56c6c" type="text"
-                         v-bind:disabled="device == null || device.online === 0"
-                         @click="stopDevicePush(scope.row)">停止
-              </el-button>
+<!--              <el-button v-if="!!scope.row.streamId" icon="el-icon-switch-button"-->
+<!--                         size="medium" style="color: #f56c6c" type="text"-->
+<!--                         v-bind:disabled="device == null || device.online === 0"-->
+<!--                         @click="stopDevicePush(scope.row)">停止-->
+<!--              </el-button>-->
               <el-divider direction="vertical"></el-divider>
               <el-button v-if="scope.row.subCount > 0 || scope.row.parental === 1" icon="el-icon-s-open" size="medium"
                          type="text"
@@ -145,6 +141,7 @@ import devicePlayer from './dialog/devicePlayer.vue'
 import uiHeader from '../layout/UiHeader.vue'
 import DeviceService from "./service/DeviceService";
 import DeviceTree from "./common/DeviceTree";
+import {snap} from "ol/geom/flat/simplify";
 
 export default {
   name: 'channelList',
@@ -194,6 +191,7 @@ export default {
     clearTimeout(this.updateLooper);
   },
   methods: {
+    snap,
     initData: function () {
       this.getDeviceChannelList();
     },
@@ -264,11 +262,11 @@ export default {
         console.log(res)
         that.isLoging = false;
         if (res.data.code === 2000000) {
-          setTimeout(() => {
-            let snapId = deviceId + "_" + channelId;
-            that.loadSnap[deviceId + channelId] = 0;
-            that.getSnapErrorEvent(snapId)
-          }, 5000)
+          // setTimeout(() => {
+          //   let snapId = deviceId + "_" + channelId;
+          //   that.loadSnap[deviceId + channelId] = 0;
+          //   that.getSnapErrorEvent(snapId)
+          // }, 5000)
           itemData.streamId = res.data.data.stream;
           that.$refs.devicePlayer.openDialog("media", deviceId, channelId, {
             streamInfo: res.data.data,
@@ -293,31 +291,31 @@ export default {
 
       this.$router.push(`/gbRecordDetail/${deviceId}/${channelId}`)
     },
-    stopDevicePush: function (itemData) {
-      var that = this;
-      this.$axios({
-        method: 'get',
-        url: '/api/play/stop/' + this.deviceId + "/" + itemData.channelId,
-        params: {
-          isSubStream: this.isSubStream
-        }
-      }).then(function (res) {
-        that.initData();
-      }).catch(function (error) {
-        if (error.response.status === 402) { // 已经停止过
-          that.initData();
-        } else {
-          console.log(error)
-        }
-      });
-    },
-    getSnap: function (row) {
-      let baseUrl = window.baseUrl ? window.baseUrl : "";
-      return ((process.env.NODE_ENV === 'development') ? process.env.BASE_API : baseUrl) + '/snap/' + row.deviceId + '_' + row.channelId + "_snap.jpg";
-    },
-    getBigSnap: function (row) {
-      return [this.getSnap(row)]
-    },
+    // stopDevicePush: function (itemData) {
+    //   var that = this;
+    //   this.$axios({
+    //     method: 'get',
+    //     url: '/webapi/gbDevice/stopPlay/' + this.deviceId + "/" + itemData.channelId,
+    //     params: {
+    //       isSubStream: this.isSubStream
+    //     }
+    //   }).then(function (res) {
+    //     that.initData();
+    //   }).catch(function (error) {
+    //     if (error.response.status === 402) { // 已经停止过
+    //       that.initData();
+    //     } else {
+    //       console.log(error)
+    //     }
+    //   });
+    // },
+    // getSnap: function (row) {
+    //   let baseUrl = window.baseUrl ? window.baseUrl : "";
+    //   return ((process.env.NODE_ENV === 'development') ? process.env.BASE_API : baseUrl) + '/' + row.deviceId + '_' + row.channelId + "_snap.jpg";
+    // },
+    // getBigSnap: function (row) {
+    //   return [this.getSnap(row)]
+    // },
     // getSnapErrorEvent: function (deviceId, channelId) {
     //
     //   if (typeof (this.loadSnap[deviceId + channelId]) != "undefined") {
@@ -327,7 +325,8 @@ export default {
     //       return;
     //     }
     //     setTimeout(() => {
-    //       let url = (process.env.NODE_ENV === 'development' ? "debug" : "") + '/api/device/query/snap/' + deviceId + '/' + channelId
+    //       let baseUrl = window.baseUrl ? window.baseUrl : "";
+    //       let url = ((process.env.NODE_ENV === 'development') ? process.env.BASE_API : baseUrl) + '/' + deviceId + '_' + channelId + "_snap.jpg";
     //       this.loadSnap[deviceId + channelId]++
     //       document.getElementById(deviceId + channelId).setAttribute("src", url + '?' + new Date().getTime())
     //     }, 1000)

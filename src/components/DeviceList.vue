@@ -3,8 +3,8 @@
     <div class="page-header">
       <div class="page-title">设备列表</div>
       <div class="page-header-btn">
-        <el-button icon="el-icon-plus" size="mini" style="margin-right: 1rem;" type="primary" @click="add">添加设备
-        </el-button>
+<!--        <el-button icon="el-icon-plus" size="mini" style="margin-right: 1rem;" type="primary" @click="add">添加设备-->
+<!--        </el-button>-->
         <el-button :loading="getDeviceListLoading" circle icon="el-icon-refresh-right" size="mini"
                    @click="getDeviceList()"></el-button>
       </div>
